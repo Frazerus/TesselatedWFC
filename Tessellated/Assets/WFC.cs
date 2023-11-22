@@ -1,19 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-[Flags]
-public enum PossibleState : short
-{
-    Grass = 1,
-    Path = 2,
-    Mountain = 4,
-    Snow = 8,
-}
-
-struct Position
+public struct Position
 {
     public int x { get; set; }
     public int y { get; set; }
@@ -29,6 +21,8 @@ public class WFC : MonoBehaviour
 
     public Tile snow;
 
+    public int tileSize;
+
     private int size = 10;
 
     private int numberOfPossibleStates;
@@ -36,6 +30,13 @@ public class WFC : MonoBehaviour
     private bool[][] field;
 
     private Tile[][] tiles;
+
+    private static int[] locationsX = { 0, 1, 0, -1 };
+    private static int[] locationsY = { -1, 0, 1, 0 };
+
+    private Queue<(Tile, int)> propagationQueue;
+
+    private int unfinishedStates;
 
     // Start is called before the first frame update
     void Start()
@@ -46,10 +47,17 @@ public class WFC : MonoBehaviour
 
     void Init()
     {
-        field = new bool[size * size][];
-        for (int i = 0; i < field.Length; i++)
+        unfinishedStates = size * size;
+        propagationQueue = new Queue<(Tile, int)>();
+        tiles = new Tile[size][];
+
+        for (int x = 0; x < size; x++)
         {
-            field[i] = new[] { true, true, true, true }; // change this
+            tiles[x] = new Tile[size];
+            for (int y = 0; y < size; y++)
+            {
+                tiles[x][y] = new Tile(numberOfPossibleStates, new Position { x = x, y = y });
+            }
         }
     }
 
@@ -61,52 +69,82 @@ public class WFC : MonoBehaviour
 
             Observe(nextTile);
 
+            if (unfinishedStates <= 0)
+            {
+                break;
+            }
+        }
+        Draw();
+    }
+
+    void Observe(Tile tile)
+    {
+        unfinishedStates -= 1;
+        tile.ConvergeCompletelyRandom();
+        AddToPropagationQueue(tile);
+        FinishPropagation();
+    }
+
+    void Draw()
+    {
+        var center = gameObject.transform.position;
+        var halfSize = tileSize / 2;
+
+
+
+    }
+
+    void AddToPropagationQueue(Tile tile)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            var x = tile.position.x + locationsX[i];
+            var y = tile.position.y + locationsY[i];
+
+            Tile element = tiles[x][y];
+            if (element.finalState == -1)
+            {
+                propagationQueue.Append((element, tile.finalState));
+            }
         }
     }
 
-    void Observe(Position pos)
+    void FinishPropagation()
     {
-        double [] dist = new double[10];
-        var x = dist.Random()
-    }
+        while (propagationQueue.Count != 0)
+        {
+            (var tile, var state) = propagationQueue.Dequeue();
 
-    void Propagate()
-    {
+            tile.RemoveState(state);
+            var entropy = tile.RecalculateEntropy();
 
+            if (entropy == 0)
+            {
+                unfinishedStates -= 1;
+                AddToPropagationQueue(tile);
+            }
+        }
     }
 
     //O(n * n)
-    Position FindLowestEntropyScanline()
+    Tile FindLowestEntropyScanline()
     {
         var lowestEntropy = 1f;
-        var lowestEntropyTile = new Position { x = -1, y = -1 };
+        Tile lowestEntropyTile = null;
 
         for (int x = 0; x < tiles.Length; x++)
         {
             for (int y = 0; y < tiles[x].Length; y++)
             {
-                Tile tile = tiles[x][y];
-                float entropy = Entropy(tile);
+                var tile = tiles[x][y];
+                var entropy = tile.Entropy;
                 if (entropy < lowestEntropy && entropy > 0)
                 {
-                    lowestEntropyTile = new Position { x = x, y = y };
+                    lowestEntropyTile = tile;
                     lowestEntropy = entropy;
                 }
             }
         }
         return lowestEntropyTile;
-    }
-
-    float Entropy(Tile tile)
-    {
-        var output = 0;
-        var currentStates = (short)tile.State;
-
-        for (int i = 0; i < numberOfPossibleStates; i++)
-        {
-            output += currentStates & 1;
-            currentStates >>= 1;
-        }
-        return output / numberOfPossibleStates;
     }
 }
