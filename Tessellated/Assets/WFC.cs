@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -14,12 +15,7 @@ public struct Position
 
 public class WFC : MonoBehaviour
 {
-    public Tile grass;
-    public Tile path;
-
-    public Tile mountain;
-
-    public Tile snow;
+    public TileObject[] TileObjects;
 
     public int tileSize;
 
@@ -43,6 +39,9 @@ public class WFC : MonoBehaviour
     {
         numberOfPossibleStates = 4;
         Init();
+
+        Run();
+        Draw();
     }
 
     void Init()
@@ -89,9 +88,26 @@ public class WFC : MonoBehaviour
     {
         var center = gameObject.transform.position;
         var halfSize = tileSize / 2;
+        var halfNumberOfTiles = size / 2;
 
+        var rightTopCorner = new Vector3(center.x - halfSize + halfNumberOfTiles * tileSize, 0, center.z - halfSize + halfNumberOfTiles * tileSize);
 
+        //Instantiate(TileObjects[0], center, Quaternion.identity);
+        for (int x = 0; x < size; x++)
+        {
+            for (int y = 0; y < size; y++)
+            {
+                var tile = tiles[x][y];
+                print(new Vector3(rightTopCorner.x - x * tileSize, 0, rightTopCorner.z - y * tileSize));
+                Instantiate(
+                        TileObjects[tile.finalState],
+                        new Vector3(rightTopCorner.x - x * tileSize, 0, rightTopCorner.z - y * tileSize),
+                        Quaternion.identity);
+            }
+        }
+        {
 
+        }
     }
 
     void AddToPropagationQueue(Tile tile)
@@ -101,10 +117,12 @@ public class WFC : MonoBehaviour
             var x = tile.position.x + locationsX[i];
             var y = tile.position.y + locationsY[i];
 
-            Tile element = tiles[x][y];
+            if (x >= size || y >= size || x < 0 || y < 0) continue;
+
+            var element = tiles[x][y];
             if (element.finalState == -1)
             {
-                propagationQueue.Append((element, tile.finalState));
+                propagationQueue.Enqueue((element, tile.finalState));
             }
         }
     }
@@ -126,7 +144,7 @@ public class WFC : MonoBehaviour
         }
     }
 
-    //O(n * n)
+    //O(size * size)
     Tile FindLowestEntropyScanline()
     {
         var lowestEntropy = 1f;
@@ -138,7 +156,7 @@ public class WFC : MonoBehaviour
             {
                 var tile = tiles[x][y];
                 var entropy = tile.Entropy;
-                if (entropy < lowestEntropy && entropy > 0)
+                if (entropy <= lowestEntropy && entropy > 0)
                 {
                     lowestEntropyTile = tile;
                     lowestEntropy = entropy;

@@ -5,7 +5,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Tile : MonoBehaviour
+public class Tile
 {
     public int finalState = -1;
     public bool[] PossibleStates;
@@ -28,7 +28,7 @@ public class Tile : MonoBehaviour
         var state = Random.Range(0, PossibleStates.Length);
         while (!PossibleStates[state])
         {
-            state = state + 1 % PossibleStates.Length;
+            state = (state + 1) % PossibleStates.Length;
         }
 
         finalState = state;
@@ -60,9 +60,7 @@ public class Tile : MonoBehaviour
             }
         }
 
-        Entropy = output / PossibleStates.Length;
+        Entropy = output / (float)PossibleStates.Length;
         return Entropy;
     }
 }
-
-
