@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Tile
@@ -37,9 +33,12 @@ public class Tile
         return finalState;
     }
 
-    public void RemoveState(int state)
+    public void AcknowledgeState(int[] exclusionRules)
     {
-        PossibleStates[state] = false;
+        foreach (var rule in exclusionRules)
+        {
+            PossibleStates[rule] = false;
+        }
     }
 
 

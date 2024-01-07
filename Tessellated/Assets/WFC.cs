@@ -1,43 +1,42 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public struct Position
 {
-    public int x { get; set; }
-    public int y { get; set; }
+    public int X { get; set; }
+    public int Y { get; set; }
 }
 
 
 public class WFC : MonoBehaviour
 {
-    public TileObject[] TileObjects;
+    public TileObject[] tileObjects;
+
+    public string csvForExclusionRules;
 
     public int tileSize;
 
-    private int size = 10;
+    private const int Size = 10;
 
-    private int numberOfPossibleStates;
+    private int _numberOfPossibleStates;
 
-    private bool[][] field;
+    private Tile[][] _tiles;
 
-    private Tile[][] tiles;
+    private static readonly int[] LocationsX = { 0, 1, 0, -1 };
+    private static readonly int[] LocationsY = { -1, 0, 1, 0 };
 
-    private static int[] locationsX = { 0, 1, 0, -1 };
-    private static int[] locationsY = { -1, 0, 1, 0 };
+    private Queue<(Tile, int)> _propagationQueue;
 
-    private Queue<(Tile, int)> propagationQueue;
+    private int _unfinishedStates;
 
-    private int unfinishedStates;
+    private int[][] _tileExclusionRules;
 
     // Start is called before the first frame update
+
     void Start()
     {
-        numberOfPossibleStates = 4;
+        _numberOfPossibleStates = 4;
         Init();
 
         Run();
@@ -46,16 +45,17 @@ public class WFC : MonoBehaviour
 
     void Init()
     {
-        unfinishedStates = size * size;
-        propagationQueue = new Queue<(Tile, int)>();
-        tiles = new Tile[size][];
+        _unfinishedStates = Size * Size;
+        _propagationQueue = new Queue<(Tile, int)>();
+        _tiles = new Tile[Size][];
+        _tileExclusionRules = CSVConverter.Read2DIntCSV(csvForExclusionRules);
 
-        for (int x = 0; x < size; x++)
+    for (int x = 0; x < Size; x++)
         {
-            tiles[x] = new Tile[size];
-            for (int y = 0; y < size; y++)
+            _tiles[x] = new Tile[Size];
+            for (int y = 0; y < Size; y++)
             {
-                tiles[x][y] = new Tile(numberOfPossibleStates, new Position { x = x, y = y });
+                _tiles[x][y] = new Tile(_numberOfPossibleStates, new Position { X = x, Y = y });
             }
         }
     }
@@ -68,7 +68,7 @@ public class WFC : MonoBehaviour
 
             Observe(nextTile);
 
-            if (unfinishedStates <= 0)
+            if (_unfinishedStates <= 0)
             {
                 break;
             }
@@ -78,7 +78,7 @@ public class WFC : MonoBehaviour
 
     void Observe(Tile tile)
     {
-        unfinishedStates -= 1;
+        _unfinishedStates -= 1;
         tile.ConvergeCompletelyRandom();
         AddToPropagationQueue(tile);
         FinishPropagation();
@@ -88,25 +88,20 @@ public class WFC : MonoBehaviour
     {
         var center = gameObject.transform.position;
         var halfSize = tileSize / 2;
-        var halfNumberOfTiles = size / 2;
+        var halfNumberOfTiles = Size / 2;
 
         var rightTopCorner = new Vector3(center.x - halfSize + halfNumberOfTiles * tileSize, 0, center.z - halfSize + halfNumberOfTiles * tileSize);
 
-        //Instantiate(TileObjects[0], center, Quaternion.identity);
-        for (int x = 0; x < size; x++)
+        for (int x = 0; x < Size; x++)
         {
-            for (int y = 0; y < size; y++)
+            for (int y = 0; y < Size; y++)
             {
-                var tile = tiles[x][y];
-                print(new Vector3(rightTopCorner.x - x * tileSize, 0, rightTopCorner.z - y * tileSize));
+                var tile = _tiles[x][y];
                 Instantiate(
-                        TileObjects[tile.finalState],
+                        tileObjects[tile.finalState],
                         new Vector3(rightTopCorner.x - x * tileSize, 0, rightTopCorner.z - y * tileSize),
                         Quaternion.identity);
             }
-        }
-        {
-
         }
     }
 
@@ -114,31 +109,31 @@ public class WFC : MonoBehaviour
     {
         for (int i = 0; i < 4; i++)
         {
-            var x = tile.position.x + locationsX[i];
-            var y = tile.position.y + locationsY[i];
+            var x = tile.position.X + LocationsX[i];
+            var y = tile.position.Y + LocationsY[i];
 
-            if (x >= size || y >= size || x < 0 || y < 0) continue;
+            if (x >= Size || y >= Size || x < 0 || y < 0) continue;
 
-            var element = tiles[x][y];
+            var element = _tiles[x][y];
             if (element.finalState == -1)
             {
-                propagationQueue.Enqueue((element, tile.finalState));
+                _propagationQueue.Enqueue((element, tile.finalState));
             }
         }
     }
 
     void FinishPropagation()
     {
-        while (propagationQueue.Count != 0)
+        while (_propagationQueue.Count != 0)
         {
-            (var tile, var state) = propagationQueue.Dequeue();
+            var (tile, state) = _propagationQueue.Dequeue();
 
-            tile.RemoveState(state);
+            tile.AcknowledgeState(_tileExclusionRules[state]);
             var entropy = tile.RecalculateEntropy();
 
             if (entropy == 0)
             {
-                unfinishedStates -= 1;
+                _unfinishedStates -= 1;
                 AddToPropagationQueue(tile);
             }
         }
@@ -150,11 +145,11 @@ public class WFC : MonoBehaviour
         var lowestEntropy = 1f;
         Tile lowestEntropyTile = null;
 
-        for (int x = 0; x < tiles.Length; x++)
+        for (int x = 0; x < _tiles.Length; x++)
         {
-            for (int y = 0; y < tiles[x].Length; y++)
+            for (int y = 0; y < _tiles[x].Length; y++)
             {
-                var tile = tiles[x][y];
+                var tile = _tiles[x][y];
                 var entropy = tile.Entropy;
                 if (entropy <= lowestEntropy && entropy > 0)
                 {
