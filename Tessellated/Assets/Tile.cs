@@ -1,65 +1,25 @@
-using System.Linq;
 using UnityEngine;
 
 public class Tile
 {
-    public int finalState = -1;
-    public bool[] PossibleStates;
+    public GameObject tileInfo;
 
-    public Position position;
+    public int leftRotations;
 
-    public float Entropy = 1;
-    public Tile(int numberOfPossibleStates, Position position)
+    public int reflections;
+
+    public Tile(GameObject tile, int leftRotations = 0, int reflections = 0)
     {
-        PossibleStates = new bool[numberOfPossibleStates];
-        for (int i = 0; i < numberOfPossibleStates; i++)
-        {
-            PossibleStates[i] = true;
-        }
-        this.position = position;
+        tileInfo = tile;
+        this.leftRotations = leftRotations;
+        this.reflections = reflections;
     }
 
-    public int ConvergeCompletelyRandom()
+    public void Create(Vector3 position)
     {
-        var state = Random.Range(0, PossibleStates.Length);
-        while (!PossibleStates[state])
-        {
-            state = (state + 1) % PossibleStates.Length;
-        }
+        var rotation = new Quaternion();
+        rotation.eulerAngles = new Vector3(0, -90 * leftRotations, 0);
 
-        finalState = state;
-        Entropy = 0;
-
-        return finalState;
-    }
-
-    public void AcknowledgeState(int[] exclusionRules)
-    {
-        foreach (var rule in exclusionRules)
-        {
-            PossibleStates[rule] = false;
-        }
-    }
-
-
-    public float RecalculateEntropy()
-    {
-        var output = PossibleStates.Count(v => v);
-
-        if (output == 1)
-        {
-            for (int i = 0; i < PossibleStates.Length; i++)
-            {
-                if (PossibleStates[i])
-                {
-                    finalState = i;
-                    Entropy = 0;
-                    return Entropy;
-                }
-            }
-        }
-
-        Entropy = output / (float)PossibleStates.Length;
-        return Entropy;
+        Object.Instantiate(tileInfo, position, rotation);
     }
 }

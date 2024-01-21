@@ -21,16 +21,16 @@ public class WFC : MonoBehaviour
 
     private int _numberOfPossibleStates;
 
-    private Tile[][] _tiles;
+    private PrevTile[][] _tiles;
 
     private static readonly int[] LocationsX = { 0, 1, 0, -1 };
     private static readonly int[] LocationsY = { -1, 0, 1, 0 };
 
-    private Queue<(Tile, int)> _propagationQueue;
+    private Queue<(PrevTile, PrevTile)> _propagationQueue;
 
     private int _unfinishedStates;
 
-    private int[][] _tileExclusionRules;
+    private int[][] _tileInclusionRules;
 
     // Start is called before the first frame update
 
@@ -46,16 +46,16 @@ public class WFC : MonoBehaviour
     void Init()
     {
         _unfinishedStates = Size * Size;
-        _propagationQueue = new Queue<(Tile, int)>();
-        _tiles = new Tile[Size][];
-        _tileExclusionRules = CSVConverter.Read2DIntCSV(csvForExclusionRules);
+        //_propagationQueue = new Queue<(PrevTile, int)>();
+        _tiles = new PrevTile[Size][];
+        //_tileExclusionRules = CSVConverter.Read2DIntCSV(csvForExclusionRules);
 
     for (int x = 0; x < Size; x++)
         {
-            _tiles[x] = new Tile[Size];
+            _tiles[x] = new PrevTile[Size];
             for (int y = 0; y < Size; y++)
             {
-                _tiles[x][y] = new Tile(_numberOfPossibleStates, new Position { X = x, Y = y });
+                _tiles[x][y] = new PrevTile(_numberOfPossibleStates, new Position { X = x, Y = y });
             }
         }
     }
@@ -76,11 +76,11 @@ public class WFC : MonoBehaviour
         Draw();
     }
 
-    void Observe(Tile tile)
+    void Observe(PrevTile prevTile)
     {
         _unfinishedStates -= 1;
-        tile.ConvergeCompletelyRandom();
-        AddToPropagationQueue(tile);
+        prevTile.ConvergeCompletelyRandom();
+        AddToPropagationQueue(prevTile);
         FinishPropagation();
     }
 
@@ -105,19 +105,19 @@ public class WFC : MonoBehaviour
         }
     }
 
-    void AddToPropagationQueue(Tile tile)
+    void AddToPropagationQueue(PrevTile prevTile)
     {
         for (int i = 0; i < 4; i++)
         {
-            var x = tile.position.X + LocationsX[i];
-            var y = tile.position.Y + LocationsY[i];
+            var x = prevTile.position.X + LocationsX[i];
+            var y = prevTile.position.Y + LocationsY[i];
 
             if (x >= Size || y >= Size || x < 0 || y < 0) continue;
 
             var element = _tiles[x][y];
             if (element.finalState == -1)
             {
-                _propagationQueue.Enqueue((element, tile.finalState));
+                _propagationQueue.Enqueue((element, prevTile));
             }
         }
     }
@@ -126,9 +126,9 @@ public class WFC : MonoBehaviour
     {
         while (_propagationQueue.Count != 0)
         {
-            var (tile, state) = _propagationQueue.Dequeue();
+            var (tile, neighbor) = _propagationQueue.Dequeue();
 
-            tile.AcknowledgeState(_tileExclusionRules[state]);
+            tile.AcknowledgeNeighbor(neighbor);
             var entropy = tile.RecalculateEntropy();
 
             if (entropy == 0)
@@ -140,10 +140,10 @@ public class WFC : MonoBehaviour
     }
 
     //O(size * size)
-    Tile FindLowestEntropyScanline()
+    PrevTile FindLowestEntropyScanline()
     {
         var lowestEntropy = 1f;
-        Tile lowestEntropyTile = null;
+        PrevTile lowestEntropyPrevTile = null;
 
         for (int x = 0; x < _tiles.Length; x++)
         {
@@ -153,11 +153,11 @@ public class WFC : MonoBehaviour
                 var entropy = tile.Entropy;
                 if (entropy <= lowestEntropy && entropy > 0)
                 {
-                    lowestEntropyTile = tile;
+                    lowestEntropyPrevTile = tile;
                     lowestEntropy = entropy;
                 }
             }
         }
-        return lowestEntropyTile;
+        return lowestEntropyPrevTile;
     }
 }

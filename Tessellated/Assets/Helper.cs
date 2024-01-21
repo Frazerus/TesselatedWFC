@@ -41,6 +41,12 @@ static class Helper
     public static IEnumerable<XElement> Elements(this XElement xelement, params string[] names) => xelement.Elements().Where(e => names.Any(n => n == e.Name));
 }
 
+static class TileHelper
+{
+
+}
+
+/*
 static class BitmapHelper
 {
     public static (int[], int, int) LoadBitmap(string filename)
@@ -61,3 +67,4 @@ static class BitmapHelper
         }
     }
 }
+*/

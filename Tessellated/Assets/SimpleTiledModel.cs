@@ -4,24 +4,25 @@ using System;
 using System.Linq;
 using System.Xml.Linq;
 using System.Collections.Generic;
+using UnityEngine;
 
 class SimpleTiledModel : Model
 {
-    List<int[]> tiles;
+    List<Tile> tiles;
     List<string> tilenames;
     int tilesize;
-    bool blackBackground;
 
-    public SimpleTiledModel(string name, string subsetName, int width, int height, bool periodic, bool blackBackground, Heuristic heuristic) : base(width, height, 1, periodic, heuristic)
+    public SimpleTiledModel(string name, string subsetName, int width, int height, bool periodic,
+        Heuristic heuristic) : base(width, height, 1, periodic, heuristic)
     {
-        this.blackBackground = blackBackground;
-        XElement xroot = XDocument.Load($"tilesets/{name}.xml").Root;
+        XElement xroot = XDocument.Load($"Assets/{name}.xml").Root;
         bool unique = xroot.Get("unique", false);
 
         List<string> subset = null;
         if (subsetName != null)
         {
-            XElement xsubset = xroot.Element("subsets").Elements("subset").FirstOrDefault(x => x.Get<string>("name") == subsetName);
+            XElement xsubset = xroot.Element("subsets").Elements("subset")
+                .FirstOrDefault(x => x.Get<string>("name") == subsetName);
             if (xsubset == null) Console.WriteLine($"ERROR: subset {subsetName} is not found");
             else subset = xsubset.Elements("tile").Select(x => x.Get<string>("name")).ToList();
         }
@@ -29,13 +30,16 @@ class SimpleTiledModel : Model
         static int[] tile(Func<int, int, int> f, int size)
         {
             int[] result = new int[size * size];
-            for (int y = 0; y < size; y++) for (int x = 0; x < size; x++) result[x + y * size] = f(x, y);
+            for (int y = 0; y < size; y++)
+            for (int x = 0; x < size; x++)
+                result[x + y * size] = f(x, y);
             return result;
-        };
+        }
+
         static int[] rotate(int[] array, int size) => tile((x, y) => array[size - 1 - y + x * size], size);
         static int[] reflect(int[] array, int size) => tile((x, y) => array[size - 1 - x + y * size], size);
 
-        tiles = new List<int[]>();
+        tiles = new List<Tile>();
         tilenames = new List<string>();
         var weightList = new List<double>();
 
@@ -114,23 +118,30 @@ class SimpleTiledModel : Model
             {
                 for (int t = 0; t < cardinality; t++)
                 {
-                    int[] bitmap;
-                    (bitmap, tilesize, tilesize) = BitmapHelper.LoadBitmap($"tilesets/{name}/{tilename} {t}.png");
-                    tiles.Add(bitmap);
+                    var currentTile = Resources.Load<GameObject>($"prefabs/{tilename}");
+
+                    var tileObject = new Tile(currentTile);
+
+                    tiles.Add(tileObject);
                     tilenames.Add($"{tilename} {t}");
                 }
             }
             else
             {
-                int[] bitmap;
-                (bitmap, tilesize, tilesize) = BitmapHelper.LoadBitmap($"tilesets/{name}/{tilename}.png");
-                tiles.Add(bitmap);
+                var currentTile = Resources.Load<GameObject>($"prefabs/{tilename}");
+
+                var tileObject = new Tile(currentTile);
+
+                tiles.Add(tileObject);
                 tilenames.Add($"{tilename} 0");
 
                 for (int t = 1; t < cardinality; t++)
                 {
-                    if (t <= 3) tiles.Add(rotate(tiles[T + t - 1], tilesize));
-                    if (t >= 4) tiles.Add(reflect(tiles[T + t - 4], tilesize));
+                    if (t <= 3)
+                        tiles.Add(new Tile(currentTile, t));
+                    if (t >= 4)
+                        tiles.Add(new Tile(currentTile, t - 4, t - 4));
+
                     tilenames.Add($"{tilename} {t}");
                 }
             }
@@ -152,18 +163,28 @@ class SimpleTiledModel : Model
 
         foreach (XElement xneighbor in xroot.Element("neighbors").Elements("neighbor"))
         {
-            string[] left = xneighbor.Get<string>("left").Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-            string[] right = xneighbor.Get<string>("right").Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] left = xneighbor.Get<string>("left")
+                .Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] right = xneighbor.Get<string>("right")
+                .Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
             if (subset != null && (!subset.Contains(left[0]) || !subset.Contains(right[0]))) continue;
 
-            int L = action[firstOccurrence[left[0]]][left.Length == 1 ? 0 : int.Parse(left[1])], D = action[L][1];
-            int R = action[firstOccurrence[right[0]]][right.Length == 1 ? 0 : int.Parse(right[1])], U = action[R][1];
+            int L = action[firstOccurrence[left[0]]][left.Length == 1 ? 0 : int.Parse(left[1])];
+            // GrassL rotiert um 1?????
+            var D = action[L][1];
 
-            densePropagator[0][R][L] = true;
-            densePropagator[0][action[R][6]][action[L][6]] = true;
-            densePropagator[0][action[L][4]][action[R][4]] = true;
-            densePropagator[0][action[L][2]][action[R][2]] = true;
+            int R = action[firstOccurrence[right[0]]][right.Length == 1 ? 0 : int.Parse(right[1])];
+
+            var U = action[R][1];
+
+            //1 passt zu 5 -> GrassL passt zu GrassT
+
+            //TODO Wofür ist dense propagator
+            densePropagator[0][R][L] = true; // 5 1
+            densePropagator[0][action[R][6]][action[L][6]] = true; // 7 -> 4
+            densePropagator[0][action[L][4]][action[R][4]] = true; // 2 -> 5
+            densePropagator[0][action[L][2]][action[R][2]] = true; // 3 -> 7
 
             densePropagator[1][U][D] = true;
             densePropagator[1][action[D][6]][action[U][6]] = true;
@@ -171,11 +192,12 @@ class SimpleTiledModel : Model
             densePropagator[1][action[D][2]][action[U][2]] = true;
         }
 
-        for (int t2 = 0; t2 < T; t2++) for (int t1 = 0; t1 < T; t1++)
-            {
-                densePropagator[2][t2][t1] = densePropagator[0][t1][t2];
-                densePropagator[3][t2][t1] = densePropagator[1][t1][t2];
-            }
+        for (int t2 = 0; t2 < T; t2++)
+        for (int t1 = 0; t1 < T; t1++)
+        {
+            densePropagator[2][t2][t1] = densePropagator[0][t1][t2];
+            densePropagator[3][t2][t1] = densePropagator[1][t1][t2];
+        }
 
         List<int>[][] sparsePropagator = new List<int>[4][];
         for (int d = 0; d < 4; d++)
@@ -185,33 +207,49 @@ class SimpleTiledModel : Model
                 sparsePropagator[d][t] = new List<int>();
         }
 
-        for (int d = 0; d < 4; d++) for (int t1 = 0; t1 < T; t1++)
-            {
-                List<int> sp = sparsePropagator[d][t1];
-                bool[] tp = densePropagator[d][t1];
+        for (int d = 0; d < 4; d++)
+        for (int t1 = 0; t1 < T; t1++)
+        {
+            List<int> sp = sparsePropagator[d][t1];
+            bool[] tp = densePropagator[d][t1];
 
-                for (int t2 = 0; t2 < T; t2++) if (tp[t2]) sp.Add(t2);
+            for (int t2 = 0; t2 < T; t2++)
+                if (tp[t2])
+                    sp.Add(t2);
 
-                int ST = sp.Count;
-                if (ST == 0) Console.WriteLine($"ERROR: tile {tilenames[t1]} has no neighbors in direction {d}");
-                propagator[d][t1] = new int[ST];
-                for (int st = 0; st < ST; st++)
-                    propagator[d][t1][st] = sp[st];
-            }
+            int ST = sp.Count;
+            if (ST == 0) Console.WriteLine($"ERROR: tile {tilenames[t1]} has no neighbors in direction {d}");
+            propagator[d][t1] = new int[ST];
+            for (int st = 0; st < ST; st++)
+                propagator[d][t1][st] = sp[st];
+        }
+    }
+
+    public void Print()
+    {
+
     }
 
     public override void Save(string filename)
     {
-        int[] bitmapData = new int[MX * MY * tilesize * tilesize];
+        var tileSize = 10;
+        var center = new Vector3(0, 0, 0);
+        var halfSize = tileSize / 2;
+        var halfNumberOfTiles = MX / 2;
+
+        var leftTopCorner = new Vector3(center.x + halfSize - halfNumberOfTiles * tileSize, 0, center.z - halfSize + halfNumberOfTiles * tileSize);
+
+
+        //int[] bitmapData = new int[MX * MY * tilesize * tilesize];
         if (observed[0] >= 0)
         {
             for (int x = 0; x < MX; x++) for (int y = 0; y < MY; y++)
-                {
-                    int[] tile = tiles[observed[x + y * MX]];
-                    for (int dy = 0; dy < tilesize; dy++) for (int dx = 0; dx < tilesize; dx++)
-                            bitmapData[x * tilesize + dx + (y * tilesize + dy) * MX * tilesize] = tile[dx + dy * tilesize];
-                }
+            {
+                var tile = tiles[observed[x + y * MX]];
+                tile.Create(new Vector3(leftTopCorner.x + x * tileSize, 0, leftTopCorner.z - y * tileSize));
+            }
         }
+        /*
         else
         {
             for (int i = 0; i < wave.Length; i++)
@@ -239,8 +277,8 @@ class SimpleTiledModel : Model
                         }
                 }
             }
-        }
-        BitmapHelper.SaveBitmap(bitmapData, MX * tilesize, MY * tilesize, filename);
+        }*/
+        //BitmapHelper.SaveBitmap(bitmapData, MX * tilesize, MY * tilesize, filename);
     }
 
     public string TextOutput()

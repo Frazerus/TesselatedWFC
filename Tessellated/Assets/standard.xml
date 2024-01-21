@@ -1,0 +1,32 @@
+<set>
+  <tiles>
+    <tile name="Grass" symmetry="X"/>
+    <tile name="GrassL" symmetry="L"/>
+    <tile name="GrassT" symmetry="T"/>
+    <tile name="Path" symmetry="I" />
+
+  </tiles>
+  <neighbors>
+    <neighbor left="GrassL" right="GrassT" />
+    <neighbor left="GrassL" right="GrassT 3" />
+    <neighbor left="GrassL" right="GrassT 2" />
+    <neighbor left="GrassL 1" right="GrassT 1" />
+
+    <neighbor left="GrassL" right="Path" />
+    <neighbor left="GrassL 1" right="Path 1" />
+    <neighbor left="GrassL 2" right="Path 1" />
+    <neighbor left="GrassL 3" right="Path" />
+
+    <neighbor left="GrassL 1" right="Grass" />
+    <neighbor left="GrassL 2" right="Grass" />
+
+    <neighbor left="Path" right="GrassT" />
+    <neighbor left="Path" right="GrassT 2" />
+    <neighbor left="Path" right="GrassT 3" />
+
+    <neighbor left="Grass" right="Path 1" />
+
+    <neighbor left="Grass" right="GrassT 1" />
+
+  </neighbors>
+</set>
