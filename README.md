@@ -13,7 +13,13 @@ The WFC algorithm consists of 2 parts, the "OverlappingModel" creates new output
 There is already a unity plugin which also implements Maxim Gumin's algorithm in Unity, but for better comparability between this implementation and the new one, a custom one was created. Porting the algorithm to unity also has the upside of allowing me to analyze the algorithm, which enables me to implement the new functionality more easily.
 
 ## Tesselated grids implementation
+The first implentation is based on a octagon and square tessellation shown below. This picture is a screenshot taken from 
+[Wolfram Alpha's Semiregular Tessellation site](https://mathworld.wolfram.com/SemiregularTessellation.html).
 
+The propagator in this case is a 5d Array filled with 2x4/8xNumberOfTilesxNumberOfTiles. 2x because every main instance has 2 parts, the octagon in the middle and the square on the side. In the case of octagon, we have the 8 sides of the octagon as the next count, 4 sides in the case of the square. Then we have the number of tilestates of the currently investigated instance, so if we have 4 different version of octagons, we would have a count of 4 here.
+
+
+![Octagons and Squares](octasquares.png)
 
 
 ## Used version info
