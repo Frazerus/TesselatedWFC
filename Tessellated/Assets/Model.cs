@@ -6,6 +6,8 @@ abstract class Model
 {
     protected bool[][] wave;
 
+
+    //filled in left -> down -> right -> up fashion, the next index supplies the middle thing, and the values then supply what can go where
     protected int[][][] propagator;
     int[][][] compatible;
     protected int[] observed;
@@ -17,10 +19,10 @@ abstract class Model
     protected bool periodic, ground;
 
     protected double[] weights;
-    double[] weightLogWeights, distribution;
+    double[] weightLogWeights, weightDistributions;
 
     protected int[] sumsOfOnes;
-    double sumOfWeights, sumOfWeightLogWeights, startingEntropy;
+    double sumOfWeights,  sumOfWeightLogWeights, startingEntropy;
     protected double[] sumsOfWeights, sumsOfWeightLogWeights, entropies;
 
     public enum Heuristic { Entropy, MRV, Scanline };
@@ -45,7 +47,7 @@ abstract class Model
             compatible[i] = new int[T][];
             for (int t = 0; t < T; t++) compatible[i][t] = new int[4];
         }
-        distribution = new double[T];
+        weightDistributions = new double[T];
         observed = new int[MX * MY];
 
         weightLogWeights = new double[T];
@@ -134,36 +136,46 @@ abstract class Model
 
     void Observe(int node, Random random)
     {
-        bool[] w = wave[node];
-        for (int t = 0; t < T; t++) distribution[t] = w[t] ? weights[t] : 0.0;
-        int r = distribution.Random(random.NextDouble());
-        for (int t = 0; t < T; t++) if (w[t] != (t == r)) Ban(node, t);
+        bool[] possibleStates = wave[node];
+
+        //calculates weights for current observation
+        for (int t = 0; t < T; t++)
+            weightDistributions[t] = possibleStates[t] ? weights[t] : 0.0;
+
+        int r = weightDistributions.Random(random.NextDouble());
+
+        for (int t = 0; t < T; t++)
+            if (possibleStates[t] != (t == r)) //this only occurs when possible states = true due to above calculations
+                Ban(node, t);
     }
 
     bool Propagate()
     {
         while (stacksize > 0)
         {
-            (int i1, int t1) = stack[stacksize - 1];
+            (int i1, int tileState) = stack[stacksize - 1];
             stacksize--;
 
-            int x1 = i1 % MX;
-            int y1 = i1 / MX;
+            int xCenter = i1 % MX;
+            int yCenter = i1 / MX;
 
             for (int d = 0; d < 4; d++)
             {
-                int x2 = x1 + dx[d];
-                int y2 = y1 + dy[d];
-                if (!periodic && (x2 < 0 || y2 < 0 || x2 + N > MX || y2 + N > MY)) continue;
+                int xOuter = xCenter + dx[d];
+                int yOuter = yCenter + dy[d];
+                if (!periodic && (xOuter < 0 || yOuter < 0 || xOuter + N > MX || yOuter + N > MY)) continue;
 
-                if (x2 < 0) x2 += MX;
-                else if (x2 >= MX) x2 -= MX;
-                if (y2 < 0) y2 += MY;
-                else if (y2 >= MY) y2 -= MY;
+                if (xOuter < 0) xOuter += MX;
+                else if (xOuter >= MX) xOuter -= MX;
+                if (yOuter < 0) yOuter += MY;
+                else if (yOuter >= MY) yOuter -= MY;
 
-                int i2 = x2 + y2 * MX;
-                int[] p = propagator[d][t1];
-                int[][] compat = compatible[i2];
+                int outerIndex = xOuter + yOuter * MX;
+                int[] p = propagator[d][tileState];
+
+                //Compatability: tileLocation -> tileStates -> direction
+                //Compatability: which tilelocation can become which tilestate given its neighbors limitations: if all tiles have a thing looking towards a center piece, it cannot become an empty grass tile
+                int[][] compat = compatible[outerIndex];
 
                 for (int l = 0; l < p.Length; l++)
                 {
@@ -171,7 +183,7 @@ abstract class Model
                     int[] comp = compat[t2];
 
                     comp[d]--;
-                    if (comp[d] == 0) Ban(i2, t2);
+                    if (comp[d] == 0) Ban(outerIndex, t2);
                 }
             }
         }
@@ -179,21 +191,23 @@ abstract class Model
         return sumsOfOnes[0] > 0;
     }
 
-    void Ban(int i, int t)
+    void Ban(int index, int tileState)
     {
-        wave[i][t] = false;
+        wave[index][tileState] = false;
 
-        int[] comp = compatible[i][t];
-        for (int d = 0; d < 4; d++) comp[d] = 0;
-        stack[stacksize] = (i, t);
+        int[] comp = compatible[index][tileState];
+        for (int d = 0; d < 4; d++)
+            comp[d] = 0;
+
+        stack[stacksize] = (index, tileState);
         stacksize++;
 
-        sumsOfOnes[i] -= 1;
-        sumsOfWeights[i] -= weights[t];
-        sumsOfWeightLogWeights[i] -= weightLogWeights[t];
+        sumsOfOnes[index] -= 1;
+        sumsOfWeights[index] -= weights[tileState];
+        sumsOfWeightLogWeights[index] -= weightLogWeights[tileState];
 
-        double sum = sumsOfWeights[i];
-        entropies[i] = Math.Log(sum) - sumsOfWeightLogWeights[i] / sum;
+        double sum = sumsOfWeights[index];
+        entropies[index] = Math.Log(sum) - sumsOfWeightLogWeights[index] / sum;
     }
 
     void Clear()

@@ -171,7 +171,7 @@ class SimpleTiledModel : Model
             if (subset != null && (!subset.Contains(left[0]) || !subset.Contains(right[0]))) continue;
 
             int L = action[firstOccurrence[left[0]]][left.Length == 1 ? 0 : int.Parse(left[1])];
-            // GrassL rotiert um 1?????
+
             var D = action[L][1];
 
             int R = action[firstOccurrence[right[0]]][right.Length == 1 ? 0 : int.Parse(right[1])];

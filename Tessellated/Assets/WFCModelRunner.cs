@@ -13,7 +13,8 @@ public class WFCModelRunner : MonoBehaviour
 
 
 
-        var output = model.Run((int)Random.Range(0, 20202020020200), 10000);
+
+        var output = model.Run(37, 10000);
 
         if (!output)
         {
@@ -24,11 +25,5 @@ public class WFCModelRunner : MonoBehaviour
             print("Worked!");
             model.Save("asdf");
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

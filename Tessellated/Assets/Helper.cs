@@ -40,31 +40,3 @@ static class Helper
 
     public static IEnumerable<XElement> Elements(this XElement xelement, params string[] names) => xelement.Elements().Where(e => names.Any(n => n == e.Name));
 }
-
-static class TileHelper
-{
-
-}
-
-/*
-static class BitmapHelper
-{
-    public static (int[], int, int) LoadBitmap(string filename)
-    {
-        using var image = Image.Load<Bgra32>(filename);
-        int width = image.Width, height = image.Height;
-        int[] result = new int[width * height];
-        image.CopyPixelDataTo(MemoryMarshal.Cast<int, Bgra32>(result));
-        return (result, width, height);
-    }
-
-    unsafe public static void SaveBitmap(int[] data, int width, int height, string filename)
-    {
-        fixed (int* pData = data)
-        {
-            using var image = Image.WrapMemory<Bgra32>(pData, width, height);
-            image.SaveAsPng(filename);
-        }
-    }
-}
-*/
