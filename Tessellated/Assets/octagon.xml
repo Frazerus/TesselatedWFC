@@ -1,0 +1,32 @@
+<set>
+  <tiles>
+    <tile name="OctagonGrass" symmetry="X"/>
+    <tile name="OctagonL" symmetry="L"/>
+    <tile name="OctagonT" symmetry="T"/>
+    <tile name="OctagonStraight" symmetry="I" />
+
+  </tiles>
+  <neighbors>
+    <neighbor left="OctagonL" right="OctagonT" />
+    <neighbor left="OctagonL" right="OctagonT 3" />
+    <neighbor left="OctagonL" right="OctagonT 2" />
+    <neighbor left="OctagonL 1" right="OctagonT 1" />
+
+    <neighbor left="OctagonL" right="OctagonStraight" />
+    <neighbor left="OctagonL 1" right="OctagonStraight 1" />
+    <neighbor left="OctagonL 2" right="OctagonStraight 1" />
+    <neighbor left="OctagonL 3" right="OctagonStraight" />
+
+    <neighbor left="OctagonL 1" right="OctagonGrass" />
+    <neighbor left="OctagonL 2" right="OctagonGrass" />
+
+    <neighbor left="OctagonStraight" right="OctagonT" />
+    <neighbor left="OctagonStraight" right="OctagonT 2" />
+    <neighbor left="OctagonStraight" right="OctagonT 3" />
+
+    <neighbor left="OctagonGrass" right="OctagonStraight 1" />
+
+    <neighbor left="OctagonGrass" right="OctagonT 1" />
+
+  </neighbors>
+</set>

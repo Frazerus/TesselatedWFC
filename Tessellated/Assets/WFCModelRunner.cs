@@ -9,7 +9,7 @@ public class WFCModelRunner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var model = new SimpleTiledModel("standard", null, 10, 10, false, Model.Heuristic.Entropy);
+        var model = new SimpleOctagonTessellationModel("octagon", 10, 10, false, OctagonTessellationModel.Heuristic.Scanline);
 
 
 
@@ -23,7 +23,7 @@ public class WFCModelRunner : MonoBehaviour
         else
         {
             print("Worked!");
-            model.Save("asdf");
+            model.Save();
         }
     }
 }

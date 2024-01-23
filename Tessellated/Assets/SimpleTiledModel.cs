@@ -51,7 +51,7 @@ class SimpleTiledModel : Model
             string tilename = xtile.Get<string>("name");
             if (subset != null && !subset.Contains(tilename)) continue;
 
-            Func<int, int> a, b; //a is 90 degrees rotation, b is reflection
+            Func<int, int> a, b; //a is 90 degrees rotation, b is reflection according to the symmetry rules
             int cardinality;
 
             char sym = xtile.Get("symmetry", 'X');
@@ -199,6 +199,8 @@ class SimpleTiledModel : Model
             densePropagator[3][t2][t1] = densePropagator[1][t1][t2];
         }
 
+
+        //each direction has main tile and corresponding directional tiles
         List<int>[][] sparsePropagator = new List<int>[4][];
         for (int d = 0; d < 4; d++)
         {
@@ -213,6 +215,7 @@ class SimpleTiledModel : Model
             List<int> sp = sparsePropagator[d][t1];
             bool[] tp = densePropagator[d][t1];
 
+            //Every rea case is added to the sparse propagator, non available cases are ignored
             for (int t2 = 0; t2 < T; t2++)
                 if (tp[t2])
                     sp.Add(t2);
