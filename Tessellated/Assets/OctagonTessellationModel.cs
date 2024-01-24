@@ -20,7 +20,7 @@ public abstract class OctagonTessellationModel
     /// </summary>
     protected int[][][][][] Propagator;
 
-    private int _shapeCount;
+    protected readonly int ShapeCount;
 
     private int[][][][][] _compatible;
 
@@ -59,7 +59,7 @@ public abstract class OctagonTessellationModel
         _height = octagonHeight;
         this.periodic = periodic;
         this.heuristic = heuristic;
-        _shapeCount = shapeCount;
+        ShapeCount = shapeCount;
     }
 
     void Init()
@@ -71,7 +71,7 @@ public abstract class OctagonTessellationModel
         for (int i = 0; i < Wave.Length; i++)
         {
             Wave[i] = new OctagonSquare(TotalPossibleStates[0], TotalPossibleStates[1]);
-            Observed[i] = new int[_shapeCount];
+            Observed[i] = new int[ShapeCount];
 
             sumsOfPossibleStates[i] = new int[2];
         }
@@ -79,11 +79,11 @@ public abstract class OctagonTessellationModel
         _compatible = new int[Wave.Length][][][][];
         for (int i = 0; i < _compatible.Length; i++)
         {
-            _compatible[i] = new int [_shapeCount][][][];
-            for (int left = 0; left < _shapeCount; left++)
+            _compatible[i] = new int [ShapeCount][][][];
+            for (int left = 0; left < ShapeCount; left++)
             {
-                _compatible[i][left] = new int[_shapeCount][][];
-                for (int right = 0; right < _shapeCount; right++)
+                _compatible[i][left] = new int[ShapeCount][][];
+                for (int right = 0; right < ShapeCount; right++)
                 {
                     _compatible[i][left][right] = new int [TotalPossibleStates[left]][];
                     for (int j = 0; j < TotalPossibleStates[left]; j++)
@@ -129,11 +129,15 @@ public abstract class OctagonTessellationModel
             {
                 for (int i = 0; i < Wave!.Length; i++)
                 {
-                    for (int observedState = 0; observedState < Wave[i].mainStates.Length; observedState++)
+                    for (int shape = 0; shape < ShapeCount; shape++)
                     {
-                        if (Wave[i].mainStates[observedState])
-                            Observed[i][0] = observedState;
+                        for (int observedState = 0; observedState < Wave[i].states[shape].Length; observedState++)
+                        {
+                            if (Wave[i].states[shape][observedState])
+                                Observed[i][shape] = observedState;
+                        }
                     }
+
                     /*for (int observedState = 0; observedState < Wave[i].sideStates.Length; observedState++)
                     {
                         if (Wave[i].sideStates[observedState])
@@ -164,12 +168,12 @@ public abstract class OctagonTessellationModel
             //too big probably
             for (int i = observedSoFar; i < Wave.Length; i++)
             {
-                for (int j = currentObservedPart; j < _shapeCount; j++)
+                for (int j = currentObservedPart; j < ShapeCount; j++)
                 {
                     if (sumsOfPossibleStates[i][j] > 1)
                     {
                         observedSoFar = i + 1;
-                        currentObservedPart = j + 1 % _shapeCount;
+                        currentObservedPart = j + 1 % ShapeCount;
                         return (i, j);
                     }
                 }
@@ -180,9 +184,11 @@ public abstract class OctagonTessellationModel
 
         double min = 1E+4;
         int argmin = -1;
-        for (int i = 0; i < Wave.Length; i++)
+        int minIndex = -1;
+        int minShape = -1;
+        for (int i = 0; i < Wave.Length * ShapeCount; i++)
         {
-            int remainingValues = sumsOfPossibleStates[i][0];
+            int remainingValues = sumsOfPossibleStates[i / ShapeCount][ i % ShapeCount];
             double entropy = remainingValues;
             if (remainingValues > 1 && entropy <= min)
             {
@@ -190,12 +196,13 @@ public abstract class OctagonTessellationModel
                 if (entropy + noise < min)
                 {
                     min = entropy + noise;
-                    argmin = i;
+                    minIndex = i / ShapeCount;
+                    minShape = i % ShapeCount;
                 }
             }
         }
 
-        return (argmin, 0);
+        return (minIndex, minShape);
 
     }
 
@@ -319,7 +326,7 @@ public abstract class OctagonTessellationModel
     {
         for (int i = 0; i < Wave.Length; i++)
         {
-            for (int shape = 0; shape < _shapeCount; shape++)
+            for (int shape = 0; shape < ShapeCount; shape++)
             {
                 Observed[i][shape] = -1;
                 sumsOfPossibleStates[i][shape] = Weights[shape].Length;
@@ -330,9 +337,9 @@ public abstract class OctagonTessellationModel
                 }
             }
             for (int d = 0; d < 4; d++)
-            for (int left = 0; left < _shapeCount; left++)
+            for (int left = 0; left < ShapeCount; left++)
             {
-                for (int right = 0; right < _shapeCount; right++)
+                for (int right = 0; right < ShapeCount; right++)
                 {
                     for (int possibleState = 0; possibleState < TotalPossibleStates[left]; possibleState++)
                     {
