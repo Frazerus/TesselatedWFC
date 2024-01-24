@@ -137,15 +137,20 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
 
         Weights = new double[shapeCount][];
 
-        Propagator = new int [shapeCount][][][];
+        Propagator = new int [shapeCount][][][][];
 
         for (int possibleShape = 0; possibleShape < shapeCount; possibleShape++)
         {
             TotalPossibleStates[possibleShape] = action[possibleShape].Count;
             Weights[possibleShape] = weightList[possibleShape].ToArray();
 
-            Propagator[possibleShape] = new int[4][][];
-            for (var d = 0; d < 4; d++) Propagator[possibleShape][d] = new int[TotalPossibleStates[possibleShape]][];
+
+            Propagator[possibleShape] = new int[shapeCount][][][];
+            for (int right = 0; right < shapeCount; right++)
+            {
+                Propagator[possibleShape][right] = new int[4][][];
+                for (var d = 0; d < 4; d++) Propagator[possibleShape][right][d] = new int[TotalPossibleStates[possibleShape]][];
+            }
         }
 
         //var densePropagator = new bool [][TotalPossibleStates[0]][][];
@@ -220,31 +225,45 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
             }
         }
 
+
+
         //TODO this is main tile only right now
-        var sparsePropagator = new List<int>[4][];
-        for (var d = 0; d < 4; d++)
+        var sparsePropagator = new List<int>[shapeCount][][][];
+        for (int left = 0; left < shapeCount; left++)
         {
-            sparsePropagator[d] = new List<int>[TotalPossibleStates[0]];
-            for (var t = 0; t < TotalPossibleStates[0]; t++)
-                sparsePropagator[d][t] = new List<int>();
-        }
+            sparsePropagator[left] = new List<int>[shapeCount][][];
+            for (int right = 0; right < shapeCount; right++)
+            {
+                sparsePropagator[left][right] = new List<int>[4][];
+                for (var d = 0; d < 4; d++)
+                {
+                    //TODO maybe left right issue here
+                    sparsePropagator[left][right][d] = new List<int>[TotalPossibleStates[left]];
+                    for (var t = 0; t < TotalPossibleStates[left]; t++)
+                        sparsePropagator[left][right][d][t] = new List<int>();
+                }
 
-        for (var d = 0; d < 4; d++)
-        for (var t1 = 0; t1 < TotalPossibleStates[0]; t1++)
-        {
-            var sparse = sparsePropagator[d][t1];
-            var dense = densePropagator[0][0][d][t1];
 
-            //Every real case is added to the sparse propagator, non available cases are ignored
-            for (var t2 = 0; t2 < TotalPossibleStates[0]; t2++)
-                if (dense[t2])
-                    sparse.Add(t2);
 
-            var ST = sparse.Count;
-            if (ST == 0) Console.WriteLine($"ERROR: tile {tilenames[t1]} has no neighbors in direction {d}");
-            Propagator[0][d][t1] = new int[ST];
-            for (var st = 0; st < ST; st++)
-                Propagator[0][d][t1][st] = sparse[st];
+
+                for (var d = 0; d < 4; d++)
+                for (var t1 = 0; t1 < TotalPossibleStates[left]; t1++)
+                {
+                    var sparse = sparsePropagator[left][right][d][t1];
+                    var dense = densePropagator[left][right][d][t1];
+
+                    //Every real case is added to the sparse propagator, non available cases are ignored
+                    for (var t2 = 0; t2 < TotalPossibleStates[right]; t2++)
+                        if (dense[t2])
+                            sparse.Add(t2);
+
+                    var ST = sparse.Count;
+                    if (ST == 0) Console.WriteLine($"ERROR: tile {tilenames[left][t1]} has no neighbors in direction {d}");
+                    Propagator[left][right][d][t1] = new int[ST];
+                    for (var st = 0; st < ST; st++)
+                        Propagator[left][right][d][t1][st] = sparse[st];
+                }
+            }
         }
     }
 
@@ -261,12 +280,12 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
 
 
         //int[] bitmapData = new int[MX * MY * tilesize * tilesize];
-        if (Observed[0].main >= 0)
+        if (Observed[0][0] >= 0)
         {
             for (int x = 0; x < _width; x++)
             for (int y = 0; y < _height; y++)
             {
-                var tile = tiles[0][Observed[x + y * _width].main];
+                var tile = tiles[0][Observed[x + y * _width][0]];
                 tile.Create(new Vector3(leftTopCorner.x + x * tileSize, 0, leftTopCorner.z - y * tileSize));
             }
         }

@@ -18,7 +18,7 @@ public abstract class OctagonTessellationModel
     ///     tileState
     ///     corresponding possible tiles
     /// </summary>
-    protected int[][][][] Propagator;
+    protected int[][][][][] Propagator;
 
     private int _shapeCount;
 
@@ -27,7 +27,7 @@ public abstract class OctagonTessellationModel
     /// <summary>
     /// Each observation counts as 5, the middle on
     /// </summary>
-    protected OctagonSquareObservation[] Observed;
+    protected int[][] Observed;
 
     (int, int, int)[] stack;
     int stacksize, observedSoFar;
@@ -65,13 +65,13 @@ public abstract class OctagonTessellationModel
     void Init()
     {
         Wave = new OctagonSquare[_width * _height];
-        Observed = new OctagonSquareObservation[_width * _height];
+        Observed = new int[_width * _height][];
         sumsOfPossibleStates = new int [Wave.Length][];
 
         for (int i = 0; i < Wave.Length; i++)
         {
             Wave[i] = new OctagonSquare(TotalPossibleStates[0], TotalPossibleStates[1]);
-            Observed[i] = new OctagonSquareObservation();
+            Observed[i] = new int[_shapeCount];
 
             sumsOfPossibleStates[i] = new int[2];
         }
@@ -127,7 +127,7 @@ public abstract class OctagonTessellationModel
                     for (int observedState = 0; observedState < Wave[i].mainStates.Length; observedState++)
                     {
                         if (Wave[i].mainStates[observedState])
-                            Observed[i].main = observedState;
+                            Observed[i][0] = observedState;
                     }
                     /*for (int observedState = 0; observedState < Wave[i].sideStates.Length; observedState++)
                     {
@@ -245,7 +245,7 @@ public abstract class OctagonTessellationModel
                         yOther -= _height;
 
                     int indexOther = xOther + yOther * _width;
-                    int[] p = Propagator[part][d][tileState];
+                    int[] p = Propagator[0][part][d][tileState];
 
                     int otherPart = d < 4 ? 0 : 1;
 
@@ -288,7 +288,7 @@ public abstract class OctagonTessellationModel
                     int indexOther = xOther + yOther * _width;
 
                     // 1x4directions_x#sideTilestates_x#CorrespondingMainTilestates
-                    int[] currentPropagator = Propagator[part][d][tileState];
+                    int[] currentPropagator = Propagator[0][part][d][tileState];
 
                     //other part can only be 0 because only main neighbors in this case
                     int[][] tileCompatability = _compatible[indexOther][0][part];
@@ -307,7 +307,6 @@ public abstract class OctagonTessellationModel
 
         }
 
-        //Todo change this to 2D array
         return sumsOfPossibleStates[0][0] > 0;
     }
 
@@ -315,16 +314,17 @@ public abstract class OctagonTessellationModel
     {
         for (int i = 0; i < Wave.Length; i++)
         {
-            for (int j = 0; j < TotalPossibleStates[0]; j++)
+            for (int shape = 0; shape < _shapeCount; shape++)
             {
-                Wave[i].mainStates[j] = true;
-                for (int d = 0; d < 4; d++)
-                    _compatible[i][0][0][j][d] = Propagator[0][opposite[d]][j].Length;
+                Observed[i][shape] = -1;
+                sumsOfPossibleStates[i][shape] = Weights[shape].Length;
+                for (int possibleState = 0; possibleState < TotalPossibleStates[shape]; possibleState++)
+                {
+                    Wave[i].states[shape][possibleState] = true;
+                    for (int d = 0; d < 4; d++)
+                        _compatible[i][0][0][possibleState][d] = Propagator[0][0][opposite[d]][possibleState].Length;
+                }
             }
-
-            sumsOfPossibleStates[i][0] = Weights[0].Length;
-            Observed[i].main = -1;
-            Observed[i].side = -1;
         }
         currentObservedPart = 0;
     }
