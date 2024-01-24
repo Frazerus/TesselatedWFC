@@ -17,9 +17,10 @@ public class Tile
 
     public void Create(Vector3 position)
     {
-        var rotation = new Quaternion();
-        rotation.eulerAngles = new Vector3(0, -90 * leftRotations, 0);
+        var initialRotation = tileInfo.transform.rotation.eulerAngles;
 
-        Object.Instantiate(tileInfo, position, rotation);
+        var quaternion = Quaternion.Euler(new Vector3(initialRotation.x, -90 * leftRotations + initialRotation.y, initialRotation.z));
+
+        Object.Instantiate(tileInfo, position, quaternion);
     }
 }

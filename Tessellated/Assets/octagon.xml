@@ -4,6 +4,7 @@
     <tile name="OctagonL" symmetry="L"/>
     <tile name="OctagonT" symmetry="T"/>
     <tile name="OctagonStraight" symmetry="I" />
+    <tile name="SquareGrass" symmetry="X" shape="1"/>
 
   </tiles>
   <neighbors>

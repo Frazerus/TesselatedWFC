@@ -7,24 +7,38 @@ using UnityEngine;
 
 public class SimpleOctagonTessellationModel : OctagonTessellationModel
 {
-    List<Tile> tiles;
-    List<string> tilenames;
+    List<Tile>[] tiles;
+    List<string>[] tilenames;
     int tilesize;
 
-    public SimpleOctagonTessellationModel(string name, int octagonWidth, int octagonHeight, bool periodic, Heuristic heuristic)
-        : base(octagonWidth, octagonHeight, periodic, heuristic)
+    public SimpleOctagonTessellationModel(string name, int octagonWidth, int octagonHeight, bool periodic, Heuristic heuristic, int shapeCount)
+        : base(octagonWidth, octagonHeight, periodic, heuristic, shapeCount)
     {
 
         XElement xroot = XDocument.Load($"Assets/{name}.xml").Root;
 
-        tiles = new List<Tile>();
-        tilenames = new List<string>();
-        var weightList = new List<double>();
 
-        var action = new List<int[]>();
-        var firstOccurrence = new Dictionary<string, int>();
+        var weightList = new List<double>[shapeCount];
 
-        TotalPossibleStates = new int[2];
+        tiles = new List<Tile>[shapeCount];
+        tilenames = new List<string>[shapeCount];
+
+        var action = new List<int[]>[shapeCount];
+        var firstOccurrence = new Dictionary<string, int>[shapeCount];
+
+        TotalPossibleStates = new int[shapeCount];
+
+        for (int i = 0; i < shapeCount; i++)
+        {
+            weightList[i] = new List<double>();
+
+            tiles[i] = new List<Tile>();
+            tilenames[i] = new List<string>();
+
+
+            action[i] = new List<int[]>();
+            firstOccurrence[i] = new Dictionary<string, int>();
+        }
 
         foreach (XElement xtile in xroot.Element("tiles").Elements("tile"))
         {
@@ -34,6 +48,7 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
             int cardinality;
 
             char sym = xtile.Get("symmetry", 'X');
+            int shape = xtile.Get("shape", 0);
 
             if (sym == 'L')
             {
@@ -72,8 +87,8 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
                 b = i => i;
             }
 
-            TotalPossibleStates[0] = action.Count;
-            firstOccurrence.Add(tilename, TotalPossibleStates[0]);
+            TotalPossibleStates[shape] = action[shape].Count;
+            firstOccurrence[shape].Add(tilename, TotalPossibleStates[shape]);
 
             int[][] map = new int[cardinality][];
             for (int t = 0; t < cardinality; t++)
@@ -92,41 +107,47 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
 
                 for (int s = 0; s < 8; s++) map[t][s] += TotalPossibleStates[0];
 
-                action.Add(map[t]);
+                action[shape].Add(map[t]);
             }
 
             // if(unique)
             //{}
             //else
             {
-                var currentTile = Resources.Load<GameObject>($"prefabs/{tilename}");
+                var currentTile = Resources.Load<GameObject>($"octagonSquares/{tilename}");
 
                 var tileObject = new Tile(currentTile);
 
-                tiles.Add(tileObject);
-                tilenames.Add($"{tilename} 0");
+                tiles[shape].Add(tileObject);
+                tilenames[shape].Add($"{tilename} 0");
 
                 for (int t = 1; t < cardinality; t++)
                 {
                     if (t <= 3)
-                        tiles.Add(new Tile(currentTile, t));
+                        tiles[shape].Add(new Tile(currentTile, t));
                     if (t >= 4)
-                        tiles.Add(new Tile(currentTile, t - 4, t - 4));
+                        tiles[shape].Add(new Tile(currentTile, t - 4, t - 4));
 
-                    tilenames.Add($"{tilename} {t}");
+                    tilenames[shape].Add($"{tilename} {t}");
                 }
             }
 
-            for (int t = 0; t < cardinality; t++) weightList.Add(xtile.Get("weight", 1.0));
+            for (int t = 0; t < cardinality; t++) weightList[shape].Add(xtile.Get("weight", 1.0));
         }
 
+        Weights = new double[shapeCount][];
+
+
         //TODO t to array of things
-        TotalPossibleStates[0] = action.Count;
+        for (int possibleShape = 0; possibleShape < shapeCount; possibleShape++)
+        {
+            TotalPossibleStates[possibleShape] = action[possibleShape].Count;
+            Weights[possibleShape] = weightList[possibleShape].ToArray();
+        }
 
-        Weights = new double[2][];
-        Weights[0] = weightList.ToArray();
 
-        Propagator = new int [2][][][];
+
+        Propagator = new int [shapeCount][][][];
 
         for (var i = 0; i < Propagator.Length; i++)
         {
@@ -149,25 +170,25 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
             var right = xneighbor.Get<string>("right")
                 .Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
-            var L = action[firstOccurrence[left[0]]][left.Length == 1 ? 0 : int.Parse(left[1])];
+            var L = action[0][firstOccurrence[0][left[0]]][left.Length == 1 ? 0 : int.Parse(left[1])];
 
-            var D = action[L][1];
+            var D = action[0][L][1];
 
-            var R = action[firstOccurrence[right[0]]][right.Length == 1 ? 0 : int.Parse(right[1])];
+            var R = action[0][firstOccurrence[0][right[0]]][right.Length == 1 ? 0 : int.Parse(right[1])];
 
-            var U = action[R][1];
+            var U = action[0][R][1];
 
             //1 passt zu 5 -> GrassL passt zu GrassT
 
             densePropagator[0][R][L] = true; // 5 1
-            densePropagator[0][action[R][6]][action[L][6]] = true; // 7 -> 4
-            densePropagator[0][action[L][4]][action[R][4]] = true; // 2 -> 5
-            densePropagator[0][action[L][2]][action[R][2]] = true; // 3 -> 7
+            densePropagator[0][action[0][R][6]][action[0][L][6]] = true; // 7 -> 4
+            densePropagator[0][action[0][L][4]][action[0][R][4]] = true; // 2 -> 5
+            densePropagator[0][action[0][L][2]][action[0][R][2]] = true; // 3 -> 7
 
             densePropagator[1][U][D] = true;
-            densePropagator[1][action[D][6]][action[U][6]] = true;
-            densePropagator[1][action[U][4]][action[D][4]] = true;
-            densePropagator[1][action[D][2]][action[U][2]] = true;
+            densePropagator[1][action[0][D][6]][action[0][U][6]] = true;
+            densePropagator[1][action[0][U][4]][action[0][D][4]] = true;
+            densePropagator[1][action[0][D][2]][action[0][U][2]] = true;
         }
 
         for (var t2 = 0; t2 < TotalPossibleStates[0]; t2++)
@@ -223,7 +244,7 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
             for (int x = 0; x < _width; x++)
             for (int y = 0; y < _height; y++)
             {
-                var tile = tiles[Observed[x + y * _width].main];
+                var tile = tiles[0][Observed[x + y * _width].main];
                 tile.Create(new Vector3(leftTopCorner.x + x * tileSize, 0, leftTopCorner.z - y * tileSize));
             }
         }

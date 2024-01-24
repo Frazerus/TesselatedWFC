@@ -20,7 +20,7 @@ public abstract class OctagonTessellationModel
     /// </summary>
     protected int[][][][] Propagator;
 
-    private int _countPerIndex;
+    private int _shapeCount;
 
     private int[][][][][] _compatible;
 
@@ -53,13 +53,13 @@ public abstract class OctagonTessellationModel
     private int currentObservedPart;
 
 
-    protected OctagonTessellationModel(int octagonWidth, int octagonHeight, bool periodic, Heuristic heuristic)
+    protected OctagonTessellationModel(int octagonWidth, int octagonHeight, bool periodic, Heuristic heuristic, int shapeCount)
     {
         _width = octagonWidth;
         _height = octagonHeight;
         this.periodic = periodic;
         this.heuristic = heuristic;
-        _countPerIndex = 1;
+        _shapeCount = shapeCount;
     }
 
     void Init()
@@ -129,11 +129,11 @@ public abstract class OctagonTessellationModel
                         if (Wave[i].mainStates[observedState])
                             Observed[i].main = observedState;
                     }
-                    for (int observedState = 0; observedState < Wave[i].sideStates.Length; observedState++)
+                    /*for (int observedState = 0; observedState < Wave[i].sideStates.Length; observedState++)
                     {
                         if (Wave[i].sideStates[observedState])
                             Observed[i].side = observedState;
-                    }
+                    }*/
                 }
 
                 return true;
@@ -150,18 +150,21 @@ public abstract class OctagonTessellationModel
     /// <returns></returns>
     (int index, int part) NextUnobservedNode(Random random)
     {
+        if (heuristic == Heuristic.Entropy)
+            throw new NotImplementedException();
+
         if (heuristic == Heuristic.Scanline)
         {
             //this should
             //too big probably
             for (int i = observedSoFar; i < Wave.Length; i++)
             {
-                for (int j = currentObservedPart; j < _countPerIndex; j++)
+                for (int j = currentObservedPart; j < _shapeCount; j++)
                 {
                     if (sumsOfPossibleStates[i][j] > 1)
                     {
                         observedSoFar = i + 1;
-                        currentObservedPart = j + 1 % _countPerIndex;
+                        currentObservedPart = j + 1 % _shapeCount;
                         return (i, j);
                     }
                 }
@@ -170,7 +173,25 @@ public abstract class OctagonTessellationModel
             return (-1, -1);
         }
 
-        throw new NotImplementedException();
+        double min = 1E+4;
+        int argmin = -1;
+        for (int i = 0; i < Wave.Length; i++)
+        {
+            int remainingValues = sumsOfPossibleStates[i][0];
+            double entropy = remainingValues;
+            if (remainingValues > 1 && entropy <= min)
+            {
+                var noise = 1E-6 * random.NextDouble();
+                if (entropy + noise < min)
+                {
+                    min = entropy + noise;
+                    argmin = i;
+                }
+            }
+        }
+
+        return (argmin, 0);
+
     }
 
     void Observe(int index, int part, Random random)
