@@ -239,7 +239,7 @@ abstract class Model
         }
     }
 
-    public abstract void Save(string filename);
+    public abstract void Save();
 
     protected static int[] dx = { -1, 0, 1, 0 };
     protected static int[] dy = { 0, 1, 0, -1 };

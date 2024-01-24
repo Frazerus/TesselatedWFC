@@ -214,7 +214,7 @@ class SimpleTiledModel : Model
         {
             List<int> sp = sparsePropagator[d][t1];
             bool[] tp = densePropagator[d][t1];
-
+//If right is 0, what can be left of it?
             //Every rea case is added to the sparse propagator, non available cases are ignored
             for (int t2 = 0; t2 < T; t2++)
                 if (tp[t2])
@@ -233,7 +233,7 @@ class SimpleTiledModel : Model
 
     }
 
-    public override void Save(string filename)
+    public override void Save()
     {
         var tileSize = 10;
         var center = new Vector3(0, 0, 0);

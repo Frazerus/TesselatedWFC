@@ -341,7 +341,7 @@ public abstract class OctagonTessellationModel
                 }
             }
         }
-        currentObservedPart = 0;
+         currentObservedPart = 0;
     }
 
     void Ban(int index, int part, int tileState)
