@@ -79,13 +79,18 @@ public abstract class OctagonTessellationModel
         _compatible = new int[Wave.Length][][][][];
         for (int i = 0; i < _compatible.Length; i++)
         {
-            _compatible[i] = new int [2][][][];
-            _compatible[i][0] = new int[2][][];
-            _compatible[i][0][0] = new int [TotalPossibleStates[0]][];
-
-            for (int j = 0; j < TotalPossibleStates[0]; j++)
+            _compatible[i] = new int [_shapeCount][][][];
+            for (int left = 0; left < _shapeCount; left++)
             {
-                _compatible[i][0][0][j] = new int [4];
+                _compatible[i][left] = new int[_shapeCount][][];
+                for (int right = 0; right < _shapeCount; right++)
+                {
+                    _compatible[i][left][right] = new int [TotalPossibleStates[left]][];
+                    for (int j = 0; j < TotalPossibleStates[left]; j++)
+                    {
+                        _compatible[i][left][right][j] = new int [4];
+                    }
+                }
             }
         }
 
@@ -321,8 +326,18 @@ public abstract class OctagonTessellationModel
                 for (int possibleState = 0; possibleState < TotalPossibleStates[shape]; possibleState++)
                 {
                     Wave[i].states[shape][possibleState] = true;
-                    for (int d = 0; d < 4; d++)
-                        _compatible[i][0][0][possibleState][d] = Propagator[0][0][opposite[d]][possibleState].Length;
+
+                }
+            }
+            for (int d = 0; d < 4; d++)
+            for (int left = 0; left < _shapeCount; left++)
+            {
+                for (int right = 0; right < _shapeCount; right++)
+                {
+                    for (int possibleState = 0; possibleState < TotalPossibleStates[left]; possibleState++)
+                    {
+                        _compatible[i][left][right][possibleState][d] = Propagator[left][right][opposite[d]][possibleState].Length;
+                    }
                 }
             }
         }
