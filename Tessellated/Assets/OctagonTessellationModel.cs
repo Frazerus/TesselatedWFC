@@ -9,7 +9,7 @@ public abstract class OctagonTessellationModel
     /// <summary>
     /// We can't use simple booleans, as we dont have a simple 2d array, therefore the objects need to know stuff themselves
     /// </summary>
-    protected OctagonSquare[] Wave;
+    protected bool[][][] Wave;
 
     /// <summary>
     /// array:
@@ -64,13 +64,19 @@ public abstract class OctagonTessellationModel
 
     void Init()
     {
-        Wave = new OctagonSquare[_width * _height];
+        Wave = new bool[_width * _height][][];
         Observed = new int[_width * _height][];
         sumsOfPossibleStates = new int [Wave.Length][];
 
         for (int i = 0; i < Wave.Length; i++)
         {
-            Wave[i] = new OctagonSquare(TotalPossibleStates[0], TotalPossibleStates[1]);
+            Wave[i] = new bool[ShapeCount][];
+
+            for (int shape = 0; shape < ShapeCount; shape++)
+            {
+                Wave[i][shape] = new bool[TotalPossibleStates[shape]];
+            }
+
             Observed[i] = new int[ShapeCount];
 
             sumsOfPossibleStates[i] = new int[2];
@@ -102,7 +108,7 @@ public abstract class OctagonTessellationModel
 
         //TODO initialize compatability, weights, wightslogweights etc
 
-        stack = new (int, int, int)[Wave.Length * TotalPossibleStates[0]];
+        stack = new (int, int, int)[Wave.Length * TotalPossibleStates[0] * TotalPossibleStates[1] * 4];
         stacksize = 0;
 
     }
@@ -123,33 +129,32 @@ public abstract class OctagonTessellationModel
                 Observe(nodeData.index, nodeData.part, random);
                 bool success = Propagate();
                 if (!success)
+                {
                     return false;
+                }
             }
             else
             {
-                for (int i = 0; i < Wave!.Length; i++)
-                {
-                    for (int shape = 0; shape < ShapeCount; shape++)
-                    {
-                        for (int observedState = 0; observedState < Wave[i].states[shape].Length; observedState++)
-                        {
-                            if (Wave[i].states[shape][observedState])
-                                Observed[i][shape] = observedState;
-                        }
-                    }
-
-                    /*for (int observedState = 0; observedState < Wave[i].sideStates.Length; observedState++)
-                    {
-                        if (Wave[i].sideStates[observedState])
-                            Observed[i].side = observedState;
-                    }*/
-                }
-
+                FinalizeObservation();
                 return true;
             }
         }
-
         return true;
+    }
+
+    private void FinalizeObservation()
+    {
+        for (int i = 0; i < Wave!.Length; i++)
+        {
+            for (int shape = 0; shape < ShapeCount; shape++)
+            {
+                for (int observedState = 0; observedState < Wave[i][shape].Length; observedState++)
+                {
+                    if (Wave[i][shape][observedState])
+                        Observed[i][shape] = observedState;
+                }
+            }
+        }
     }
 
     /// <summary>
@@ -183,12 +188,11 @@ public abstract class OctagonTessellationModel
         }
 
         double min = 1E+4;
-        int argmin = -1;
         int minIndex = -1;
         int minShape = -1;
         for (int i = 0; i < Wave.Length * ShapeCount; i++)
         {
-            int remainingValues = sumsOfPossibleStates[i / ShapeCount][ i % ShapeCount];
+            int remainingValues = sumsOfPossibleStates[i / ShapeCount][i % ShapeCount];
             double entropy = remainingValues;
             if (remainingValues > 1 && entropy <= min)
             {
@@ -203,13 +207,13 @@ public abstract class OctagonTessellationModel
         }
 
         return (minIndex, minShape);
-
     }
 
     void Observe(int index, int part, Random random)
     {
-        bool[] possibleStates = Wave[index].states[part];
+        bool[] possibleStates = Wave[index][part];
 
+        //TODO can make weight distributions just a single dimension?
         for (int t = 0; t < TotalPossibleStates[part]; t++)
         {
             _weightDistributions[part][t] = possibleStates[t] ? Weights[part][t] : 0.0;
@@ -239,7 +243,7 @@ public abstract class OctagonTessellationModel
             {
                 //main octagons from 0-3 side squares 4-7
                 //TODO fix for both
-                for (int d = 0; d < 4; d++)
+                for (int d = 0; d < 8; d++)
                 {
                     int xOther = x + dx[d];
                     int yOther = y + dy[d];
@@ -257,23 +261,23 @@ public abstract class OctagonTessellationModel
                         yOther -= _height;
 
                     int indexOther = xOther + yOther * _width;
-                    int[] p = Propagator[0][part][d][tileState];
-
                     int otherPart = d < 4 ? 0 : 1;
+
+                    int[] localPropagator = Propagator[part][otherPart][d % 4][tileState];
 
                     //Could be improved
                     int[][] tileCompatability = _compatible[indexOther][otherPart][part];
 
                     int staggeredD = d % 4;
 
-                    for (int l = 0; l < p.Length; l++)
+                    for (int l = 0; l < localPropagator.Length; l++)
                     {
-                        int otherTile = p[l];
+                        int otherTile = localPropagator[l];
                         int[] comp = tileCompatability[otherTile];
 
                         comp[staggeredD]--;
                         if (comp[staggeredD] == 0)
-                            Ban(indexOther, part, otherTile);
+                            Ban(indexOther, otherPart, otherTile);
                     }
                 }
             }
@@ -284,6 +288,7 @@ public abstract class OctagonTessellationModel
                     int xOther = x + sx[d];
                     int yOther = y + sy[d];
 
+                    //TODO Periodicity error
                     if (!periodic && (xOther < 0 || yOther < 0 || xOther + 1 > _width || yOther + 1 > _height))
                         continue;
 
@@ -298,12 +303,12 @@ public abstract class OctagonTessellationModel
                         yOther -= _height;
 
                     int indexOther = xOther + yOther * _width;
+                    int otherPart = 0; //we only have main neighbors
 
                     // 1x4directions_x#sideTilestates_x#CorrespondingMainTilestates
-                    int[] currentPropagator = Propagator[0][part][d][tileState];
+                    int[] currentPropagator = Propagator[part][otherPart][d][tileState];
 
-                    //other part can only be 0 because only main neighbors in this case
-                    int[][] tileCompatability = _compatible[indexOther][0][part];
+                    int[][] tileCompatability = _compatible[indexOther][otherPart][part];
 
                     for (int i = 0; i < currentPropagator.Length; i++)
                     {
@@ -312,7 +317,7 @@ public abstract class OctagonTessellationModel
 
                         comp[d]--;
                         if (comp[d] == 0)
-                            Ban(indexOther, part, otherTile);
+                            Ban(indexOther, otherPart, otherTile);
                     }
                 }
             }
@@ -332,7 +337,7 @@ public abstract class OctagonTessellationModel
                 sumsOfPossibleStates[i][shape] = Weights[shape].Length;
                 for (int possibleState = 0; possibleState < TotalPossibleStates[shape]; possibleState++)
                 {
-                    Wave[i].states[shape][possibleState] = true;
+                    Wave[i][shape][possibleState] = true;
 
                 }
             }
@@ -348,16 +353,26 @@ public abstract class OctagonTessellationModel
                 }
             }
         }
-         currentObservedPart = 0;
+        currentObservedPart = 0;
     }
 
     void Ban(int index, int part, int tileState)
     {
-        Wave[index].states[part][tileState] = false;
+        Wave[index][part][tileState] = false;
 
-        int[] comp = _compatible[index][0][0][tileState];
+        /*int[] comp = _compatible[index][0][0][tileState];
         for (int d = 0; d < 4; d++)
             comp[d] = 0;
+*/
+        //com [4][1][0][1][1]
+
+        //es hat x nachbarn gegeben, die dass enabled haben
+        int[][][]  comp = _compatible[index][part];
+        for (int otherPart = 0; otherPart <  comp.Length; otherPart++)
+        {
+            for (int d = 0; d < 4; d++)
+                comp[0][tileState][d] = 0;
+        }
 
         stack[stacksize] = (index, part, tileState);
         stacksize++;

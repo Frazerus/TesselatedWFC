@@ -1,23 +1,28 @@
 <set>
   <tiles>
-    <tile name="OctagonGrass" symmetry="X"/>
+    <tile name="OctagonGrass" symmetry="X" />
     <tile name="OctagonL" symmetry="L"/>
     <tile name="OctagonT" symmetry="T"/>
     <tile name="OctagonStraight" symmetry="I" />
+    <tile name="OctagonX" symmetry="X" />
     <tile name="SquareGrass" symmetry="X" shape="1"/>
-
+    <tile name="SquareOther" symmetry="X" shape="1"/>
   </tiles>
   <neighbors>
+
     <neighbor left="OctagonL" right="OctagonT" />
     <neighbor left="OctagonL" right="OctagonT 3" />
     <neighbor left="OctagonL" right="OctagonT 2" />
     <neighbor left="OctagonL 1" right="OctagonT 1" />
 
+    <neighbor left="OctagonX" right="OctagonT" />
+    <neighbor left="OctagonX" right="OctagonStraight" />
+
+    <neighbor left="OctagonL"  right="OctagonX" />
     <neighbor left="OctagonL" right="OctagonStraight" />
     <neighbor left="OctagonL 1" right="OctagonStraight 1" />
     <neighbor left="OctagonL 2" right="OctagonStraight 1" />
     <neighbor left="OctagonL 3" right="OctagonStraight" />
-
     <neighbor left="OctagonL 1" right="OctagonGrass" />
     <neighbor left="OctagonL 2" right="OctagonGrass" />
 
@@ -26,24 +31,34 @@
     <neighbor left="OctagonStraight" right="OctagonT 3" />
 
     <neighbor left="OctagonGrass" right="OctagonStraight 1" />
-
     <neighbor left="OctagonGrass" right="OctagonT 1" />
     <neighbor left="OctagonGrass" right="OctagonGrass" />
 
     <neighbor left="SquareGrass" right="OctagonGrass" />
-
+    <neighbor left="SquareGrass" right="OctagonX" />
     <neighbor left="SquareGrass" right="OctagonL" />
     <neighbor left="SquareGrass" right="OctagonL 1" />
     <neighbor left="SquareGrass" right="OctagonL 2" />
     <neighbor left="SquareGrass" right="OctagonL 3" />
-
     <neighbor left="SquareGrass" right="OctagonT" />
     <neighbor left="SquareGrass" right="OctagonT 1" />
     <neighbor left="SquareGrass" right="OctagonT 2" />
     <neighbor left="SquareGrass" right="OctagonT 3" />
-
     <neighbor left="SquareGrass" right="OctagonStraight" />
     <neighbor left="SquareGrass" right="OctagonStraight 1" />
+
+    <neighbor left="SquareOther" right="OctagonGrass" />
+    <neighbor left="SquareOther" right="OctagonX" />
+    <neighbor left="SquareOther" right="OctagonL" />
+    <neighbor left="SquareOther" right="OctagonL 1" />
+    <neighbor left="SquareOther" right="OctagonL 2" />
+    <neighbor left="SquareOther" right="OctagonL 3" />
+    <neighbor left="SquareOther" right="OctagonT" />
+    <neighbor left="SquareOther" right="OctagonT 1" />
+    <neighbor left="SquareOther" right="OctagonT 2" />
+    <neighbor left="SquareOther" right="OctagonT 3" />
+    <neighbor left="SquareOther" right="OctagonStraight 1" />
+    <neighbor left="SquareOther" right="OctagonStraight" />
 
   </neighbors>
 </set>

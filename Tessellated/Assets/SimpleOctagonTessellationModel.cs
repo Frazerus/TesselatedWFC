@@ -200,6 +200,9 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
                     shapeRight = possibleShape;
             }
 
+            if (shapeLeft == -1 || shapeRight == -1)
+                continue;
+
             var L = action[shapeLeft][firstOccurrence[shapeLeft][left[0]]][left.Length == 1 ? 0 : int.Parse(left[1])];
 
             var D = action[shapeLeft][L][1];
@@ -245,7 +248,6 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
             }
         }
 
-        //TODO this is main tile only right now
         var sparsePropagator = new List<int>[shapeCount][][][];
         for (int left = 0; left < shapeCount; left++)
         {
@@ -260,9 +262,6 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
                     for (var t = 0; t < TotalPossibleStates[shapeWithMostStates]; t++)
                         sparsePropagator[left][right][d][t] = new List<int>();
                 }
-
-
-
 
                 for (var d = 0; d < 4; d++)
                 for (var t1 = 0; t1 < TotalPossibleStates[shapeWithMostStates]; t1++)
