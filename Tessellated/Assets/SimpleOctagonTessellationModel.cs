@@ -105,7 +105,7 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
                 map[t][6] = b(a(a(t)));
                 map[t][7] = b(a(a(a(t))));
 
-                for (int s = 0; s < 8; s++) map[t][s] += TotalPossibleStates[0];
+                for (int s = 0; s < 8; s++) map[t][s] += TotalPossibleStates[shape];
 
                 action[shape].Add(map[t]);
             }
@@ -148,12 +148,24 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
             for (var d = 0; d < 4; d++) Propagator[possibleShape][d] = new int[TotalPossibleStates[possibleShape]][];
         }
 
-        var densePropagator = new bool [TotalPossibleStates[0]][][];
+        //var densePropagator = new bool [][TotalPossibleStates[0]][][];
 
-        for (var d = 0; d < 4; d++)
+        bool[][][][][] densePropagator = new bool[shapeCount][][][][];
+        for(int left = 0; left < shapeCount; left++)
         {
-            densePropagator[d] = new bool[TotalPossibleStates[0]][];
-            for (var t = 0; t < TotalPossibleStates[0]; t++) densePropagator[d][t] = new bool[TotalPossibleStates[0]];
+            densePropagator[left] = new bool[shapeCount][][][];
+            for (int right = 0; right < shapeCount; right++)
+            {
+                densePropagator[left][right] = new bool[4][][];
+                for (int d = 0; d < 4; d++)
+                {
+                    densePropagator[left][right][d] = new bool[TotalPossibleStates[left]][];
+                    for (int states = 0; states < TotalPossibleStates[left]; states++)
+                    {
+                        densePropagator[left][right][d][states] = new bool[TotalPossibleStates[right]];
+                    }
+                }
+            }
         }
 
         foreach (var xneighbor in xroot.Element("neighbors").Elements("neighbor"))
@@ -184,22 +196,28 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
 
             //1 passt zu 5 -> GrassL passt zu GrassT
 
-            densePropagator[0][R][L] = true; // 5 1
-            densePropagator[0][action[0][R][6]][action[0][L][6]] = true; // 7 -> 4
-            densePropagator[0][action[0][L][4]][action[0][R][4]] = true; // 2 -> 5
-            densePropagator[0][action[0][L][2]][action[0][R][2]] = true; // 3 -> 7
+            densePropagator[shapeLeft][shapeRight][0][R][L] = true; // 5 1
+            densePropagator[shapeLeft][shapeRight][0][action[shapeRight][R][6]][action[shapeLeft][L][6]] = true; // 7 -> 4
+            densePropagator[shapeLeft][shapeRight][0][action[shapeLeft][L][4]][action[shapeRight][R][4]] = true; // 2 -> 5
+            densePropagator[shapeLeft][shapeRight][0][action[shapeLeft][L][2]][action[shapeRight][R][2]] = true; // 3 -> 7
 
-            densePropagator[1][U][D] = true;
-            densePropagator[1][action[0][D][6]][action[0][U][6]] = true;
-            densePropagator[1][action[0][U][4]][action[0][D][4]] = true;
-            densePropagator[1][action[0][D][2]][action[0][U][2]] = true;
+            densePropagator[shapeLeft][shapeRight][1][U][D] = true;
+            densePropagator[shapeLeft][shapeRight][1][action[shapeLeft][D][6]][action[shapeRight][U][6]] = true;
+            densePropagator[shapeLeft][shapeRight][1][action[shapeRight][U][4]][action[shapeLeft][D][4]] = true;
+            densePropagator[shapeLeft][shapeRight][1][action[shapeLeft][D][2]][action[shapeRight][U][2]] = true;
         }
 
-        for (var t2 = 0; t2 < TotalPossibleStates[0]; t2++)
-        for (var t1 = 0; t1 < TotalPossibleStates[0]; t1++)
+        for (int left = 0; left < shapeCount; left++)
         {
-            densePropagator[2][t2][t1] = densePropagator[0][t1][t2];
-            densePropagator[3][t2][t1] = densePropagator[1][t1][t2];
+            for (int right = 0; right < shapeCount; right++)
+            {
+                for (var t2 = 0; t2 < TotalPossibleStates[left]; t2++)
+                for (var t1 = 0; t1 < TotalPossibleStates[right]; t1++)
+                {
+                    densePropagator[left][right][2][t2][t1] = densePropagator[right][left][0][t1][t2];
+                    densePropagator[left][right][3][t2][t1] = densePropagator[right][left][1][t1][t2];
+                }
+            }
         }
 
         //TODO this is main tile only right now
@@ -214,19 +232,19 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
         for (var d = 0; d < 4; d++)
         for (var t1 = 0; t1 < TotalPossibleStates[0]; t1++)
         {
-            var sp = sparsePropagator[d][t1];
-            var tp = densePropagator[d][t1];
+            var sparse = sparsePropagator[d][t1];
+            var dense = densePropagator[0][0][d][t1];
 
             //Every real case is added to the sparse propagator, non available cases are ignored
             for (var t2 = 0; t2 < TotalPossibleStates[0]; t2++)
-                if (tp[t2])
-                    sp.Add(t2);
+                if (dense[t2])
+                    sparse.Add(t2);
 
-            var ST = sp.Count;
+            var ST = sparse.Count;
             if (ST == 0) Console.WriteLine($"ERROR: tile {tilenames[t1]} has no neighbors in direction {d}");
             Propagator[0][d][t1] = new int[ST];
             for (var st = 0; st < ST; st++)
-                Propagator[0][d][t1][st] = sp[st];
+                Propagator[0][d][t1][st] = sparse[st];
         }
     }
 

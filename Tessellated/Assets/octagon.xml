@@ -28,6 +28,7 @@
     <neighbor left="OctagonGrass" right="OctagonStraight 1" />
 
     <neighbor left="OctagonGrass" right="OctagonT 1" />
+    <neighbor left="OctagonGrass" right="OctagonGrass" />
 
     <neighbor left="SquareGrass" right="OctagonGrass" />
 
