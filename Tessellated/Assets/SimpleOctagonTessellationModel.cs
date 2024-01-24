@@ -137,22 +137,15 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
 
         Weights = new double[shapeCount][];
 
+        Propagator = new int [shapeCount][][][];
 
-        //TODO t to array of things
         for (int possibleShape = 0; possibleShape < shapeCount; possibleShape++)
         {
             TotalPossibleStates[possibleShape] = action[possibleShape].Count;
             Weights[possibleShape] = weightList[possibleShape].ToArray();
-        }
 
-
-
-        Propagator = new int [shapeCount][][][];
-
-        for (var i = 0; i < Propagator.Length; i++)
-        {
-            Propagator[i] = new int[4][][];
-            for (var d = 0; d < 4; d++) Propagator[i][d] = new int[TotalPossibleStates[0]][];
+            Propagator[possibleShape] = new int[4][][];
+            for (var d = 0; d < 4; d++) Propagator[possibleShape][d] = new int[TotalPossibleStates[possibleShape]][];
         }
 
         var densePropagator = new bool [TotalPossibleStates[0]][][];
@@ -170,11 +163,22 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
             var right = xneighbor.Get<string>("right")
                 .Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
-            var L = action[0][firstOccurrence[0][left[0]]][left.Length == 1 ? 0 : int.Parse(left[1])];
+            int shapeLeft = -1;
+            int shapeRight = -1;
+
+            for (int possibleShape = 0; possibleShape < shapeCount; possibleShape++)
+            {
+                if (firstOccurrence[possibleShape].ContainsKey(left[0]))
+                    shapeLeft = possibleShape;
+                if (firstOccurrence[possibleShape].ContainsKey(right[0]))
+                    shapeRight = possibleShape;
+            }
+
+            var L = action[0][firstOccurrence[shapeLeft][left[0]]][left.Length == 1 ? 0 : int.Parse(left[1])];
 
             var D = action[0][L][1];
 
-            var R = action[0][firstOccurrence[0][right[0]]][right.Length == 1 ? 0 : int.Parse(right[1])];
+            var R = action[0][firstOccurrence[shapeRight][right[0]]][right.Length == 1 ? 0 : int.Parse(right[1])];
 
             var U = action[0][R][1];
 

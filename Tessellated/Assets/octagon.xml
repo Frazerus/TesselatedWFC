@@ -29,5 +29,21 @@
 
     <neighbor left="OctagonGrass" right="OctagonT 1" />
 
+    <neighbor left="SquareGrass" right="OctagonGrass" />
+
   </neighbors>
+  <bla>
+    <neighbor left="SquareGrass" right="OctagonL" />
+    <neighbor left="SquareGrass" right="OctagonL 1" />
+    <neighbor left="SquareGrass" right="OctagonL 2" />
+    <neighbor left="SquareGrass" right="OctagonL 3" />
+
+    <neighbor left="SquareGrass" right="OctagonT" />
+    <neighbor left="SquareGrass" right="OctagonT 1" />
+    <neighbor left="SquareGrass" right="OctagonT 2" />
+    <neighbor left="SquareGrass" right="OctagonT 3" />
+
+    <neighbor left="SquareGrass" right="OctagonStraight" />
+    <neighbor left="SquareGrass" right="OctagonStraight 1" />
+  </bla>
 </set>
