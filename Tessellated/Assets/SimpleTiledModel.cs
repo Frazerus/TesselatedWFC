@@ -13,7 +13,7 @@ class SimpleTiledModel : Model
     int tilesize;
 
     public SimpleTiledModel(string name, string subsetName, int width, int height, bool periodic,
-        Heuristic heuristic) : base(width, height, 1, periodic, heuristic)
+        Heuristic heuristic, string pathToTiles) : base(width, height, 1, periodic, heuristic)
     {
         XElement xroot = XDocument.Load($"Assets/{name}.xml").Root;
         bool unique = xroot.Get("unique", false);
@@ -118,7 +118,7 @@ class SimpleTiledModel : Model
             {
                 for (int t = 0; t < cardinality; t++)
                 {
-                    var currentTile = Resources.Load<GameObject>($"prefabs/{tilename}");
+                    var currentTile = Resources.Load<GameObject>($"{pathToTiles}/{tilename}");
 
                     var tileObject = new Tile(currentTile);
 
@@ -128,7 +128,7 @@ class SimpleTiledModel : Model
             }
             else
             {
-                var currentTile = Resources.Load<GameObject>($"prefabs/{tilename}");
+                var currentTile = Resources.Load<GameObject>($"{pathToTiles}/{tilename}");
 
                 var tileObject = new Tile(currentTile);
 
