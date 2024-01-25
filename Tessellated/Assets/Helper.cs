@@ -4,9 +4,6 @@ using System.Linq;
 using System.Xml.Linq;
 using System.ComponentModel;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.PixelFormats;
 
 static class Helper
 {

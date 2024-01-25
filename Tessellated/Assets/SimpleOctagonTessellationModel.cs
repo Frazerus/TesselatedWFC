@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Xml.Linq;
 using UnityEngine;
 
@@ -140,12 +138,12 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
         Propagator = new int [shapeCount][][][][];
 
 
-        int shapeWithMostStates = 0;
+        _shapeWithMostStates = 0;
         //var densePropagator = new bool [][TotalPossibleStates[0]][][];
         for (int i = 0; i < TotalPossibleStates.Length; i++)
         {
-            if (TotalPossibleStates[i] > TotalPossibleStates[shapeWithMostStates])
-                shapeWithMostStates = i;
+            if (TotalPossibleStates[i] > TotalPossibleStates[_shapeWithMostStates])
+                _shapeWithMostStates = i;
         }
 
         for (int left = 0; left < shapeCount; left++)
@@ -158,7 +156,7 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
             for (int right = 0; right < shapeCount; right++)
             {
                 Propagator[left][right] = new int[4][][];
-                for (var d = 0; d < 4; d++) Propagator[left][right][d] = new int[TotalPossibleStates[shapeWithMostStates]][];
+                for (var d = 0; d < 4; d++) Propagator[left][right][d] = new int[TotalPossibleStates[_shapeWithMostStates]][];
             }
         }
 
@@ -173,10 +171,10 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
                 densePropagator[left][right] = new bool[4][][];
                 for (int d = 0; d < 4; d++)
                 {
-                    densePropagator[left][right][d] = new bool[TotalPossibleStates[shapeWithMostStates]][];
-                    for (int states = 0; states < TotalPossibleStates[shapeWithMostStates]; states++)
+                    densePropagator[left][right][d] = new bool[TotalPossibleStates[_shapeWithMostStates]][];
+                    for (int states = 0; states < TotalPossibleStates[_shapeWithMostStates]; states++)
                     {
-                        densePropagator[left][right][d][states] = new bool[TotalPossibleStates[shapeWithMostStates]];
+                        densePropagator[left][right][d][states] = new bool[TotalPossibleStates[_shapeWithMostStates]];
                     }
                 }
             }
@@ -231,8 +229,8 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
             for (int left = 0; left < shapeCount; left++)
             {
                 //TODO possible optimization
-                for (var t2 = 0; t2 < TotalPossibleStates[shapeWithMostStates]; t2++)
-                for (var t1 = 0; t1 < TotalPossibleStates[shapeWithMostStates]; t1++)
+                for (var t2 = 0; t2 < TotalPossibleStates[_shapeWithMostStates]; t2++)
+                for (var t1 = 0; t1 < TotalPossibleStates[_shapeWithMostStates]; t1++)
                 {
                     if (left == right)
                     {
@@ -258,19 +256,19 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
                 for (var d = 0; d < 4; d++)
                 {
                     //TODO maybe left right issue here
-                    sparsePropagator[left][right][d] = new List<int>[TotalPossibleStates[shapeWithMostStates]];
-                    for (var t = 0; t < TotalPossibleStates[shapeWithMostStates]; t++)
+                    sparsePropagator[left][right][d] = new List<int>[TotalPossibleStates[_shapeWithMostStates]];
+                    for (var t = 0; t < TotalPossibleStates[_shapeWithMostStates]; t++)
                         sparsePropagator[left][right][d][t] = new List<int>();
                 }
 
                 for (var d = 0; d < 4; d++)
-                for (var t1 = 0; t1 < TotalPossibleStates[shapeWithMostStates]; t1++)
+                for (var t1 = 0; t1 < TotalPossibleStates[_shapeWithMostStates]; t1++)
                 {
                     var sparse = sparsePropagator[left][right][d][t1];
                     var dense = densePropagator[left][right][d][t1];
 
                     //Every real case is added to the sparse propagator, non available cases are ignored
-                    for (var t2 = 0; t2 < TotalPossibleStates[shapeWithMostStates]; t2++)
+                    for (var t2 = 0; t2 < TotalPossibleStates[_shapeWithMostStates]; t2++)
                         if (dense[t2])
                             sparse.Add(t2);
 

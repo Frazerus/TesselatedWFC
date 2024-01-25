@@ -1,8 +1,4 @@
-﻿
-
-using System;
-using System.Text;
-using UnityEngine.UIElements;
+﻿using System;
 
 public abstract class OctagonTessellationModel
 {
@@ -45,12 +41,12 @@ public abstract class OctagonTessellationModel
 
     protected int[][] sumsOfPossibleStates;
     double sumOfWeights, sumOfWeightLogWeights, startingEntropy;
-    protected double[] sumsOfWeights, sumsOfWeightLogWeights, entropies;
 
     public enum Heuristic { Entropy, MRV, Scanline };
     Heuristic heuristic;
 
     private int currentObservedPart;
+    protected int _shapeWithMostStates;
 
 
     protected OctagonTessellationModel(int octagonWidth, int octagonHeight, bool periodic, Heuristic heuristic, int shapeCount)
@@ -193,7 +189,9 @@ public abstract class OctagonTessellationModel
         for (int i = 0; i < Wave.Length * ShapeCount; i++)
         {
             int remainingValues = sumsOfPossibleStates[i / ShapeCount][i % ShapeCount];
-            double entropy = remainingValues;
+
+            //double entropy = (double)remainingValues / TotalPossibleStates[i % ShapeCount] * TotalPossibleStates[_shapeWithMostStates];
+            double entropy = remainingValues + (TotalPossibleStates[_shapeWithMostStates] *  (i % ShapeCount));
             if (remainingValues > 1 && entropy <= min)
             {
                 var noise = 1E-6 * random.NextDouble();
@@ -371,7 +369,7 @@ public abstract class OctagonTessellationModel
         for (int otherPart = 0; otherPart <  comp.Length; otherPart++)
         {
             for (int d = 0; d < 4; d++)
-                comp[0][tileState][d] = 0;
+                comp[otherPart][tileState][d] = 0;
         }
 
         stack[stacksize] = (index, part, tileState);

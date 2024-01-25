@@ -5,9 +5,9 @@
     <tile name="OctagonT" symmetry="T"/>
     <tile name="OctagonStraight" symmetry="I" />
     <tile name="OctagonX" symmetry="X" />
-    <tile name="SquareGrass" symmetry="X" shape="1" weight="3"/>
-    <tile name="SquarePink" symmetry="X" shape="1" weight="0.1"/>
-    <tile name="SquareRed" symmetry="X" shape="1" weight="0.2"/>
+    <tile name="SquareGrass" symmetry="X" shape="1" weight="0.5"/>
+    <tile name="SquarePink" symmetry="X" shape="1" weight="5"/>
+    <tile name="SquareRed" symmetry="X" shape="1" weight="5"/>
     <tile name="SquareBlue" symmetry="X" shape="1" weight="0.5"/>
   </tiles>
   <neighbors>
@@ -39,8 +39,6 @@
     <neighbor left="SquareGrass" right="OctagonGrass" />
     <neighbor left="SquareGrass" right="OctagonX" />
     <neighbor left="SquareGrass" right="OctagonL" />
-    <neighbor left="SquareGrass" right="OctagonL 1" />
-    <neighbor left="SquareGrass" right="OctagonL 2" />
     <neighbor left="SquareGrass" right="OctagonL 3" />
     <neighbor left="SquareGrass" right="OctagonT" />
     <neighbor left="SquareGrass" right="OctagonT 1" />
@@ -50,18 +48,7 @@
     <neighbor left="SquareGrass" right="OctagonStraight 1" />
 
     <neighbor left="SquarePink" right="OctagonGrass" />
-    <neighbor left="SquarePink" right="OctagonX" />
-    <neighbor left="SquarePink" right="OctagonL" />
-    <neighbor left="SquarePink" right="OctagonL 1" />
-    <neighbor left="SquarePink" right="OctagonL 2" />
-    <neighbor left="SquarePink" right="OctagonL 3" />
-    <neighbor left="SquarePink" right="OctagonT" />
-    <neighbor left="SquarePink" right="OctagonT 1" />
-    <neighbor left="SquarePink" right="OctagonT 2" />
-    <neighbor left="SquarePink" right="OctagonT 3" />
-    <neighbor left="SquarePink" right="OctagonStraight" />
 
-    <neighbor left="SquareRed" right="OctagonGrass" />
     <neighbor left="SquareRed" right="OctagonX" />
     <neighbor left="SquareRed" right="OctagonL" />
     <neighbor left="SquareRed" right="OctagonL 1" />
@@ -83,8 +70,6 @@
     <neighbor left="SquareBlue" right="OctagonT 1" />
     <neighbor left="SquareBlue" right="OctagonT 2" />
     <neighbor left="SquareBlue" right="OctagonT 3" />
-    <neighbor left="SquareBlue" right="OctagonStraight 1" />
-    <neighbor left="SquareBlue" right="OctagonStraight" />
 
   </neighbors>
 </set>
