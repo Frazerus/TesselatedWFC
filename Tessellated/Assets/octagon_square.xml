@@ -1,30 +1,52 @@
 <set>
+  <info>
+     <title>Standard Octagon Square Model, but instead of using square models to show the output, octagons are used.</title>
+     <description>
+       Model for usage with the standard WFC algorithm for squares, but the models used to show
+      the outcome are octagons instead of squares.
+     </description>
+  </info>
   <tiles>
     <tile name="OctagonGrass" symmetry="X" />
     <tile name="OctagonL" symmetry="L"/>
     <tile name="OctagonT" symmetry="T"/>
     <tile name="OctagonStraight" symmetry="I" />
-
   </tiles>
   <neighbors>
+    <!-- Octagon L with others -->
     <neighbor left="OctagonL" right="OctagonT" />
     <neighbor left="OctagonL" right="OctagonT 3" />
     <neighbor left="OctagonL" right="OctagonT 2" />
     <neighbor left="OctagonL 1" right="OctagonT 1" />
-
     <neighbor left="OctagonL" right="OctagonStraight" />
     <neighbor left="OctagonL 1" right="OctagonStraight 1" />
     <neighbor left="OctagonL 2" right="OctagonStraight 1" />
     <neighbor left="OctagonL 3" right="OctagonStraight" />
     <neighbor left="OctagonL 1" right="OctagonGrass" />
     <neighbor left="OctagonL 2" right="OctagonGrass" />
+    <!-- Octagon L with self -->
+    <neighbor left="OctagonL" right="OctagonL 1" />
+    <neighbor left="OctagonL 3" right="OctagonL 1" />
+    <neighbor left="OctagonL 1" right="OctagonL " />
+    <neighbor left="OctagonL 1" right="OctagonL 3" />
 
+    <!-- Octagon Straight with others -->
     <neighbor left="OctagonStraight" right="OctagonT" />
     <neighbor left="OctagonStraight" right="OctagonT 2" />
     <neighbor left="OctagonStraight" right="OctagonT 3" />
+    <!-- Octagon Straight with self -->
+    <neighbor left="OctagonStraight" right="OctagonStraight" />
+    <neighbor left="OctagonStraight 1" right="OctagonStraight 1" />
 
+    <!-- Octagon Grass with others -->
     <neighbor left="OctagonGrass" right="OctagonStraight 1" />
     <neighbor left="OctagonGrass" right="OctagonT 1" />
+    <!-- Octagon Grass with self -->
     <neighbor left="OctagonGrass" right="OctagonGrass" />
+
+    <neighbor left="OctagonT" right="OctagonT" />
+    <neighbor left="OctagonT" right="OctagonT 1" />
+    <neighbor left="OctagonT" right="OctagonT 2" />
+    <neighbor left="OctagonT 1" right="OctagonT 3" />
   </neighbors>
 </set>

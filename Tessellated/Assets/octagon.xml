@@ -1,54 +1,69 @@
 <set>
   <tiles>
-    <tile name="OctagonGrass" symmetry="X" />
-    <tile name="OctagonL" symmetry="L"/>
-    <tile name="OctagonT" symmetry="T"/>
-    <tile name="OctagonStraight" symmetry="I" />
-    <tile name="OctagonX" symmetry="X" />
-    <tile name="SquareGrass" symmetry="X" shape="1" weight="0.5"/>
-    <tile name="SquarePink" symmetry="X" shape="1" weight="5"/>
-    <tile name="SquareRed" symmetry="X" shape="1" weight="5"/>
-    <tile name="SquareBlue" symmetry="X" shape="1" weight="0.5"/>
+    <tile name="OctagonGrass" symmetry="X" type="0"/>
+    <tile name="OctagonL" symmetry="L" type="0"/>
+    <tile name="OctagonT" symmetry="T" type="0"/>
+    <tile name="OctagonStraight" symmetry="I" type="0" />
+    <tile name="OctagonX" symmetry="X" type="0" />
+    <tile name="SquareGrass" symmetry="X" shape="1" weight="5" type="1"/>
+    <tile name="SquarePink" symmetry="X" shape="1" weight="5" type="1"/>
+    <tile name="SquareRed" symmetry="X" shape="1" weight="0.5" type="1"/>
+    <tile name="SquareBlue" symmetry="X" shape="1" weight="0.5" type="1"/>
   </tiles>
   <neighbors>
-
+    <!-- Octagon L with others -->
     <neighbor left="OctagonL" right="OctagonT" />
     <neighbor left="OctagonL" right="OctagonT 3" />
     <neighbor left="OctagonL" right="OctagonT 2" />
     <neighbor left="OctagonL 1" right="OctagonT 1" />
-
-    <neighbor left="OctagonX" right="OctagonT" />
-    <neighbor left="OctagonX" right="OctagonStraight" />
-
-    <neighbor left="OctagonL"  right="OctagonX" />
     <neighbor left="OctagonL" right="OctagonStraight" />
     <neighbor left="OctagonL 1" right="OctagonStraight 1" />
     <neighbor left="OctagonL 2" right="OctagonStraight 1" />
     <neighbor left="OctagonL 3" right="OctagonStraight" />
     <neighbor left="OctagonL 1" right="OctagonGrass" />
     <neighbor left="OctagonL 2" right="OctagonGrass" />
+    <!-- Octagon L with self -->
+    <neighbor left="OctagonL" right="OctagonL 1" />
+    <neighbor left="OctagonL 3" right="OctagonL 1" />
+    <neighbor left="OctagonL 1" right="OctagonL " />
+    <neighbor left="OctagonL 1" right="OctagonL 3" />
 
+    <!-- Octagon Straight with others -->
     <neighbor left="OctagonStraight" right="OctagonT" />
     <neighbor left="OctagonStraight" right="OctagonT 2" />
     <neighbor left="OctagonStraight" right="OctagonT 3" />
+    <!-- Octagon Straight with self -->
+    <neighbor left="OctagonStraight" right="OctagonStraight" />
+    <neighbor left="OctagonStraight 1" right="OctagonStraight 1" />
 
+    <!-- Octagon Grass with others -->
     <neighbor left="OctagonGrass" right="OctagonStraight 1" />
     <neighbor left="OctagonGrass" right="OctagonT 1" />
+    <!-- Octagon Grass with self -->
     <neighbor left="OctagonGrass" right="OctagonGrass" />
 
+    <!-- Octagon X with Others -->
+    <neighbor left="OctagonX" right="OctagonT" />
+    <neighbor left="OctagonX" right="OctagonStraight" />
+    <!-- Octagon X with Self -->
+    <neighbor left="OctagonX" right="OctagonX" />
+
+    <!-- Grass Squares are allowed everywhere -->
     <neighbor left="SquareGrass" right="OctagonGrass" />
     <neighbor left="SquareGrass" right="OctagonX" />
     <neighbor left="SquareGrass" right="OctagonL" />
     <neighbor left="SquareGrass" right="OctagonL 3" />
     <neighbor left="SquareGrass" right="OctagonT" />
     <neighbor left="SquareGrass" right="OctagonT 1" />
-    <neighbor left="SquareGrass" right="OctagonT 2" />
+    <neighbor left="SquareGrass" right="OctagonT 1" />
     <neighbor left="SquareGrass" right="OctagonT 3" />
     <neighbor left="SquareGrass" right="OctagonStraight" />
     <neighbor left="SquareGrass" right="OctagonStraight 1" />
 
+    <!-- Pink Squares are only allowed next to grass -->
     <neighbor left="SquarePink" right="OctagonGrass" />
 
+    <!-- Red Squares are not allowed next to grass -->
     <neighbor left="SquareRed" right="OctagonX" />
     <neighbor left="SquareRed" right="OctagonL" />
     <neighbor left="SquareRed" right="OctagonL 1" />
@@ -60,6 +75,7 @@
     <neighbor left="SquareRed" right="OctagonT 3" />
     <neighbor left="SquareRed" right="OctagonStraight 1" />
 
+    <!-- Blue Squares are allowed everywhere -->
     <neighbor left="SquareBlue" right="OctagonGrass" />
     <neighbor left="SquareBlue" right="OctagonX" />
     <neighbor left="SquareBlue" right="OctagonL" />
@@ -70,6 +86,5 @@
     <neighbor left="SquareBlue" right="OctagonT 1" />
     <neighbor left="SquareBlue" right="OctagonT 2" />
     <neighbor left="SquareBlue" right="OctagonT 3" />
-
   </neighbors>
 </set>
