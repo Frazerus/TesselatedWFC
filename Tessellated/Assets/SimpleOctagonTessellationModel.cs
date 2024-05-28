@@ -9,12 +9,11 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
     List<string>[] tilenames;
     int tilesize;
 
-    public SimpleOctagonTessellationModel(string name, int octagonWidth, int octagonHeight, bool periodic, Heuristic heuristic, int shapeCount)
+    public SimpleOctagonTessellationModel(string name, int octagonWidth, int octagonHeight, bool periodic,
+        Heuristic heuristic, int shapeCount)
         : base(octagonWidth, octagonHeight, periodic, heuristic, shapeCount)
     {
-
         XElement xroot = XDocument.Load($"Assets/{name}.xml").Root;
-
 
         var weightList = new List<double>[shapeCount];
 
@@ -108,26 +107,21 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
                 action[shape].Add(map[t]);
             }
 
-            // if(unique)
-            //{}
-            //else
+            var currentTile = Resources.Load<GameObject>($"octagonSquares/{tilename}");
+
+            var tileObject = new Tile(currentTile);
+
+            tiles[shape].Add(tileObject);
+            tilenames[shape].Add($"{tilename} 0");
+
+            for (int t = 1; t < cardinality; t++)
             {
-                var currentTile = Resources.Load<GameObject>($"octagonSquares/{tilename}");
+                if (t <= 3)
+                    tiles[shape].Add(new Tile(currentTile, t));
+                if (t >= 4)
+                    tiles[shape].Add(new Tile(currentTile, t - 4, t - 4));
 
-                var tileObject = new Tile(currentTile);
-
-                tiles[shape].Add(tileObject);
-                tilenames[shape].Add($"{tilename} 0");
-
-                for (int t = 1; t < cardinality; t++)
-                {
-                    if (t <= 3)
-                        tiles[shape].Add(new Tile(currentTile, t));
-                    if (t >= 4)
-                        tiles[shape].Add(new Tile(currentTile, t - 4, t - 4));
-
-                    tilenames[shape].Add($"{tilename} {t}");
-                }
+                tilenames[shape].Add($"{tilename} {t}");
             }
 
             for (int t = 0; t < cardinality; t++) weightList[shape].Add(xtile.Get("weight", 1.0));

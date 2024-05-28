@@ -20,9 +20,6 @@
     <neighbor left="OctagonL 1" right="OctagonT 1" />
     <neighbor left="OctagonL" right="OctagonStraight" />
     <neighbor left="OctagonL 1" right="OctagonStraight 1" />
-    <neighbor left="OctagonL 2" right="OctagonStraight 1" />
-    <neighbor left="OctagonL 3" right="OctagonStraight" />
-    <neighbor left="OctagonL 1" right="OctagonGrass" />
     <neighbor left="OctagonL 2" right="OctagonGrass" />
     <!-- Octagon L with self -->
     <neighbor left="OctagonL" right="OctagonL 1" />
@@ -32,8 +29,6 @@
 
     <!-- Octagon Straight with others -->
     <neighbor left="OctagonStraight" right="OctagonT" />
-    <neighbor left="OctagonStraight" right="OctagonT 2" />
-    <neighbor left="OctagonStraight" right="OctagonT 3" />
     <!-- Octagon Straight with self -->
     <neighbor left="OctagonStraight" right="OctagonStraight" />
     <neighbor left="OctagonStraight 1" right="OctagonStraight 1" />
@@ -45,8 +40,6 @@
     <neighbor left="OctagonGrass" right="OctagonGrass" />
 
     <neighbor left="OctagonT" right="OctagonT" />
-    <neighbor left="OctagonT" right="OctagonT 1" />
-    <neighbor left="OctagonT" right="OctagonT 2" />
     <neighbor left="OctagonT 1" right="OctagonT 3" />
   </neighbors>
 </set>
