@@ -323,8 +323,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seed: 2147483647
-  originalModel: 1
-  originalWithOctagons: 1
+  originalModel: 0
+  originalWithOctagons: 0
 --- !u!850595691 &1978775620
 LightingSettings:
   m_ObjectHideFlags: 0

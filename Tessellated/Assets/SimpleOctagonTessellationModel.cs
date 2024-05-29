@@ -77,6 +77,12 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
                 a = i => i < 4 ? (i + 1) % 4 : 4 + (i - 1) % 4;
                 b = i => i < 4 ? i + 4 : i - 4;
             }
+            else if (sym == 'C')
+            {
+                cardinality = 4;
+                a = i => (i + 1) % 4;
+                b = i => i % 2 == 0 ? (i + 2) % 4 : i;
+            }
             else
             {
                 cardinality = 1;
@@ -90,7 +96,7 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
             int[][] map = new int[cardinality][];
             for (int t = 0; t < cardinality; t++)
             {
-                //TODO need more cardinality for octagons
+                //TODO maybe need more cardinality for octagons
                 map[t] = new int[8];
 
                 map[t][0] = t;
@@ -102,7 +108,8 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
                 map[t][6] = b(a(a(t)));
                 map[t][7] = b(a(a(a(t))));
 
-                for (int s = 0; s < 8; s++) map[t][s] += TotalPossibleStates[shape];
+                for (int s = 0; s < 8; s++)
+                    map[t][s] += TotalPossibleStates[shape];
 
                 action[shape].Add(map[t]);
             }
@@ -124,7 +131,8 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
                 tilenames[shape].Add($"{tilename} {t}");
             }
 
-            for (int t = 0; t < cardinality; t++) weightList[shape].Add(xtile.Get("weight", 1.0));
+            for (int t = 0; t < cardinality; t++)
+                weightList[shape].Add(xtile.Get("weight", 1.0));
         }
 
         Weights = new double[shapeCount][];
@@ -205,16 +213,24 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
 
             //1 passt zu 5 -> GrassL passt zu GrassT
 
+            //9 -> 12
             densePropagator[shapeRight][shapeLeft][0][R][L] = true; // 5 1
+            //9 -> 12
             densePropagator[shapeRight][shapeLeft][0][action[shapeRight][R][6]][action[shapeLeft][L][6]] = true; // 7 -> 4
 
+            //14 -> 9
             densePropagator[shapeLeft][shapeRight][0][action[shapeLeft][L][4]][action[shapeRight][R][4]] = true; // 2 -> 5
+            //14 -> 9
             densePropagator[shapeLeft][shapeRight][0][action[shapeLeft][L][2]][action[shapeRight][R][2]] = true; // 3 -> 7
 
+            //10 -> 13
             densePropagator[shapeRight][shapeLeft][1][U][D] = true;
+            //10 -> 15
             densePropagator[shapeRight][shapeLeft][1][action[shapeRight][U][4]][action[shapeLeft][D][4]] = true;
 
+            //13 -> 10
             densePropagator[shapeLeft][shapeRight][1][action[shapeLeft][D][6]][action[shapeRight][U][6]] = true;
+            //15 -> 10
             densePropagator[shapeLeft][shapeRight][1][action[shapeLeft][D][2]][action[shapeRight][U][2]] = true;
         }
 

@@ -21,6 +21,15 @@ public class Tile
 
         var quaternion = Quaternion.Euler(new Vector3(initialRotation.x, -90 * leftRotations + initialRotation.y, initialRotation.z));
 
-        Object.Instantiate(tileInfo, position, quaternion);
+        var newObject = Object.Instantiate(tileInfo, position, quaternion);
+        var scale = reflections switch
+        {
+            1 => new Vector3(-1, 1, 1),
+            2 => new Vector3(-1, -1, 1),
+            3 => new Vector3(1, -1, 1),
+            _ => newObject.transform.localScale
+        };
+
+        newObject.transform.localScale = scale;
     }
 }
