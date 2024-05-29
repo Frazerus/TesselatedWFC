@@ -20,7 +20,7 @@ public class WFCModelRunner : MonoBehaviour
 
             }
 
-            var model = new SimpleTiledModel(originalWithOctagons ? "octagon_square" : "standard", null, 10, 10, false,
+            var model = new SimpleTiledModel(originalWithOctagons ? "standard_octagon" : "standard", null, 10, 10, false,
                 Model.Heuristic.MRV, originalWithOctagons ? "OctagonSquares" : "standard");
 
             var output = model.Run(seed, 10000);
@@ -34,7 +34,7 @@ public class WFCModelRunner : MonoBehaviour
         }
         else
         {
-            var model = new SimpleOctagonTessellationModel("octagon", 10, 10, false,
+            var model = new SimpleOctagonTessellationModel("octagon_wholeSquares", 10, 10, false,
                 OctagonTessellationModel.Heuristic.MRV, 2);
 
             var output = model.Run(seed, 10000);
