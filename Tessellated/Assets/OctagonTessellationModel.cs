@@ -381,6 +381,7 @@ public abstract class OctagonTessellationModel
     }
 
     //left down right up, sw se ne nw
+    //left down right up, ne nw sw se
     protected static int[] dx = { -1, 0, 1, 0, 0, 1, 1, 0 };
     protected static int[] dy = { 0, 1, 0, -1, 0, 0, -1, -1 };
 

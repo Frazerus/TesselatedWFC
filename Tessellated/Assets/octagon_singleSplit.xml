@@ -5,7 +5,7 @@
     <tile name="OctagonT" symmetry="T" type="0"/>
     <tile name="OctagonStraight" symmetry="I" type="0" />
     <tile name="OctagonX" symmetry="X" type="0" />
-    <tile name="OctagonV" symmetry="C" type="0" />
+    <tile name="OctagonV" symmetry="F" type="0" />
     <tile name="SquareGrass" symmetry="X" shape="1" weight="0.0001" type="1"/>
     <tile name="SquareStraight" symmetry="I" shape="1" weight="5000" />
     <tile name="SquareSingle" symmetry="C" shape="1" weight="1" />
@@ -192,7 +192,7 @@
     <neighbor left="SquareSingle 3" right="OctagonL 2" />
     <neighbor left="SquareSingle 3" right="OctagonL 3" />
 
-        
+
 
     <!-- Red Squares are allowed everywhere -->
     <neighbor left="SquareGrass" right="OctagonGrass" />

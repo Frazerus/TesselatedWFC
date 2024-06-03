@@ -211,27 +211,32 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
 
             var U = action[shapeRight][R][1];
 
-            //1 passt zu 5 -> GrassL passt zu GrassT
-
-            //9 -> 12
             densePropagator[shapeRight][shapeLeft][0][R][L] = true; // 5 1
-            //9 -> 12
-            densePropagator[shapeRight][shapeLeft][0][action[shapeRight][R][6]][action[shapeLeft][L][6]] = true; // 7 -> 4
 
-            //14 -> 9
-            densePropagator[shapeLeft][shapeRight][0][action[shapeLeft][L][4]][action[shapeRight][R][4]] = true; // 2 -> 5
-            //14 -> 9
-            densePropagator[shapeLeft][shapeRight][0][action[shapeLeft][L][2]][action[shapeRight][R][2]] = true; // 3 -> 7
+            var main = action[shapeRight][R][6];
+            var allowed = action[shapeLeft][L][6];
+            densePropagator[shapeRight][shapeLeft][0][main][allowed] = true; // 7 -> 4
 
-            //10 -> 13
+            main = action[shapeLeft][L][4];
+            allowed = action[shapeRight][R][4];
+            densePropagator[shapeLeft][shapeRight][0][main][allowed] = true; // 2 -> 5
+
+            main = action[shapeLeft][L][2];
+            allowed = action[shapeRight][R][2];
+            densePropagator[shapeLeft][shapeRight][0][main][allowed] = true; // 3 -> 7
+
             densePropagator[shapeRight][shapeLeft][1][U][D] = true;
-            //10 -> 15
-            densePropagator[shapeRight][shapeLeft][1][action[shapeRight][U][4]][action[shapeLeft][D][4]] = true;
+            main = action[shapeRight][U][4];
+            allowed = action[shapeLeft][D][4];
+            densePropagator[shapeRight][shapeLeft][1][main][allowed] = true;
 
-            //13 -> 10
-            densePropagator[shapeLeft][shapeRight][1][action[shapeLeft][D][6]][action[shapeRight][U][6]] = true;
-            //15 -> 10
-            densePropagator[shapeLeft][shapeRight][1][action[shapeLeft][D][2]][action[shapeRight][U][2]] = true;
+            main = action[shapeLeft][D][6];
+            allowed = action[shapeRight][U][6];
+            densePropagator[shapeLeft][shapeRight][1][main][allowed] = true;
+
+            main = action[shapeLeft][D][2];
+            allowed = action[shapeRight][U][2];
+            densePropagator[shapeLeft][shapeRight][1][main][allowed] = true;
         }
 
         for (int right = 0; right < shapeCount; right++)
@@ -283,7 +288,7 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
                             sparse.Add(t2);
 
                     var ST = sparse.Count;
-                    //if (ST == 0) Console.WriteLine($"ERROR: tile {tilenames[left][t1]} has no neighbors in direction {d}");
+                    if (ST == 0) Console.WriteLine($"ERROR: tile {tilenames[left][t1]} has no neighbors in direction {d}");
                     Propagator[left][right][d][t1] = new int[ST];
                     for (var st = 0; st < ST; st++)
                         Propagator[left][right][d][t1][st] = sparse[st];

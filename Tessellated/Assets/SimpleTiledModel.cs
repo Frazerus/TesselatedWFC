@@ -180,7 +180,6 @@ class SimpleTiledModel : Model
 
             //1 passt zu 5 -> GrassL passt zu GrassT
 
-            //TODO Wofür ist dense propagator
             densePropagator[0][R][L] = true; // 5 1
             densePropagator[0][action[R][6]][action[L][6]] = true; // 7 -> 4
             densePropagator[0][action[L][4]][action[R][4]] = true; // 2 -> 5

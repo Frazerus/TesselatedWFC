@@ -8,7 +8,7 @@ public class Tile
 
     public int reflections;
 
-    public Tile(GameObject tile, int leftRotations = 0, int reflections = 0)
+    public Tile(GameObject tile, int leftRotations = 0, int reflections = -1)
     {
         tileInfo = tile;
         this.leftRotations = leftRotations;
@@ -24,9 +24,10 @@ public class Tile
         var newObject = Object.Instantiate(tileInfo, position, quaternion);
         var scale = reflections switch
         {
-            1 => new Vector3(-1, 1, 1),
-            2 => new Vector3(-1, -1, 1),
-            3 => new Vector3(1, -1, 1),
+            0 => new Vector3( -1, 1, 1),
+            1 => new Vector3(1, 1, -1),
+            2 => new Vector3(-1, 1, 1),
+            3 => new Vector3(1, 1, -1),
             _ => newObject.transform.localScale
         };
 
