@@ -139,15 +139,6 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
 
         Propagator = new int [shapeCount][][][][];
 
-
-        _shapeWithMostStates = 0;
-        //var densePropagator = new bool [][TotalPossibleStates[0]][][];
-        for (int i = 0; i < TotalPossibleStates.Length; i++)
-        {
-            if (TotalPossibleStates[i] > TotalPossibleStates[_shapeWithMostStates])
-                _shapeWithMostStates = i;
-        }
-
         for (int left = 0; left < shapeCount; left++)
         {
             TotalPossibleStates[left] = action[left].Count;
@@ -162,7 +153,13 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
             }
         }
 
-
+        _shapeWithMostStates = 0;
+        //var densePropagator = new bool [][TotalPossibleStates[0]][][];
+        for (int i = 0; i < TotalPossibleStates.Length; i++)
+        {
+            if (TotalPossibleStates[i] > TotalPossibleStates[_shapeWithMostStates])
+                _shapeWithMostStates = i;
+        }
 
         bool[][][][][] densePropagator = new bool[shapeCount][][][][];
         for(int left = 0; left < shapeCount; left++)
@@ -288,7 +285,7 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
                             sparse.Add(t2);
 
                     var ST = sparse.Count;
-                    if (ST == 0) Console.WriteLine($"ERROR: tile {tilenames[left][t1]} has no neighbors in direction {d}");
+                    //if (ST == 0 && left != 1 && right != 1) Console.WriteLine($"ERROR: tile {tilenames[right][t1]} has no neighbors in direction {d}");
                     Propagator[left][right][d][t1] = new int[ST];
                     for (var st = 0; st < ST; st++)
                         Propagator[left][right][d][t1][st] = sparse[st];
