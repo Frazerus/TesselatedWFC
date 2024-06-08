@@ -297,6 +297,8 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
 
     public void Save()
     {
+        if (Observed[0][0] < 0) return;
+
         var tileSize = 10;
         var center = new Vector3(0, 0, 0);
         var halfSize = tileSize / 2;
@@ -305,18 +307,13 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
         var leftTopCorner = new Vector3(center.x + halfSize - halfNumberOfTiles * tileSize, 0,
             center.z - halfSize + halfNumberOfTiles * tileSize);
 
-
-        //int[] bitmapData = new int[MX * MY * tilesize * tilesize];
-        if (Observed[0][0] >= 0)
+        for (int x = 0; x < _width; x++)
+        for (int y = 0; y < _height; y++)
         {
-            for (int x = 0; x < _width; x++)
-            for (int y = 0; y < _height; y++)
+            for (int shape = 0; shape < ShapeCount; shape++)
             {
-                for (int shape = 0; shape < ShapeCount; shape++)
-                {
-                    var tile = tiles[shape][Observed[x + y * _width][shape]];
-                    tile.Create(new Vector3(leftTopCorner.x + x * tileSize - shape * halfSize, 0, leftTopCorner.z - y * tileSize - shape * halfSize));
-                }
+                var tile = tiles[shape][Observed[x + y * _width][shape]];
+                tile.Create(new Vector3(leftTopCorner.x + x * tileSize + shape * halfSize, 0, leftTopCorner.z - y * tileSize + shape * halfSize));
             }
         }
     }
