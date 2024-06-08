@@ -381,13 +381,12 @@ public abstract class OctagonTessellationModel
     }
 
     //left down right up, sw se ne nw
-    //left down right up, ne nw sw se
-    protected static int[] dx = { -1, 0, 1, 0, 1, 0, 0, 1 };
-    protected static int[] dy = { 0, 1, 0, -1, -1, -1, 0, 0 };
+    protected static int[] dx = { -1, 0, 1, 0, 0, 1, 1, 0 };
+    protected static int[] dy = { 0, 1, 0, -1, 0, 0, -1, -1 };
 
     static int[] opposite = { 2, 3, 0, 1 };
 
-    protected static int[] sx = { 0, 1, 1, 0 };
-    protected static int[] sy = { 0, 0, -1, -1 };
+    protected static int[] sx = { -1, 0, 0, -1 };
+    protected static int[] sy = { 1, 1, 0, 0 };
 
 }
