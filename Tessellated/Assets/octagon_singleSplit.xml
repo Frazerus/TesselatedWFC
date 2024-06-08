@@ -1,6 +1,6 @@
 <set>
   <tiles>
-    <tile name="OctagonV" symmetry="L" type="0" />
+    <tile name="OctagonV" symmetry="C" type="0" />
     <tile name="SquareGrass" symmetry="X" shape="1" weight="0.0001" type="1"/>
     <tile name="SquareSingle" symmetry="C" shape="1" weight="1" />
   </tiles>
