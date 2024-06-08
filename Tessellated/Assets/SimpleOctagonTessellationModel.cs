@@ -143,14 +143,6 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
         {
             TotalPossibleStates[left] = action[left].Count;
             Weights[left] = weightList[left].ToArray();
-
-
-            Propagator[left] = new int[shapeCount][][][];
-            for (int right = 0; right < shapeCount; right++)
-            {
-                Propagator[left][right] = new int[4][][];
-                for (var d = 0; d < 4; d++) Propagator[left][right][d] = new int[TotalPossibleStates[_shapeWithMostStates]][];
-            }
         }
 
         _shapeWithMostStates = 0;
@@ -159,6 +151,16 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
         {
             if (TotalPossibleStates[i] > TotalPossibleStates[_shapeWithMostStates])
                 _shapeWithMostStates = i;
+        }
+
+        for (int left = 0; left < shapeCount; left++)
+        {
+            Propagator[left] = new int[shapeCount][][][];
+            for (int right = 0; right < shapeCount; right++)
+            {
+                Propagator[left][right] = new int[4][][];
+                for (var d = 0; d < 4; d++) Propagator[left][right][d] = new int[TotalPossibleStates[_shapeWithMostStates]][];
+            }
         }
 
         bool[][][][][] densePropagator = new bool[shapeCount][][][][];
