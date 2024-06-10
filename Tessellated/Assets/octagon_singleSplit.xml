@@ -6,14 +6,6 @@
   </tiles>
 
   <neighbors>
-
-    <!-- Octagon V with self -->
-    <neighbor left="OctagonV" right="OctagonV 2" />
-    <neighbor left="OctagonV 1" right="OctagonV" />
-    <neighbor left="OctagonV 1" right="OctagonV 1"/>
-    <neighbor left="OctagonV 1" right="OctagonV 3"/>
-    <neighbor left="OctagonV 3" right="OctagonV" />
-
     <!-- square single with Others -->
     <neighbor left="SquareSingle" right="OctagonV 2" />
     <neighbor left="SquareSingle 1" right="OctagonV" />
@@ -31,7 +23,13 @@
     <!-- Red Squares are allowed everywhere -->
     <neighbor left="SquareGrass" right="OctagonV" />
     <neighbor left="SquareGrass" right="OctagonV 1" />
-    <neighbor left="SquareGrass" right="OctagonV 2" />
     <neighbor left="SquareGrass" right="OctagonV 3" />
+
+    <!-- Octagon V with self -->
+    <neighbor left="OctagonV" right="OctagonV 2" />
+    <neighbor left="OctagonV 1" right="OctagonV" />
+    <neighbor left="OctagonV 1" right="OctagonV 1"/>
+    <neighbor left="OctagonV 1" right="OctagonV 3"/>
+    <neighbor left="OctagonV 3" right="OctagonV" />
   </neighbors>
 </set>
