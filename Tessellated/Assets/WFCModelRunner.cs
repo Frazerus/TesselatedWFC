@@ -34,7 +34,7 @@ public class WFCModelRunner : MonoBehaviour
         }
         else
         {
-            var model = new SimpleOctagonTessellationModel("octagon_singleSplit", 10, 10, false,
+            var model = new SimpleOctagonTessellationModel("octagon_Y_test", 10, 10, false,
                 OctagonTessellationModel.Heuristic.MRV, 2);
 
             var output = model.Run(seed, 10000);
