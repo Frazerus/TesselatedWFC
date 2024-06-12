@@ -261,20 +261,24 @@ public abstract class OctagonTessellationModel
                     int indexOther = xOther + yOther * _width;
                     int otherPart = d < 4 ? 0 : 1;
 
+                    //Which neighbors can local tile have?
                     int[] localPropagator = Propagator[part][otherPart][d % 4][tileState];
 
-                    //Could be improved
+                    //which options does the other position have for tiles?
                     int[][] tileCompatability = _compatible[indexOther][otherPart][part];
 
-                    int staggeredD = d % 4;
+                    int direction = d % 4;
 
+                    //Decrease the other positions possibility for each tile to occur, since it is not enabled through this position anymore
                     for (int l = 0; l < localPropagator.Length; l++)
                     {
                         int otherTile = localPropagator[l];
-                        int[] comp = tileCompatability[otherTile];
+                        int[] compatibilityForOtherTile = tileCompatability[otherTile];
 
-                        comp[staggeredD]--;
-                        if (comp[staggeredD] == 0)
+                        compatibilityForOtherTile[direction]--;
+
+                        //If the other position has a possibility for a tile to occur from any direction equal to 0, ban the tile
+                        if (compatibilityForOtherTile[direction] == 0)
                             Ban(indexOther, otherPart, otherTile);
                     }
                 }
@@ -381,13 +385,12 @@ public abstract class OctagonTessellationModel
     }
 
     //left down right up, sw se ne nw
-    //left down right up, ne nw sw se
-    protected static int[] dx = { -1, 0, 1, 0, 0, 1, 1, 0 };
-    protected static int[] dy = { 0, 1, 0, -1, 0, 0, -1, -1 };
+    protected static int[] dx = { -1, 0, 1, 0, -1, 0, 0, -1 };
+    protected static int[] dy = { 0, 1, 0, -1, 1, 1, 0, 0 };
 
     static int[] opposite = { 2, 3, 0, 1 };
 
-    protected static int[] sx = { -1, 0, 0, -1 };
-    protected static int[] sy = { 1, 1, 0, 0 };
+    protected static int[] sx = { 0, 1, 1, 0 };
+    protected static int[] sy = { 0, 0, -1, -1 };
 
 }

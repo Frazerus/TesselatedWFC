@@ -32,5 +32,6 @@ public class Tile
         };
 
         newObject.transform.localScale = scale;
+        newObject.name += leftRotations > 0 || reflections > -1 ? $" {leftRotations + reflections + 1}" : string.Empty;
     }
 }
