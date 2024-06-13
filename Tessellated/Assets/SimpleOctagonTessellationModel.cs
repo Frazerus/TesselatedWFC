@@ -202,26 +202,30 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
             if (shapeLeft == -1 || shapeRight == -1)
                 continue;
 
-            var L = action[shapeLeft][firstOccurrence[shapeLeft][left[0]]][left.Length == 1 ? 0 : int.Parse(left[1])];
+            var firstOccurrenceLeft = firstOccurrence[shapeLeft][left[0]];
+            var L = action[shapeLeft][firstOccurrenceLeft][left.Length == 1 ? 0 : int.Parse(left[1])];
 
             var D = action[shapeLeft][L][1];
 
-            var R = action[shapeRight][firstOccurrence[shapeRight][right[0]]][right.Length == 1 ? 0 : int.Parse(right[1])];
+            var firstOccurrenceRight = firstOccurrence[shapeRight][right[0]];
+            var R = action[shapeRight][firstOccurrenceRight][right.Length == 1 ? 0 : int.Parse(right[1])];
 
             var U = action[shapeRight][R][1];
 
             densePropagator[shapeRight][shapeLeft][0][R][L] = true; // 5 1
 
-            var main = action[shapeRight][R][6];
-            var allowed = action[shapeLeft][L][6];
+            var (main, allowed) = GetFlipped(action, shapeLeft, shapeRight, R, L, 6, firstOccurrenceRight, firstOccurrenceLeft);
+
             densePropagator[shapeRight][shapeLeft][0][main][allowed] = true; // 7 -> 4
 
-            main = action[shapeLeft][L][4];
-            allowed = action[shapeRight][R][4];
+            (main, allowed) = GetFlipped(action, shapeRight, shapeLeft, L, R, 4, firstOccurrenceLeft, firstOccurrenceRight);
+            // main = action[shapeLeft][L][4];
+            // allowed = action[shapeRight][R][4];
             densePropagator[shapeLeft][shapeRight][0][main][allowed] = true; // 2 -> 5
 
-            main = action[shapeLeft][L][2];
-            allowed = action[shapeRight][R][2];
+            (main, allowed) = GetFlipped(action, shapeRight, shapeLeft, L, R, 2, firstOccurrenceLeft, firstOccurrenceRight);
+            // main = action[shapeLeft][L][2];
+            // allowed = action[shapeRight][R][2];
             densePropagator[shapeLeft][shapeRight][0][main][allowed] = true; // 3 -> 7
 
             densePropagator[shapeRight][shapeLeft][1][U][D] = true;
@@ -296,6 +300,29 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
         }
     }
 
+    public static (int main, int allowed) GetFlipped(List<int[]>[] action, int shapeLeft, int shapeRight, int R, int L, int dir, int firstOccLeft, int firstOccRight)
+    {
+        var main = action[shapeRight][R][dir];
+        var allowed = action[shapeLeft][L][dir];
+
+        var diffR = R - firstOccRight;
+        var diffL = L - firstOccLeft;
+
+        if ((R % 2 != 0 || L % 2 != 0) && (R % 2 == 0 || L % 2 == 0))
+        {
+            if (shapeLeft > shapeRight && dir > 3)
+            {
+                allowed = action[shapeLeft][L][dir + 1 % 8];
+            }
+
+            if (shapeRight > shapeLeft && dir > 3)
+            {
+                main = action[shapeRight][R][dir + 1 % 8];
+            }
+        }
+
+        return (main, allowed);
+    }
 
     public void Save()
     {
