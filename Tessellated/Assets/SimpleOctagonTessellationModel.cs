@@ -41,7 +41,7 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
         {
             string tilename = xtile.Get<string>("name");
 
-            Func<int, int> a, b; //a is 90 degrees rotation, b is reflection according to the symmetry rules
+            Func<int, int> a, b, c; //a is 90 degrees rotation, b is reflection according to the symmetry rules
             int cardinality;
 
             char sym = xtile.Get("symmetry", 'X');
@@ -52,42 +52,49 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
                 cardinality = 4;
                 a = i => (i + 1) % 4;
                 b = i => i % 2 == 0 ? i + 1 : i - 1;
+                c = i => i;
             }
             else if (sym == 'T')
             {
                 cardinality = 4;
                 a = i => (i + 1) % 4;
                 b = i => i % 2 == 0 ? i : 4 - i;
+                c = i => i;
             }
             else if (sym == 'I')
             {
                 cardinality = 2;
                 a = i => 1 - i;
                 b = i => i;
+                c = i => i;
             }
             else if (sym == '\\')
             {
                 cardinality = 2;
                 a = i => 1 - i;
                 b = i => 1 - i;
+                c = i => i;
             }
             else if (sym == 'F')
             {
                 cardinality = 8;
                 a = i => i < 4 ? (i + 1) % 4 : 4 + (i - 1) % 4;
                 b = i => i < 4 ? i + 4 : i - 4;
+                c = i => i;
             }
             else if (sym == 'C')
             {
                 cardinality = 4;
                 a = i => (i + 1) % 4;
                 b = i => i % 2 == 0 ? (i + 2) % 4 : i;
+                c = i => 4 - i - 1;
             }
             else
             {
                 cardinality = 1;
                 a = i => i;
                 b = i => i;
+                c = i => i;
             }
 
             TotalPossibleStates[shape] = action[shape].Count;
@@ -97,7 +104,7 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
             for (int t = 0; t < cardinality; t++)
             {
                 //TODO maybe need more cardinality for octagons
-                map[t] = new int[8];
+                map[t] = new int[12];
 
                 map[t][0] = t;
                 map[t][1] = a(t);
@@ -107,8 +114,12 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
                 map[t][5] = b(a(t));
                 map[t][6] = b(a(a(t)));
                 map[t][7] = b(a(a(a(t))));
+                map[t][8] = c(t);
+                map[t][9] = c(a(t));
+                map[t][10] = c(a(a(t)));
+                map[t][11] = c(a(a(a(t))));
 
-                for (int s = 0; s < 8; s++)
+                for (int s = 0; s < 12; s++)
                     map[t][s] += TotalPossibleStates[shape];
 
                 action[shape].Add(map[t]);
@@ -202,39 +213,37 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
             if (shapeLeft == -1 || shapeRight == -1)
                 continue;
 
-            var firstOccurrenceLeft = firstOccurrence[shapeLeft][left[0]];
-            var L = action[shapeLeft][firstOccurrenceLeft][left.Length == 1 ? 0 : int.Parse(left[1])];
+            var L = action[shapeLeft][firstOccurrence[shapeLeft][left[0]]][left.Length == 1 ? 0 : int.Parse(left[1])];
 
             var D = action[shapeLeft][L][1];
 
-            var firstOccurrenceRight = firstOccurrence[shapeRight][right[0]];
-            var R = action[shapeRight][firstOccurrenceRight][right.Length == 1 ? 0 : int.Parse(right[1])];
+            var R = action[shapeRight][firstOccurrence[shapeRight][right[0]]][right.Length == 1 ? 0 : int.Parse(right[1])];
 
             var U = action[shapeRight][R][1];
 
+            var shapeLeftOffset = shapeLeft != shapeRight && shapeLeft < shapeRight ? 4 : 0;
+            var shapeRightOffset = shapeLeft != shapeRight && shapeRight < shapeLeft ? 4 : 0;
             densePropagator[shapeRight][shapeLeft][0][R][L] = true; // 5 1
 
-            var (main, allowed) = GetFlipped(action, shapeLeft, shapeRight, R, L, 6, firstOccurrenceRight, firstOccurrenceLeft);
-
+            var main = action[shapeRight][R][6 + shapeRightOffset];
+            var allowed = action[shapeLeft][L][6 + shapeLeftOffset];
             densePropagator[shapeRight][shapeLeft][0][main][allowed] = true; // 7 -> 4
 
-            (main, allowed) = GetFlipped(action, shapeRight, shapeLeft, L, R, 4, firstOccurrenceLeft, firstOccurrenceRight);
-            // main = action[shapeLeft][L][4];
-            // allowed = action[shapeRight][R][4];
+            main = action[shapeLeft][L][4 + shapeLeftOffset];
+            allowed = action[shapeRight][R][4 + shapeRightOffset];
             densePropagator[shapeLeft][shapeRight][0][main][allowed] = true; // 2 -> 5
 
-            (main, allowed) = GetFlipped(action, shapeRight, shapeLeft, L, R, 2, firstOccurrenceLeft, firstOccurrenceRight);
-            // main = action[shapeLeft][L][2];
-            // allowed = action[shapeRight][R][2];
+            main = action[shapeLeft][L][2];
+            allowed = action[shapeRight][R][2];
             densePropagator[shapeLeft][shapeRight][0][main][allowed] = true; // 3 -> 7
 
             densePropagator[shapeRight][shapeLeft][1][U][D] = true;
-            main = action[shapeRight][U][4];
-            allowed = action[shapeLeft][D][4];
+            main = action[shapeRight][U][4 + shapeRightOffset];
+            allowed = action[shapeLeft][D][4 + shapeLeftOffset];
             densePropagator[shapeRight][shapeLeft][1][main][allowed] = true;
 
-            main = action[shapeLeft][D][6];
-            allowed = action[shapeRight][U][6];
+            main = action[shapeLeft][D][6 + shapeLeftOffset];
+            allowed = action[shapeRight][U][6 + shapeRightOffset];
             densePropagator[shapeLeft][shapeRight][1][main][allowed] = true;
 
             main = action[shapeLeft][D][2];
@@ -300,29 +309,6 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
         }
     }
 
-    public static (int main, int allowed) GetFlipped(List<int[]>[] action, int shapeLeft, int shapeRight, int R, int L, int dir, int firstOccLeft, int firstOccRight)
-    {
-        var main = action[shapeRight][R][dir];
-        var allowed = action[shapeLeft][L][dir];
-
-        var diffR = R - firstOccRight;
-        var diffL = L - firstOccLeft;
-
-        if ((R % 2 != 0 || L % 2 != 0) && (R % 2 == 0 || L % 2 == 0))
-        {
-            if (shapeLeft > shapeRight && dir > 3)
-            {
-                allowed = action[shapeLeft][L][dir + 1 % 8];
-            }
-
-            if (shapeRight > shapeLeft && dir > 3)
-            {
-                main = action[shapeRight][R][dir + 1 % 8];
-            }
-        }
-
-        return (main, allowed);
-    }
 
     public void Save()
     {
