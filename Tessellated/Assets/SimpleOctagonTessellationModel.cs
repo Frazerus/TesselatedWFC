@@ -89,6 +89,13 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
                 b = i => i % 2 == 0 ? (i + 2) % 4 : i;
                 c = i => 4 - i - 1;
             }
+            else if (sym == 'V')
+            {
+                cardinality = 8;
+                a = i => i < 4 ? (i + 1) % 4 : 4 + (i - 1) % 4;
+                b = i => i % 2 == 0 ? 8 - i - 2 : i + 4;
+                c = i => 8 - i - 1;
+            }
             else
             {
                 cardinality = 1;
@@ -103,7 +110,6 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
             int[][] map = new int[cardinality][];
             for (int t = 0; t < cardinality; t++)
             {
-                //TODO maybe need more cardinality for octagons
                 map[t] = new int[12];
 
                 map[t][0] = t;
@@ -135,9 +141,9 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
             for (int t = 1; t < cardinality; t++)
             {
                 if (t <= 3)
-                    tiles[shape].Add(new Tile(currentTile, t));
+                    tiles[shape].Add(new Tile(currentTile, t, cardinality: t));
                 if (t >= 4)
-                    tiles[shape].Add(new Tile(currentTile, t - 4, t - 4));
+                    tiles[shape].Add(new Tile(currentTile, t - 4, t - 4, cardinality: t));
 
                 tilenames[shape].Add($"{tilename} {t}");
             }

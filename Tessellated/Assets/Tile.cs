@@ -7,12 +7,14 @@ public class Tile
     public int leftRotations;
 
     public int reflections;
+    private readonly int _cardinality;
 
-    public Tile(GameObject tile, int leftRotations = 0, int reflections = -1)
+    public Tile(GameObject tile, int leftRotations = 0, int reflections = -1, int cardinality = -1)
     {
         tileInfo = tile;
         this.leftRotations = leftRotations;
         this.reflections = reflections;
+        _cardinality = cardinality;
     }
 
     public void Create(Vector3 position)
@@ -24,14 +26,14 @@ public class Tile
         var newObject = Object.Instantiate(tileInfo, position, quaternion);
         var scale = reflections switch
         {
-            0 => new Vector3( -1, 1, 1),
+            0 => new Vector3( 1, 1, -1),
             1 => new Vector3(1, 1, -1),
-            2 => new Vector3(-1, 1, 1),
+            2 => new Vector3(1, 1, -1),
             3 => new Vector3(1, 1, -1),
             _ => newObject.transform.localScale
         };
 
         newObject.transform.localScale = scale;
-        newObject.name += leftRotations > 0 || reflections > -1 ? $" {leftRotations + reflections + 1}" : string.Empty;
+        newObject.name += $" {_cardinality}";
     }
 }
