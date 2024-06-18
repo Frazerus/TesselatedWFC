@@ -133,7 +133,7 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
 
             var currentTile = Resources.Load<GameObject>($"octagonSquares/{tilename}");
 
-            var tileObject = new Tile(currentTile);
+            var tileObject = new Tile(currentTile, cardinality: 0);
 
             tiles[shape].Add(tileObject);
             tilenames[shape].Add($"{tilename} 0");
@@ -295,18 +295,19 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
                 }
 
                 for (var d = 0; d < 4; d++)
-                for (var t1 = 0; t1 < TotalPossibleStates[_shapeWithMostStates]; t1++)
+                for (var t1 = 0; t1 < TotalPossibleStates[left]; t1++)
                 {
                     var sparse = sparsePropagator[left][right][d][t1];
                     var dense = densePropagator[left][right][d][t1];
 
                     //Every real case is added to the sparse propagator, non available cases are ignored
-                    for (var t2 = 0; t2 < TotalPossibleStates[_shapeWithMostStates]; t2++)
+                    for (var t2 = 0; t2 < TotalPossibleStates[right]; t2++)
                         if (dense[t2])
                             sparse.Add(t2);
 
                     var ST = sparse.Count;
-                    //if (ST == 0 && left != 1 && right != 1) Console.WriteLine($"ERROR: tile {tilenames[right][t1]} has no neighbors in direction {d}");
+                    if (ST == 0 && (left != 1 || right != 1))
+                        Debug.Log($"ERROR: tile {tilenames[left][t1]} has no neighbors in direction {d}");
                     Propagator[left][right][d][t1] = new int[ST];
                     for (var st = 0; st < ST; st++)
                         Propagator[left][right][d][t1][st] = sparse[st];

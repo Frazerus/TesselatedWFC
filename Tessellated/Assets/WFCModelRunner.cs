@@ -12,14 +12,6 @@ public class WFCModelRunner : MonoBehaviour
     {
         if (originalModel)
         {
-            var name = "standard";
-            if (originalWithOctagons)
-            {
-
-                name = "octagon_squared_created";
-
-            }
-
             var model = new SimpleTiledModel(originalWithOctagons ? "standard_octagon" : "standard", null, 10, 10, false,
                 Model.Heuristic.MRV, originalWithOctagons ? "OctagonSquares" : "standard");
 
