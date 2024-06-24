@@ -129,7 +129,7 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
         {
             var tilename = xtile.Get<string>("name");
 
-            Func<int, int> a, b, c; //a is 90 degrees rotation, b is reflection according to the symmetry rules
+            Func<int, int> a, b, c; //a is 90 degrees rotation, b is reflection along y axis, c is reflection along axis defined by (0,0) and (1, -1)
             int cardinality;
 
             var sym = xtile.Get("symmetry", 'X');
@@ -170,7 +170,7 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
                 b = i => i < 4 ? i + 4 : i - 4;
                 c = i => i;
             }
-            else if (sym == 'C')
+            else if (sym == 'Y')
             {
                 cardinality = 4;
                 a = i => (i + 1) % 4;
