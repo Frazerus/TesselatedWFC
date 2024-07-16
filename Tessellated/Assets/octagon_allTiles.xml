@@ -322,6 +322,8 @@
     <neighbor left="SquareGrass" right="OctagonY 2" />
     <neighbor left="SquareGrass" right="OctagonY 3" />
 
+
+
     <!-- Square L -->
     <neighbor left="SquareL" right="OctagonY" />
     <neighbor left="SquareL" right="OctagonY 1" />
