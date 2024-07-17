@@ -1,62 +1,61 @@
 <set>
-  <tiles>
-    <tile name="Grass" symmetry="X"/>
-    <tile name="GrassL" symmetry="L"/>
-    <tile name="GrassT" symmetry="T"/>
-    <tile name="GrassStraight" symmetry="I" />
-    <tile name="GrassX" symmetry="X" />
+    <tiles>
+        <tile name="Grass" symmetry="X"/>
+        <tile name="GrassL" symmetry="L"/>
+        <tile name="GrassT" symmetry="T"/>
+        <tile name="GrassStraight" symmetry="I"/>
+        <tile name="GrassX" symmetry="X"/>
+    </tiles>
+    <neighbors>
+        <!-- GrassL with self -->
+        <neighbor left="GrassL" right="GrassL 1"/>
+        <neighbor left="GrassL" right="GrassL 2"/>
+        <neighbor left="GrassL 1" right="GrassL"/>
+        <neighbor left="GrassL 1" right="GrassL 3"/>
 
-  </tiles>
-  <neighbors>
-    <!-- GrassL with self -->
-    <neighbor left="GrassL" right="GrassL 1" />
-    <neighbor left="GrassL" right="GrassL 2" />
-    <neighbor left="GrassL 1" right="GrassL" />
-    <neighbor left="GrassL 1" right="GrassL 3" />
+        <!-- GrassL with T, Straight, Grass, X -->
+        <neighbor left="GrassL" right="GrassT"/>
+        <neighbor left="GrassL" right="GrassT 3"/>
+        <neighbor left="GrassL" right="GrassT 2"/>
+        <neighbor left="GrassL 1" right="GrassT 1"/>
 
-    <!-- GrassL with T, Straight, Grass, X -->
-    <neighbor left="GrassL" right="GrassT" />
-    <neighbor left="GrassL" right="GrassT 3" />
-    <neighbor left="GrassL" right="GrassT 2" />
-    <neighbor left="GrassL 1" right="GrassT 1" />
+        <neighbor left="GrassL" right="GrassStraight"/>
+        <neighbor left="GrassL 1" right="GrassStraight 1"/>
 
-    <neighbor left="GrassL" right="GrassStraight" />
-    <neighbor left="GrassL 1" right="GrassStraight 1" />
+        <neighbor left="GrassL 1" right="Grass"/>
 
-    <neighbor left="GrassL 1" right="Grass" />
+        <neighbor left="GrassL" right="GrassX"/>
 
-    <neighbor left="GrassL" right="GrassX" />
+        <!-- GrassStraight with self -->
+        <neighbor left="GrassStraight" right="GrassStraight"/>
+        <neighbor left="GrassStraight 1" right="GrassStraight 1"/>
 
-    <!-- GrassStraight with self -->
-    <neighbor left="GrassStraight" right="GrassStraight" />
-    <neighbor left="GrassStraight 1" right="GrassStraight 1" />
+        <!-- GrassStraight with T, Grass, X -->
+        <neighbor left="GrassStraight" right="GrassT"/>
+        <neighbor left="GrassStraight" right="GrassT 3"/>
+        <neighbor left="GrassStraight 1" right="GrassT 1"/>
 
-    <!-- GrassStraight with T, Grass, X -->
-    <neighbor left="GrassStraight" right="GrassT" />
-    <neighbor left="GrassStraight" right="GrassT 3" />
-    <neighbor left="GrassStraight 1" right="GrassT 1" />
+        <neighbor left="GrassStraight 1" right="Grass"/>
 
-    <neighbor left="GrassStraight 1" right="Grass" />
+        <neighbor left="GrassStraight" right="GrassX"/>
 
-    <neighbor left="GrassStraight" right="GrassX" />
+        <!-- Grass with self -->
+        <neighbor left="Grass" right="Grass"/>
 
-    <!-- Grass with self -->
-    <neighbor left="Grass" right="Grass" />
+        <!-- Grass with T, X (no neighbors for X) -->
+        <neighbor left="Grass" right="GrassT 1"/>
 
-    <!-- Grass with T, X (no neighbors for X) -->
-    <neighbor left="Grass" right="GrassT 1" />
+        <!-- GrassT with self -->
+        <neighbor left="GrassT" right="GrassT"/>
+        <neighbor left="GrassT 1" right="GrassT"/>
+        <neighbor left="GrassT 1" right="GrassT 3"/>
+        <neighbor left="GrassT 3" right="GrassT 1"/>
 
-    <!-- GrassT with self -->
-    <neighbor left="GrassT" right="GrassT" />
-    <neighbor left="GrassT 1" right="GrassT" />
-    <neighbor left="GrassT 1" right="GrassT 3" />
-    <neighbor left="GrassT 3" right="GrassT 1" />
+        <!-- GrassT with X -->
+        <neighbor left="GrassT" right="GrassX"/>
+        <neighbor left="GrassT 1" right="GrassX"/>
 
-    <!-- GrassT with X -->
-    <neighbor left="GrassT" right="GrassX" />
-    <neighbor left="GrassT 1" right="GrassX" />
-
-    <!-- GrassX with self -->
-    <neighbor left="GrassX" right="GrassX" />
-  </neighbors>
+        <!-- GrassX with self -->
+        <neighbor left="GrassX" right="GrassX"/>
+    </neighbors>
 </set>

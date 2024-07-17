@@ -26,8 +26,13 @@ public class WFCModelRunner : MonoBehaviour
         }
         else
         {
-            var model = new SimpleOctagonTessellationModel("octagon_allTiles", 10, 10, false,
-                Heuristic.MRV, 2);
+            var model = new SimpleOctagonTessellationModel(
+                "octagon_standardImitation_GrassOnlySquares",
+                10,
+                10,
+                false,
+                Heuristic.MRV,
+                2);
 
             var output = model.Run(seed, 10000);
 
