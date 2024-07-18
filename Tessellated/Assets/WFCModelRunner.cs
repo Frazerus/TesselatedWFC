@@ -27,7 +27,7 @@ public class WFCModelRunner : MonoBehaviour
         else
         {
             var model = new SimpleOctagonTessellationModel(
-                "octagon_standardImitation_GrassOnlySquares",
+                "octagon_standardImitation_NormalSquares",
                 10,
                 10,
                 false,

@@ -1,0 +1,432 @@
+<set>
+  <tiles>
+    <!-- shape 0 -->
+    <tile name="OctagonGrass" symmetry="X" />
+    <tile name="OctagonL" symmetry="L" />
+    <tile name="OctagonT" symmetry="T" />
+    <tile name="OctagonV" symmetry="V" weight="1" />
+    <tile name="OctagonVL" symmetry="V" weight="1" />
+    <tile name="OctagonY" symmetry="Y"  weight="1" />
+
+    <!-- shape 1 -->
+    <tile name="SquareGrass" symmetry="X" shape="1" weight="1" />
+    <tile name="SquareStraight" symmetry="I" shape="1" weight="1" />
+    <tile name="SquareL" symmetry="L" shape="1" weight="1" />
+    <tile name="SquareT" symmetry="T" shape="1" weight="1" />
+    <tile name="SquareSingle" symmetry="T" shape="1" weight="1" />
+    <tile name="SquareX" symmetry="X" shape="1" weight="1 "/>
+  </tiles>
+  <neighbors>
+    <!-- Octagon Grass with self -->
+    <neighbor left="OctagonGrass" right="OctagonGrass" />
+
+    <!-- Octagon Grass with Octagons L, T, Straight, V, VL, Y -->
+    <neighbor left="OctagonGrass" right="OctagonL" />
+
+    <neighbor left="OctagonGrass" right="OctagonT 1" />
+
+    <neighbor left="OctagonGrass" right="OctagonStraight 1" />
+
+    <neighbor left="OctagonGrass" right="OctagonV" />
+    <neighbor left="OctagonGrass" right="OctagonV 1" />
+    <neighbor left="OctagonGrass" right="OctagonV 3" />
+
+    <neighbor left="OctagonGrass" right="OctagonVL" />
+    <neighbor left="OctagonGrass" right="OctagonVL 1" />
+    <neighbor left="OctagonGrass" right="OctagonVL 3" />
+
+    <neighbor left="OctagonGrass" right="OctagonY" />
+    <neighbor left="OctagonGrass" right="OctagonY 1" />
+    <neighbor left="OctagonGrass" right="OctagonY 3" />
+
+    <!-- Octagon L with self -->
+    <neighbor left="OctagonL" right="OctagonL 1" />
+    <neighbor left="OctagonL 3" right="OctagonL 1" />
+    <neighbor left="OctagonL 1" right="OctagonL " />
+    <neighbor left="OctagonL 1" right="OctagonL 3" />
+
+    <!-- Octagon L with Octagons T, Straight, V, VL, Y -->
+    <neighbor left="OctagonL" right="OctagonT" />
+    <neighbor left="OctagonL" right="OctagonT 3" />
+    <neighbor left="OctagonL" right="OctagonT 2" />
+    <neighbor left="OctagonL 1" right="OctagonT 1" />
+
+    <neighbor left="OctagonL" right="OctagonStraight" />
+    <neighbor left="OctagonL 1" right="OctagonStraight 1" />
+
+    <neighbor left="OctagonL" right="OctagonV 2" />
+    <neighbor left="OctagonL 1" right="OctagonV" />
+    <neighbor left="OctagonL 1" right="OctagonV 1" />
+    <neighbor left="OctagonL 1" right="OctagonV 3" />
+
+    <neighbor left="OctagonL" right="OctagonVL 2" />
+    <neighbor left="OctagonL 3" right="OctagonVL 2" />
+    <neighbor left="OctagonL 1" right="OctagonVL" />
+    <neighbor left="OctagonL 1" right="OctagonVL 1" />
+    <neighbor left="OctagonL 1" right="OctagonVL 3" />
+    <neighbor left="OctagonL 2" right="OctagonVL" />
+    <neighbor left="OctagonL 2" right="OctagonVL 1" />
+    <neighbor left="OctagonL 2" right="OctagonVL 3" />
+
+    <neighbor left="OctagonL" right="OctagonY 2" />
+    <neighbor left="OctagonL 1" right="OctagonY" />
+    <neighbor left="OctagonL 1" right="OctagonY 1" />
+    <neighbor left="OctagonL 1" right="OctagonY 3" />
+
+    <!-- Octagon V with self -->
+    <neighbor left="OctagonV" right="OctagonV 2" />
+    <neighbor left="OctagonV 1" right="OctagonV" />
+    <neighbor left="OctagonV 2" right="OctagonV" />
+    <neighbor left="OctagonV 3" right="OctagonV" />
+
+    <!-- Octagon V with Octagons T, Straight, VL, Y -->
+    <neighbor left="OctagonV" right="OctagonT" />
+    <neighbor left="OctagonV" right="OctagonT 2" />
+    <neighbor left="OctagonV" right="OctagonT 3" />
+    <neighbor left="OctagonV 1" right="OctagonT 1" />
+    <neighbor left="OctagonV 2 " right="OctagonT 1" />
+    <neighbor left="OctagonV 3" right="OctagonT 1" />
+
+    <neighbor left="OctagonV" right="OctagonStraight" />
+    <neighbor left="OctagonV 1" right="OctagonStraight 1" />
+    <neighbor left="OctagonV 2" right="OctagonStraight 1" />
+    <neighbor left="OctagonV 3" right="OctagonStraight 1" />
+
+    <neighbor left="OctagonV" right="OctagonVL 2" />
+    <neighbor left="OctagonV 1" right="OctagonVL" />
+    <neighbor left="OctagonV 2" right="OctagonVL" />
+    <neighbor left="OctagonV 3" right="OctagonVL" />
+    <neighbor left="OctagonV 1" right="OctagonVL 1" />
+    <neighbor left="OctagonV 2" right="OctagonVL 1" />
+    <neighbor left="OctagonV 3" right="OctagonVL 1" />
+    <neighbor left="OctagonV 1" right="OctagonVL 3" />
+    <neighbor left="OctagonV 2" right="OctagonVL 3" />
+    <neighbor left="OctagonV 3" right="OctagonVL 3" />
+
+    <neighbor left="OctagonV" right="OctagonY 2" />
+    <neighbor left="OctagonV 1" right="OctagonY" />
+    <neighbor left="OctagonV 2" right="OctagonY" />
+    <neighbor left="OctagonV 3" right="OctagonY" />
+    <neighbor left="OctagonV 1" right="OctagonY 1" />
+    <neighbor left="OctagonV 2" right="OctagonY 1" />
+    <neighbor left="OctagonV 3" right="OctagonY 1" />
+    <neighbor left="OctagonV 1" right="OctagonY 3" />
+    <neighbor left="OctagonV 2" right="OctagonY 3" />
+    <neighbor left="OctagonV 3" right="OctagonY 3" />
+
+    <!-- Octagon VL with self -->
+    <neighbor left="OctagonVL" right="OctagonVL 2" />
+    <neighbor left="OctagonVL 1" right="OctagonVL" />
+    <neighbor left="OctagonVL 3" right="OctagonVL" />
+
+    <!-- Octagon VL with Octagons T, Straight, Y -->
+    <neighbor left="OctagonVL" right="OctagonT" />
+    <neighbor left="OctagonVL" right="OctagonT 2" />
+    <neighbor left="OctagonVL" right="OctagonT 3" />
+    <neighbor left="OctagonVL 1" right="OctagonT 1" />
+    <neighbor left="OctagonVL 2 " right="OctagonT 1" />
+    <neighbor left="OctagonVL 3" right="OctagonT 1" />
+
+    <neighbor left="OctagonVL" right="OctagonStraight" />
+    <neighbor left="OctagonVL 1" right="OctagonStraight 1" />
+    <neighbor left="OctagonVL 2" right="OctagonStraight 1" />
+    <neighbor left="OctagonVL 3" right="OctagonStraight 1" />
+
+    <neighbor left="OctagonVL" right="OctagonY 2" />
+    <neighbor left="OctagonVL 1" right="OctagonY" />
+    <neighbor left="OctagonVL 2" right="OctagonY" />
+    <neighbor left="OctagonVL 3" right="OctagonY" />
+    <neighbor left="OctagonVL 1" right="OctagonY 1" />
+    <neighbor left="OctagonVL 2" right="OctagonY 1" />
+    <neighbor left="OctagonVL 3" right="OctagonY 1" />
+    <neighbor left="OctagonVL 1" right="OctagonY 3" />
+    <neighbor left="OctagonVL 2" right="OctagonY 3" />
+    <neighbor left="OctagonVL 3" right="OctagonY 3" />
+
+    <!-- Octagon Y with self -->
+    <neighbor left="OctagonY" right="OctagonY 2" />
+    <neighbor left="OctagonY 1" right="OctagonY" />
+    <neighbor left="OctagonY 3" right="OctagonY" />
+
+    <!-- Octagon Y with Octagons T, Straight -->
+    <neighbor left="OctagonY" right="OctagonT" />
+    <neighbor left="OctagonY" right="OctagonT 2" />
+    <neighbor left="OctagonY" right="OctagonT 3" />
+    <neighbor left="OctagonY 1" right="OctagonT 1" />
+    <neighbor left="OctagonY 2 " right="OctagonT 1" />
+    <neighbor left="OctagonY 3" right="OctagonT 1" />
+
+    <neighbor left="OctagonY" right="OctagonStraight" />
+    <neighbor left="OctagonY 1" right="OctagonStraight 1" />
+    <neighbor left="OctagonY 2" right="OctagonStraight 1" />
+    <neighbor left="OctagonY 3" right="OctagonStraight 1" />
+
+    <!-- Octagon Straight with self -->
+    <neighbor left="OctagonStraight" right="OctagonStraight" />
+    <neighbor left="OctagonStraight 1" right="OctagonStraight 1" />
+
+    <!-- Octagon Straight with Octagons T-->
+    <neighbor left="OctagonStraight" right="OctagonT" />
+    <neighbor left="OctagonStraight" right="OctagonT 2" />
+    <neighbor left="OctagonStraight" right="OctagonT 3" />
+
+    <!-- Octagon T with self -->
+    <neighbor left="OctagonT" right="OctagonT"/>
+    <neighbor left="OctagonT 1" right="OctagonT"/>
+    <neighbor left="OctagonT 1" right="OctagonT 3"/>
+    <neighbor left="OctagonT 3" right="OctagonT 1"/>
+
+    <!-- square straights with Others -->
+    <neighbor left="SquareStraight" right="OctagonV 2" />
+    <neighbor left="SquareStraight" right="OctagonY" />
+    <neighbor left="SquareStraight" right="OctagonY 1" />
+    <neighbor left="SquareStraight" right="OctagonVL 1" />
+
+    <neighbor left="SquareStraight 1" right="OctagonV" />
+    <neighbor left="SquareStraight 1" right="OctagonV 1" />
+    <neighbor left="SquareStraight 1" right="OctagonV 3" />
+
+    <neighbor left="SquareStraight 1" right="OctagonVL" />
+    <neighbor left="SquareStraight 1" right="OctagonVL 2" />
+    <neighbor left="SquareStraight 1" right="OctagonVL 3" />
+
+    <neighbor left="SquareStraight 1" right="OctagonStraight" />
+    <neighbor left="SquareStraight 1" right="OctagonStraight 1" />
+    <neighbor left="SquareStraight 1" right="OctagonStraight 2" />
+    <neighbor left="SquareStraight 1" right="OctagonStraight 3" />
+
+    <neighbor left="SquareStraight 1" right="OctagonT" />
+    <neighbor left="SquareStraight 1" right="OctagonT 1" />
+    <neighbor left="SquareStraight 1" right="OctagonT 2" />
+    <neighbor left="SquareStraight 1" right="OctagonT 3" />
+
+    <neighbor left="SquareStraight 1" right="OctagonGrass" />
+    <neighbor left="SquareStraight 1" right="OctagonGrass 1" />
+    <neighbor left="SquareStraight 1" right="OctagonGrass 2" />
+    <neighbor left="SquareStraight 1" right="OctagonGrass 3" />
+
+    <neighbor left="SquareStraight 1" right="OctagonX" />
+    <neighbor left="SquareStraight 1" right="OctagonX 1" />
+    <neighbor left="SquareStraight 1" right="OctagonX 2" />
+    <neighbor left="SquareStraight 1" right="OctagonX 3" />
+
+    <neighbor left="SquareStraight 1" right="OctagonL" />
+    <neighbor left="SquareStraight 1" right="OctagonL 1" />
+    <neighbor left="SquareStraight 1" right="OctagonL 2" />
+    <neighbor left="SquareStraight 1" right="OctagonL 3" />
+
+    <neighbor left="SquareStraight 1" right="OctagonY 2" />
+    <neighbor left="SquareStraight 1" right="OctagonY 3" />
+
+    <!-- square straights with Others -->
+    <neighbor left="SquareSingle 3" right="OctagonV 2" />
+    <neighbor left="SquareSingle 3" right="OctagonY" />
+    <neighbor left="SquareSingle 3" right="OctagonY 1" />
+    <neighbor left="SquareSingle 3" right="OctagonVL 1" />
+
+    <neighbor left="SquareSingle 1" right="OctagonV" />
+    <neighbor left="SquareSingle 1" right="OctagonV 1" />
+    <neighbor left="SquareSingle 1" right="OctagonV 3" />
+
+    <neighbor left="SquareSingle 1" right="OctagonVL" />
+    <neighbor left="SquareSingle 1" right="OctagonVL 2" />
+    <neighbor left="SquareSingle 1" right="OctagonVL 3" />
+
+    <neighbor left="SquareSingle 1" right="OctagonStraight" />
+    <neighbor left="SquareSingle 1" right="OctagonStraight 1" />
+    <neighbor left="SquareSingle 1" right="OctagonStraight 2" />
+    <neighbor left="SquareSingle 1" right="OctagonStraight 3" />
+
+    <neighbor left="SquareSingle 1" right="OctagonT" />
+    <neighbor left="SquareSingle 1" right="OctagonT 1" />
+    <neighbor left="SquareSingle 1" right="OctagonT 2" />
+    <neighbor left="SquareSingle 1" right="OctagonT 3" />
+
+    <neighbor left="SquareSingle 1" right="OctagonGrass" />
+    <neighbor left="SquareSingle 1" right="OctagonGrass 1" />
+    <neighbor left="SquareSingle 1" right="OctagonGrass 2" />
+    <neighbor left="SquareSingle 1" right="OctagonGrass 3" />
+
+    <neighbor left="SquareSingle 1" right="OctagonX" />
+    <neighbor left="SquareSingle 1" right="OctagonX 1" />
+    <neighbor left="SquareSingle 1" right="OctagonX 2" />
+    <neighbor left="SquareSingle 1" right="OctagonX 3" />
+
+    <neighbor left="SquareSingle 1" right="OctagonL" />
+    <neighbor left="SquareSingle 1" right="OctagonL 1" />
+    <neighbor left="SquareSingle 1" right="OctagonL 2" />
+    <neighbor left="SquareSingle 1" right="OctagonL 3" />
+
+    <neighbor left="SquareSingle 1" right="OctagonY 2" />
+    <neighbor left="SquareSingle 1" right="OctagonY 3" />
+
+    <neighbor left="SquareSingle 2" right="OctagonV" />
+    <neighbor left="SquareSingle 2" right="OctagonV 1" />
+    <neighbor left="SquareSingle 2" right="OctagonV 3" />
+
+    <neighbor left="SquareSingle 2" right="OctagonVL" />
+    <neighbor left="SquareSingle 2" right="OctagonVL 2" />
+    <neighbor left="SquareSingle 2" right="OctagonVL 3" />
+
+    <neighbor left="SquareSingle 2" right="OctagonStraight" />
+    <neighbor left="SquareSingle 2" right="OctagonStraight 1" />
+    <neighbor left="SquareSingle 2" right="OctagonStraight 2" />
+    <neighbor left="SquareSingle 2" right="OctagonStraight 3" />
+
+    <neighbor left="SquareSingle 2" right="OctagonT" />
+    <neighbor left="SquareSingle 2" right="OctagonT 1" />
+    <neighbor left="SquareSingle 2" right="OctagonT 2" />
+    <neighbor left="SquareSingle 2" right="OctagonT 3" />
+
+    <neighbor left="SquareSingle 2" right="OctagonGrass" />
+    <neighbor left="SquareSingle 2" right="OctagonGrass 1" />
+    <neighbor left="SquareSingle 2" right="OctagonGrass 2" />
+    <neighbor left="SquareSingle 2" right="OctagonGrass 3" />
+
+    <neighbor left="SquareSingle 2" right="OctagonX" />
+    <neighbor left="SquareSingle 2" right="OctagonX 1" />
+    <neighbor left="SquareSingle 2" right="OctagonX 2" />
+    <neighbor left="SquareSingle 2" right="OctagonX 3" />
+
+    <neighbor left="SquareSingle 2" right="OctagonL" />
+    <neighbor left="SquareSingle 2" right="OctagonL 1" />
+    <neighbor left="SquareSingle 2" right="OctagonL 2" />
+    <neighbor left="SquareSingle 2" right="OctagonL 3" />
+
+    <neighbor left="SquareSingle 2" right="OctagonY 2" />
+    <neighbor left="SquareSingle 2" right="OctagonY 3" />
+
+    <neighbor left="SquareSingle" right="OctagonV" />
+    <neighbor left="SquareSingle" right="OctagonV 1" />
+    <neighbor left="SquareSingle" right="OctagonV 3" />
+
+    <neighbor left="SquareSingle" right="OctagonVL" />
+    <neighbor left="SquareSingle" right="OctagonVL 2" />
+    <neighbor left="SquareSingle" right="OctagonVL 3" />
+
+    <neighbor left="SquareSingle" right="OctagonStraight" />
+    <neighbor left="SquareSingle" right="OctagonStraight 1" />
+    <neighbor left="SquareSingle" right="OctagonStraight 2" />
+    <neighbor left="SquareSingle" right="OctagonStraight 3" />
+
+    <neighbor left="SquareSingle" right="OctagonT" />
+    <neighbor left="SquareSingle" right="OctagonT 1" />
+    <neighbor left="SquareSingle" right="OctagonT 2" />
+    <neighbor left="SquareSingle" right="OctagonT 3" />
+
+    <neighbor left="SquareSingle" right="OctagonGrass" />
+    <neighbor left="SquareSingle" right="OctagonGrass 1" />
+    <neighbor left="SquareSingle" right="OctagonGrass 2" />
+    <neighbor left="SquareSingle" right="OctagonGrass 3" />
+
+    <neighbor left="SquareSingle" right="OctagonX" />
+    <neighbor left="SquareSingle" right="OctagonX 1" />
+    <neighbor left="SquareSingle" right="OctagonX 2" />
+    <neighbor left="SquareSingle" right="OctagonX 3" />
+
+    <neighbor left="SquareSingle" right="OctagonL" />
+    <neighbor left="SquareSingle" right="OctagonL 1" />
+    <neighbor left="SquareSingle" right="OctagonL 2" />
+    <neighbor left="SquareSingle" right="OctagonL 3" />
+
+    <neighbor left="SquareSingle" right="OctagonY 2" />
+    <neighbor left="SquareSingle" right="OctagonY 3" />
+
+    <!-- Square grass -->
+    <neighbor left="SquareGrass" right="OctagonGrass" />
+    <neighbor left="SquareGrass" right="OctagonX" />
+    <neighbor left="SquareGrass" right="OctagonL" />
+    <neighbor left="SquareGrass" right="OctagonL 1" />
+    <neighbor left="SquareGrass" right="OctagonL 2" />
+    <neighbor left="SquareGrass" right="OctagonL 3" />
+    <neighbor left="SquareGrass" right="OctagonT" />
+    <neighbor left="SquareGrass" right="OctagonT 1" />
+    <neighbor left="SquareGrass" right="OctagonT 2" />
+    <neighbor left="SquareGrass" right="OctagonT 3" />
+    <neighbor left="SquareGrass" right="OctagonStraight 1" />
+    <neighbor left="SquareGrass" right="OctagonStraight" />
+    <neighbor left="SquareGrass" right="OctagonV" />
+    <neighbor left="SquareGrass" right="OctagonV 1" />
+    <neighbor left="SquareGrass" right="OctagonV 3" />
+    <neighbor left="SquareGrass" right="OctagonVL" />
+    <neighbor left="SquareGrass" right="OctagonVL 2" />
+    <neighbor left="SquareGrass" right="OctagonVL 3" />
+    <neighbor left="SquareGrass" right="OctagonY 2" />
+    <neighbor left="SquareGrass" right="OctagonY 3" />
+
+
+
+    <!-- Square L -->
+    <neighbor left="SquareL" right="OctagonY" />
+    <neighbor left="SquareL" right="OctagonY 1" />
+    <neighbor left="SquareL 1" right="OctagonY 2" />
+    <neighbor left="SquareL 1" right="OctagonY 3" />
+
+    <neighbor left="SquareL" right="OctagonV 2" />
+    <neighbor left="SquareL 1" right="OctagonV" />
+    <neighbor left="SquareL 1" right="OctagonV 1" />
+    <neighbor left="SquareL 1" right="OctagonV 3" />
+
+    <neighbor left="SquareL" right="OctagonVL 1" />
+    <neighbor left="SquareL 1" right="OctagonVL" />
+    <neighbor left="SquareL 1" right="OctagonVL 2" />
+    <neighbor left="SquareL 1" right="OctagonVL 3" />
+
+    <neighbor left="SquareL 1" right="OctagonGrass" />
+    <neighbor left="SquareL 1" right="OctagonT" />
+    <neighbor left="SquareL 1" right="OctagonT 1" />
+    <neighbor left="SquareL 1" right="OctagonT 2" />
+    <neighbor left="SquareL 1" right="OctagonT 3" />
+
+    <neighbor left="SquareL 1" right="OctagonL" />
+    <neighbor left="SquareL 1" right="OctagonL 1" />
+    <neighbor left="SquareL 1" right="OctagonX" />
+    <neighbor left="SquareL 1" right="OctagonStraight" />
+    <neighbor left="SquareL 1" right="OctagonStraight 1" />
+
+    <!-- Square T -->
+    <neighbor left="SquareT" right="OctagonY" />
+    <neighbor left="SquareT" right="OctagonY 1" />
+    <neighbor left="SquareT 1" right="OctagonY" />
+    <neighbor left="SquareT 1" right="OctagonY 1" />
+    <neighbor left="SquareT 2" right="OctagonY" />
+    <neighbor left="SquareT 2" right="OctagonY 1" />
+    <neighbor left="SquareT 3" right="OctagonY 2" />
+    <neighbor left="SquareT 3" right="OctagonY 3" />
+
+    <neighbor left="SquareT" right="OctagonV 2" />
+    <neighbor left="SquareT 1" right="OctagonV 2" />
+    <neighbor left="SquareT 2" right="OctagonV 2" />
+    <neighbor left="SquareT 3" right="OctagonV" />
+    <neighbor left="SquareT 3" right="OctagonV 1" />
+    <neighbor left="SquareT 3" right="OctagonV 3" />
+
+    <neighbor left="SquareT" right="OctagonVL 1" />
+    <neighbor left="SquareT 1" right="OctagonVL 1" />
+    <neighbor left="SquareT 2" right="OctagonVL 1" />
+    <neighbor left="SquareT 3" right="OctagonVL" />
+    <neighbor left="SquareT 3" right="OctagonVL 2" />
+    <neighbor left="SquareT 3" right="OctagonVL 3" />
+
+    <neighbor left="SquareT 3" right="OctagonGrass" />
+    <neighbor left="SquareT 3" right="OctagonT" />
+    <neighbor left="SquareT 3" right="OctagonT 1" />
+    <neighbor left="SquareT 3" right="OctagonT 2" />
+    <neighbor left="SquareT 3" right="OctagonT 3" />
+
+    <neighbor left="SquareT 3" right="OctagonL" />
+    <neighbor left="SquareT 3" right="OctagonL 1" />
+    <neighbor left="SquareT 3" right="OctagonX" />
+    <neighbor left="SquareT 3" right="OctagonStraight" />
+    <neighbor left="SquareT 3" right="OctagonStraight 1" />
+
+    <!-- Square X -->
+    <neighbor left="SquareX" right="OctagonY" />
+    <neighbor left="SquareX" right="OctagonY 1" />
+
+    <neighbor left="SquareX" right="OctagonV 2" />
+
+    <neighbor left="SquareX" right="OctagonVL 1" />
+
+  </neighbors>
+</set>
