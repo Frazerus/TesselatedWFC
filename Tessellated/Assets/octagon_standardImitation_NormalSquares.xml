@@ -77,6 +77,7 @@
 
     <!-- Octagon V with self -->
     <neighbor left="OctagonV" right="OctagonV 2" />
+    <neighbor left="OctagonV" right="OctagonV 4" />
     <neighbor left="OctagonV 1" right="OctagonV" />
     <neighbor left="OctagonV 2" right="OctagonV" />
     <neighbor left="OctagonV 3" right="OctagonV" />
@@ -117,6 +118,7 @@
     <neighbor left="OctagonV 3" right="OctagonY 3" />
 
     <!-- Octagon VL with self -->
+    <neighbor left="OctagonVL" right="OctagonVL 4" />
     <neighbor left="OctagonVL" right="OctagonVL 2" />
     <neighbor left="OctagonVL 1" right="OctagonVL" />
     <neighbor left="OctagonVL 3" right="OctagonVL" />

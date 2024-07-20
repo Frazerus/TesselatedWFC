@@ -181,8 +181,8 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
             {
                 cardinality = 8;
                 a = i => i < 4 ? (i + 1) % 4 : 4 + (i - 1) % 4;
-                b = i => i % 2 == 0 ? 8 - i - 2 : i + 4;
-                c = i => 8 - i - 1;
+                b = i => (i < 4 ? i + 4 : i - 4) % 8;
+                c = i => i % 2 == 0 ? 8 - i - 1 : 4 + i - 1;
             }
             else
             {
@@ -265,6 +265,7 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
             var shapeLeftOffset = shapeLeft != shapeRight && shapeLeft < shapeRight ? 4 : 0;
             var shapeRightOffset = shapeLeft != shapeRight && shapeRight < shapeLeft ? 4 : 0;
 
+
             var L = action[shapeLeft][firstOccurrence[shapeLeft][leftTile[0]]][
                 leftTile.Length == 1 ? 0 : int.Parse(leftTile[1])];
 
@@ -272,6 +273,8 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
 
             var R = action[shapeRight][firstOccurrence[shapeRight][rightTile[0]]][
                 rightTile.Length == 1 ? 0 : int.Parse(rightTile[1])];
+
+
 
             var U = action[shapeRight][R][1];
 
