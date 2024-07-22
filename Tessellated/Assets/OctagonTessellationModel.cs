@@ -33,12 +33,12 @@ public abstract class OctagonTessellationModel
     private readonly bool _periodic;
 
     protected double[][] Weights;
-    private double[][] _weightDistributions;
+    private double[][] _weightDistributions, _sumsOfWeights, _sumsOfWeightLogWeights, _entropies;
 
-    private double[] _weightLogWeights;
+    private double[][] _weightLogWeights;
+    private double[] _startingEntropy, _sumOfWeights, _sumOfWeightLogWeights;
 
     private int[][] _sumsOfPossibleStates;
-    private double _sumOfWeights, _sumOfWeightLogWeights, _startingEntropy;
 
     private readonly Heuristic _heuristic;
 
@@ -60,6 +60,9 @@ public abstract class OctagonTessellationModel
         Wave = new bool[Width * Height][][];
         Observed = new int[Width * Height][];
         _sumsOfPossibleStates = new int [Wave.Length][];
+        _sumsOfWeights = new double [Wave.Length][];
+        _sumsOfWeightLogWeights = new double [Wave.Length][];
+        _entropies = new double [Wave.Length][];
 
         for (var i = 0; i < Wave.Length; i++)
         {
@@ -72,7 +75,10 @@ public abstract class OctagonTessellationModel
 
             Observed[i] = new int[ShapeCount];
 
-            _sumsOfPossibleStates[i] = new int[2];
+            _sumsOfPossibleStates[i] = new int[ShapeCount];
+            _sumsOfWeights[i] = new double[ShapeCount];
+            _sumsOfWeightLogWeights[i] = new double[ShapeCount];
+            _entropies[i] = new double[ShapeCount];
         }
 
         _compatible = new int[Wave.Length][][][][];
@@ -93,11 +99,33 @@ public abstract class OctagonTessellationModel
             }
         }
 
-        _weightDistributions = new double[2][];
-        for (var i = 0; i < _weightDistributions.Length; i++)
+
+        _weightDistributions = new double[ShapeCount][];
+        _sumOfWeights = new double [ShapeCount];
+        _sumOfWeightLogWeights = new double[ShapeCount];
+
+        _startingEntropy = new double[ShapeCount];
+
+        _weightLogWeights = new double[ShapeCount][];
+        for (var shape = 0; shape < ShapeCount; shape++)
         {
-            _weightDistributions[i] = new double[TotalPossibleStates[i]];
+            _weightDistributions[shape] = new double[TotalPossibleStates[shape]];
+
+            _sumOfWeights[shape] = 0;
+            _sumOfWeightLogWeights[shape] = 0;
+
+            _weightLogWeights[shape] = new double[TotalPossibleStates[shape]];
+
+            for (var tile = 0; tile < TotalPossibleStates[shape]; tile++)
+            {
+                _weightLogWeights[shape][tile] = Weights[shape][tile] * Math.Log(Weights[shape][tile]);
+                _sumOfWeights[shape] += Weights[shape][tile];
+                _sumOfWeightLogWeights[shape] += _weightLogWeights[shape][tile];
+            }
+
+            _startingEntropy[shape] = Math.Log(_sumOfWeights[shape]) - _sumOfWeightLogWeights[shape] / _sumOfWeights[shape];
         }
+
 
         //TODO initialize compatability, weights, wightslogweights etc
 
@@ -154,9 +182,6 @@ public abstract class OctagonTessellationModel
 
     private (int index, int shape) NextUnobservedNode(Random random)
     {
-        if (_heuristic == Heuristic.Entropy)
-            throw new NotImplementedException();
-
         if (_heuristic == Heuristic.Scanline)
         {
             //this should
@@ -177,45 +202,64 @@ public abstract class OctagonTessellationModel
             return (-1, -1);
         }
 
+        var minList= new double[ShapeCount];
+        var minIndexes = new int[ShapeCount];
+        var minShapes = new int[ShapeCount];
+        for (int i = 0; i < ShapeCount; i++)
+        {
+            minList[i] = 1E+4;
+            minIndexes[i] = -1;
+            minShapes[i] = -1;
+        }
+
         var min = 1E+4;
         var minIndex = -1;
         var minShape = -1;
         for (var i = 0; i < Wave.Length * ShapeCount; i++)
         {
-            var remainingValues = _sumsOfPossibleStates[i / ShapeCount][i % ShapeCount];
+            var shape = i % ShapeCount;
+            var index = i / ShapeCount;
 
-            //double entropy = (double)remainingValues / TotalPossibleStates[i % ShapeCount] * TotalPossibleStates[_shapeWithMostStates];
-            double entropy = remainingValues + (TotalPossibleStates[ShapeWithMostStates] *  (i % ShapeCount));
+            var remainingValues = _sumsOfPossibleStates[index][shape];
+
+            double entropy;
+            if (_heuristic == Heuristic.Entropy)
+                entropy= _entropies[index][shape] / TotalPossibleStates[shape] * TotalPossibleStates[ShapeWithMostStates];
+            else if (_heuristic == Heuristic.MRV)
+                entropy = (double)remainingValues / TotalPossibleStates[shape] * TotalPossibleStates[ShapeWithMostStates];
+            else
+                throw new ArgumentException("No heuristic supplied");
+
+
             if (remainingValues > 1 && entropy <= min)
             {
                 var noise = 1E-6 * random.NextDouble();
                 if (entropy + noise < min)
                 {
                     min = entropy + noise;
-                    minIndex = i / ShapeCount;
-                    minShape = i % ShapeCount;
+                    minIndex = index;
+                    minShape = shape;
                 }
             }
         }
-
         return (minIndex, minShape);
     }
 
-    private void Observe(int index, int part, Random random)
+    private void Observe(int index, int shape, Random random)
     {
-        var possibleStates = Wave[index][part];
+        var possibleStates = Wave[index][shape];
 
-        for (var t = 0; t < TotalPossibleStates[part]; t++)
+        for (var t = 0; t < TotalPossibleStates[shape]; t++)
         {
-            _weightDistributions[part][t] = possibleStates[t] ? Weights[part][t] : 0.0;
+            _weightDistributions[shape][t] = possibleStates[t] ? Weights[shape][t] : 0.0;
         }
 
-        var r = _weightDistributions[part].Random(random.NextDouble());
+        var r = _weightDistributions[shape].Random(random.NextDouble());
 
-        for (var t = 0; t < TotalPossibleStates[part]; t++)
+        for (var t = 0; t < TotalPossibleStates[shape]; t++)
         {
             if (possibleStates[t] != (t == r))
-                Ban(index, part, t);
+                Ban(index, shape, t);
         }
     }
 
@@ -232,7 +276,6 @@ public abstract class OctagonTessellationModel
 
             if (part == 0) //Main part
             {
-                //TODO fix for both
                 for (var d = 0; d < 8; d++)
                 {
                     var xOther = x + dx[d];
@@ -327,6 +370,9 @@ public abstract class OctagonTessellationModel
             {
                 Observed[i][shape] = -1;
                 _sumsOfPossibleStates[i][shape] = Weights[shape].Length;
+                _sumsOfWeightLogWeights[i][shape] = _sumOfWeightLogWeights[shape];
+                _sumsOfWeights[i][shape] = _sumOfWeightLogWeights[shape];
+                _entropies[i][shape] = _startingEntropy[shape];
                 for (var possibleState = 0; possibleState < TotalPossibleStates[shape]; possibleState++)
                 {
                     Wave[i][shape][possibleState] = true;
@@ -363,8 +409,11 @@ public abstract class OctagonTessellationModel
         _stackSize++;
 
         _sumsOfPossibleStates[index][shape] -= 1;
-        //sumsOfWeights[index][part] -= Weights[part][tileState];
-        //sumsOfWeightLogWeights[index][part] -= weightLogWeights[part][tileStates];
+        _sumsOfWeights[index][shape] -= Weights[shape][tileState];
+        _sumsOfWeightLogWeights[index][shape] -= _weightLogWeights[shape][tileState];
+
+        double sum = _sumsOfWeights[index][shape];
+        _entropies[index][shape] = Math.Log(sum) - _sumsOfWeightLogWeights[index][shape] / sum;
     }
 
     //left down right up, sw se ne nw

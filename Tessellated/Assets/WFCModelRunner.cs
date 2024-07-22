@@ -1,15 +1,42 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class WFCModelRunner : MonoBehaviour
 {
     public int seed = 37;
     public bool originalModel = false;
     public bool originalWithOctagons = false;
+    public bool test = true;
+    public int testRuns = 1000;
+    [FormerlySerializedAs("Heuristic")] public Heuristic heuristic = Heuristic.MRV;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        if (test)
+        {
+            var model = new SimpleOctagonTessellationModel(
+                "octagon_standardImitation_NormalSquares",
+                10,
+                10,
+                false,
+                heuristic,
+                2);
+
+            var success = 0;
+            var runs = testRuns;
+            for (int i = 0; i < runs; i++)
+            {
+                success += model.Run((int)(Random.value * 1379), 10000) ? 1 : 0;
+            }
+
+            print($"Worked {success} out of {runs} runs.");
+            return;
+        }
+
+
+
         if (originalModel)
         {
             var model = new SimpleTiledModel(originalWithOctagons ? "standard_octagon" : "standard", null, 10, 10, false,
@@ -31,7 +58,7 @@ public class WFCModelRunner : MonoBehaviour
                 10,
                 10,
                 false,
-                Heuristic.MRV,
+                heuristic,
                 2);
 
             var output = model.Run(seed, 10000);
