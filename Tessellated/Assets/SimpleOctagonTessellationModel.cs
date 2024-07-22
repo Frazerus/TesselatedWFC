@@ -129,7 +129,7 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
         {
             var tilename = xtile.Get<string>("name");
 
-            Func<int, int> a, b, c; //a is 90 degrees rotation, b is reflection along y axis, c is reflection along axis defined by (0,0) and (1, -1)
+            Func<int, int> a, b, c,c1; //a is 90 degrees rotation, b is reflection along y axis, c is reflection along axis defined by (0,0) and (1, -1)
             int cardinality;
 
             var sym = xtile.Get("symmetry", 'X');
@@ -141,6 +141,7 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
                 a = i => (i + 1) % 4;
                 b = i => i % 2 == 0 ? i + 1 : i - 1;
                 c = i => i;
+                c1 = c;
             }
             else if (sym == 'T')
             {
@@ -148,6 +149,7 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
                 a = i => (i + 1) % 4;
                 b = i => i % 2 == 0 ? i : 4 - i;
                 c = i => i;
+                c1 = c;
             }
             else if (sym == 'I')
             {
@@ -155,6 +157,7 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
                 a = i => 1 - i;
                 b = i => i;
                 c = i => i;
+                c1 = c;
             }
             else if (sym == '\\')
             {
@@ -162,6 +165,7 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
                 a = i => 1 - i;
                 b = i => 1 - i;
                 c = i => i;
+                c1 = c;
             }
             else if (sym == 'F')
             {
@@ -169,6 +173,7 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
                 a = i => i < 4 ? (i + 1) % 4 : 4 + (i - 1) % 4;
                 b = i => i < 4 ? i + 4 : i - 4;
                 c = i => i;
+                c1 = c;
             }
             else if (sym == 'Y')
             {
@@ -176,13 +181,15 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
                 a = i => (i + 1) % 4;
                 b = i => i % 2 == 0 ? (i + 2) % 4 : i;
                 c = i => 4 - i - 1;
+                c1 = i => 4 - i - 1;
             }
             else if (sym == 'V')
             {
                 cardinality = 8;
                 a = i => i < 4 ? (i + 1) % 4 : 4 + (i - 1) % 4;
                 b = i => (i < 4 ? i + 4 : i - 4) % 8;
-                c = i => i % 2 == 0 ? 8 - i - 1 : 4 + i - 1;
+                c = i => (i % 2 == 0 ? 8 - i - 1 : 4 + i - 1) % 8;
+                c1 = i => 8 - i - 1;
             }
             else
             {
@@ -190,6 +197,7 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
                 a = i => i;
                 b = i => i;
                 c = i => i;
+                c1 = c;
             }
 
             TotalPossibleStates[shape] = action[shape].Count;
@@ -198,6 +206,7 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
             var map = new int[cardinality][];
             for (var t = 0; t < cardinality; t++)
             {
+                if (t > 3) c = c1;
                 map[t] = new int[12];
 
                 map[t][0] = t;

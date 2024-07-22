@@ -216,7 +216,7 @@ public abstract class OctagonTessellationModel
             if (_heuristic == Heuristic.Entropy)
                 entropy= _entropies[index][shape] / TotalPossibleStates[shape] * TotalPossibleStates[ShapeWithMostStates];
             else if (_heuristic == Heuristic.MRV)
-                entropy = (double)remainingValues / TotalPossibleStates[shape] * TotalPossibleStates[ShapeWithMostStates];
+                entropy = (double)remainingValues / TotalPossibleStates[shape] * TotalPossibleStates[ShapeWithMostStates] ;
             else
                 throw new ArgumentException("No heuristic supplied");
 

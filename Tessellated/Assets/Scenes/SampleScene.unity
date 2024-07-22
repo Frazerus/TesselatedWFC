@@ -323,7 +323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileSet: 1
-  seed: 1231
+  seed: 3
   originalModel: 0
   originalWithOctagons: 0
   test: 0
