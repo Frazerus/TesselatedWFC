@@ -322,9 +322,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 317f3ddee68dcd741bf7499728d59650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seed: 12122
+  tileSet: 1
+  seed: 1231
   originalModel: 0
   originalWithOctagons: 0
+  test: 0
+  testRuns: 10000
+  heuristic: 1
 --- !u!850595691 &1978775620
 LightingSettings:
   m_ObjectHideFlags: 0

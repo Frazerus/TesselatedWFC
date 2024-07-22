@@ -202,16 +202,6 @@ public abstract class OctagonTessellationModel
             return (-1, -1);
         }
 
-        var minList= new double[ShapeCount];
-        var minIndexes = new int[ShapeCount];
-        var minShapes = new int[ShapeCount];
-        for (int i = 0; i < ShapeCount; i++)
-        {
-            minList[i] = 1E+4;
-            minIndexes[i] = -1;
-            minShapes[i] = -1;
-        }
-
         var min = 1E+4;
         var minIndex = -1;
         var minShape = -1;

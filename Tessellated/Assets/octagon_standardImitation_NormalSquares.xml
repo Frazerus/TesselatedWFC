@@ -1,9 +1,9 @@
 <set>
   <tiles>
     <!-- shape 0 -->
-    <tile name="OctagonGrass" symmetry="X" />
-    <tile name="OctagonL" symmetry="L" />
-    <tile name="OctagonT" symmetry="T" />
+    <tile name="OctagonGrass" symmetry="X" weight="1" />
+    <tile name="OctagonL" symmetry="L" weight="1" />
+    <tile name="OctagonT" symmetry="T" weight="1" />
     <tile name="OctagonV" symmetry="V" weight="1" />
     <tile name="OctagonVL" symmetry="V" weight="1" />
     <tile name="OctagonY" symmetry="Y"  weight="1" />
@@ -14,7 +14,7 @@
     <tile name="SquareL" symmetry="L" shape="1" weight="1" />
     <tile name="SquareT" symmetry="T" shape="1" weight="1" />
     <tile name="SquareSingle" symmetry="T" shape="1" weight="1" />
-    <tile name="SquareX" symmetry="X" shape="1" weight="1 "/>
+    <tile name="SquareX" symmetry="X" shape="1" weight="1"/>
   </tiles>
   <neighbors>
     <!-- Octagon Grass with self -->

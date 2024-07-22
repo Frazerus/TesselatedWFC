@@ -3,6 +3,14 @@ using UnityEngine.Serialization;
 
 public class WFCModelRunner : MonoBehaviour
 {
+    public enum TileSets
+    {
+        octagon_standardImitation_GrassOnlySquares,
+        octagon_standardImitation_NormalSquares,
+
+    }
+
+    public TileSets tileSet = TileSets.octagon_standardImitation_NormalSquares;
     public int seed = 37;
     public bool originalModel = false;
     public bool originalWithOctagons = false;
@@ -17,7 +25,7 @@ public class WFCModelRunner : MonoBehaviour
         if (test)
         {
             var model = new SimpleOctagonTessellationModel(
-                "octagon_standardImitation_NormalSquares",
+                tileSet.ToString(),
                 10,
                 10,
                 false,
@@ -25,13 +33,12 @@ public class WFCModelRunner : MonoBehaviour
                 2);
 
             var success = 0;
-            var runs = testRuns;
-            for (int i = 0; i < runs; i++)
+            for (int i = 0; i < testRuns; i++)
             {
                 success += model.Run((int)(Random.value * 1379), 10000) ? 1 : 0;
             }
 
-            print($"Worked {success} out of {runs} runs.");
+            print($"Worked {success} out of {testRuns} runs.");
             return;
         }
 
@@ -54,7 +61,7 @@ public class WFCModelRunner : MonoBehaviour
         else
         {
             var model = new SimpleOctagonTessellationModel(
-                "octagon_standardImitation_NormalSquares",
+                tileSet.ToString(),
                 10,
                 10,
                 false,
