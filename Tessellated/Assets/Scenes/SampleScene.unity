@@ -326,9 +326,9 @@ MonoBehaviour:
   seed: 3
   originalModel: 0
   originalWithOctagons: 0
-  test: 0
+  test: 1
   testRuns: 10000
-  heuristic: 1
+  heuristic: 0
 --- !u!850595691 &1978775620
 LightingSettings:
   m_ObjectHideFlags: 0

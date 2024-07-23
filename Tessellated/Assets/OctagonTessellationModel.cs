@@ -361,7 +361,7 @@ public abstract class OctagonTessellationModel
                 Observed[i][shape] = -1;
                 _sumsOfPossibleStates[i][shape] = Weights[shape].Length;
                 _sumsOfWeightLogWeights[i][shape] = _sumOfWeightLogWeights[shape];
-                _sumsOfWeights[i][shape] = _sumOfWeightLogWeights[shape];
+                _sumsOfWeights[i][shape] = _sumOfWeights[shape];
                 _entropies[i][shape] = _startingEntropy[shape];
                 for (var possibleState = 0; possibleState < TotalPossibleStates[shape]; possibleState++)
                 {
