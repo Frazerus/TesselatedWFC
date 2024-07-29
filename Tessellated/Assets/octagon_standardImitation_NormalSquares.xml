@@ -151,6 +151,8 @@
     <neighbor left="OctagonY" right="OctagonY 2" />
     <neighbor left="OctagonY 1" right="OctagonY" />
     <neighbor left="OctagonY 3" right="OctagonY" />
+    <neighbor left="OctagonY 3" right="OctagonY 1" />
+    <neighbor left="OctagonY 3" right="OctagonY 3" />
 
     <!-- Octagon Y with Octagons T, Straight -->
     <neighbor left="OctagonY" right="OctagonT" />
@@ -323,6 +325,8 @@
 
     <neighbor left="SquareL 1" right="OctagonL" />
     <neighbor left="SquareL 1" right="OctagonL 1" />
+    <neighbor left="SquareL 2" right="OctagonL 1" />
+    <neighbor left="SquareL 2" right="OctagonL" />
 
     <neighbor left="SquareL 1" right="OctagonX" />
 

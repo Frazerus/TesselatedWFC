@@ -220,7 +220,6 @@ public abstract class OctagonTessellationModel
             else
                 throw new ArgumentException("No heuristic supplied");
 
-
             if (remainingValues > 1 && entropy <= min)
             {
                 var noise = 1E-6 * random.NextDouble();
@@ -258,18 +257,21 @@ public abstract class OctagonTessellationModel
     {
         while (_stackSize > 0)
         {
-            var (index, part, tileState) = _stack[_stackSize - 1];
+            var (index, shape, tileState) = _stack[_stackSize - 1];
             _stackSize--;
 
             var x = index % Width;
             var y = index / Width;
 
-            if (part == 0) //Main part
+            var xAdditions = shape == 0 ? dx : sx;
+            var yAdditions = shape == 0 ? dy : sy;
+            var neighbors = shape == 0 ? 8 : 4;
+
             {
-                for (var d = 0; d < 8; d++)
+                for (var d = 0; d < neighbors; d++)
                 {
-                    var xOther = x + dx[d];
-                    var yOther = y + dy[d];
+                    var xOther = x + xAdditions[d];
+                    var yOther = y + yAdditions[d];
 
                     if (!_periodic && (xOther < 0 || yOther < 0 || xOther + 1 > Width || yOther + 1 > Height)) continue;
 
@@ -284,13 +286,13 @@ public abstract class OctagonTessellationModel
                         yOther -= Height;
 
                     var indexOther = xOther + yOther * Width;
-                    var otherPart = d < 4 ? 0 : 1;
+                    var otherShape = d < 4 ? 0 : 1;
 
                     //Which neighbors can local tile have?
-                    var localPropagator = Propagator[part][otherPart][d % 4][tileState];
+                    var localPropagator = Propagator[shape][otherShape][d % 4][tileState];
 
                     //which options does the other position have for tiles?
-                    var tileCompatability = _compatible[indexOther][otherPart][part];
+                    var tileCompatability = _compatible[indexOther][otherShape][shape];
 
                     var direction = d % 4;
 
@@ -303,18 +305,17 @@ public abstract class OctagonTessellationModel
 
                         //If the other position has no valid neighbors for a given tile from any direction, ban the tile
                         if (compatibilityForOtherTile[direction] == 0)
-                            Ban(indexOther, otherPart, otherTile);
+                            Ban(indexOther, otherShape, otherTile);
                     }
                 }
             }
-            else if (part == 1)
+            /*else if (shape == 1)
             {
                 for (var d = 0; d < 4; d++)
                 {
                     var xOther = x + sx[d];
                     var yOther = y + sy[d];
 
-                    //TODO Periodicity error
                     if (!_periodic && (xOther < 0 || yOther < 0 || xOther + 1 > Width || yOther + 1 > Height))
                         continue;
 
@@ -329,11 +330,11 @@ public abstract class OctagonTessellationModel
                         yOther -= Height;
 
                     var indexOther = xOther + yOther * Width;
-                    var otherPart = 0; //squares only have octagon neighbors
+                    var otherShape = 0; //squares only have octagon neighbors
 
-                    var currentPropagator = Propagator[part][otherPart][d][tileState];
+                    var currentPropagator = Propagator[shape][otherShape][d][tileState];
 
-                    var tileCompatability = _compatible[indexOther][otherPart][part];
+                    var tileCompatability = _compatible[indexOther][otherShape][shape];
 
                     for (var i = 0; i < currentPropagator.Length; i++)
                     {
@@ -342,10 +343,10 @@ public abstract class OctagonTessellationModel
 
                         comp[d]--;
                         if (comp[d] == 0)
-                            Ban(indexOther, otherPart, otherTile);
+                            Ban(indexOther, otherShape, otherTile);
                     }
                 }
-            }
+            }*/
 
         }
 
