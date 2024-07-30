@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>Benchmarks.Benchmark-20240729-103918</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet v0.13.12, Windows 11 (10.0.22631.3958/23H2/2023Update/SunValley3)
+12th Gen Intel Core i5-12600K, 1 CPU, 16 logical and 10 physical cores
+.NET SDK 8.0.303
+  [Host] : .NET 7.0.12 (7.0.1223.47720), X64 RyuJIT AVX2
+</code></pre>
+<pre><code>Job=MediumRun  Toolchain=InProcessNoEmitToolchain  IterationCount=15  
+LaunchCount=1  WarmupCount=10  
+</code></pre>
+
+<table>
+<thead><tr><th>Method                                  </th><th>Mean</th><th>Error</th><th>StdDev</th>
+</tr>
+</thead><tbody><tr><td>OriginalModel_MRV</td><td>158.4 &mu;s</td><td>0.68 &mu;s</td><td>0.60 &mu;s</td>
+</tr><tr><td>OriginalModel_Entropy</td><td>158.5 &mu;s</td><td>1.53 &mu;s</td><td>1.28 &mu;s</td>
+</tr><tr><td>OctagonTessellationModel_NormalSquares_MRV</td><td>1,635.5 &mu;s</td><td>66.67 &mu;s</td><td>62.37 &mu;s</td>
+</tr><tr><td>OctagonTessellationModel_NormalSquares_Entropy</td><td>1,619.0 &mu;s</td><td>119.07 &mu;s</td><td>111.38 &mu;s</td>
+</tr><tr><td>OctagonTessellationModel_GrassSquares_MRV</td><td>330.4 &mu;s</td><td>8.54 &mu;s</td><td>7.99 &mu;s</td>
+</tr><tr><td>OctagonTessellationModel_GrassSquares_Entropy</td><td>333.1 &mu;s</td><td>6.32 &mu;s</td><td>5.61 &mu;s</td>
+</tr></tbody></table>
+</body>
+</html>

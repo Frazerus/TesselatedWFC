@@ -17,8 +17,10 @@ public class Tile
         _cardinality = cardinality;
     }
 
-    public void Create(Vector3 position)
+    public void Create(float x, float y, float z)
     {
+        var position = new Vector3(x, y, z);
+
         var initialRotation = tileInfo.transform.rotation.eulerAngles;
 
         var quaternion = Quaternion.Euler(new Vector3(initialRotation.x, -90 * leftRotations + initialRotation.y, initialRotation.z));

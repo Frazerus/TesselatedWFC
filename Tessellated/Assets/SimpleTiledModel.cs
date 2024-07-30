@@ -1,10 +1,14 @@
 ﻿// Copyright (C) 2016 Maxim Gumin, The MIT License (MIT)
 
+#if NETCOREAPP
+using Benchmarks;
+#else
 using System;
-using System.Linq;
-using System.Xml.Linq;
 using System.Collections.Generic;
-using UnityEngine;
+#endif
+using System.Linq;
+using System.Numerics;
+using System.Xml.Linq;
 
 class SimpleTiledModel : Model
 {
@@ -13,9 +17,9 @@ class SimpleTiledModel : Model
     int tilesize;
 
     public SimpleTiledModel(string name, string subsetName, int width, int height, bool periodic,
-        Heuristic heuristic, string pathToTiles) : base(width, height, 1, periodic, heuristic)
+        Heuristic heuristic, string pathToTiles, string pathToXmlFile) : base(width, height, 1, periodic, heuristic)
     {
-        XElement xroot = XDocument.Load($"Assets/{name}.xml").Root;
+        XElement xroot = XDocument.Load(Path.Combine(pathToXmlFile, name + ".xml")).Root;
         bool unique = xroot.Get("unique", false);
 
         List<string> subset = null;
@@ -118,7 +122,7 @@ class SimpleTiledModel : Model
             {
                 for (int t = 0; t < cardinality; t++)
                 {
-                    var currentTile = Resources.Load<GameObject>($"{pathToTiles}/{tilename}");
+                    var currentTile = Loader.Load($"{pathToTiles}/{tilename}");
 
                     var tileObject = new Tile(currentTile);
 
@@ -128,7 +132,7 @@ class SimpleTiledModel : Model
             }
             else
             {
-                var currentTile = Resources.Load<GameObject>($"{pathToTiles}/{tilename}");
+                var currentTile = Loader.Load($"{pathToTiles}/{tilename}");
 
                 var tileObject = new Tile(currentTile);
 
@@ -239,7 +243,7 @@ class SimpleTiledModel : Model
         var halfSize = tileSize / 2;
         var halfNumberOfTiles = MX / 2;
 
-        var leftTopCorner = new Vector3(center.x + halfSize - halfNumberOfTiles * tileSize, 0, center.z - halfSize + halfNumberOfTiles * tileSize);
+        var leftTopCorner = new Vector3(center.X + halfSize - halfNumberOfTiles * tileSize, 0, center.Z - halfSize + halfNumberOfTiles * tileSize);
 
 
         //int[] bitmapData = new int[MX * MY * tilesize * tilesize];
@@ -248,7 +252,7 @@ class SimpleTiledModel : Model
             for (int x = 0; x < MX; x++) for (int y = 0; y < MY; y++)
             {
                 var tile = tiles[observed[x + y * MX]];
-                tile.Create(new Vector3(leftTopCorner.x + x * tileSize, 0, leftTopCorner.z - y * tileSize));
+                tile.Create(leftTopCorner.X + x * tileSize, 0, leftTopCorner.Z - y * tileSize);
             }
         }
         /*

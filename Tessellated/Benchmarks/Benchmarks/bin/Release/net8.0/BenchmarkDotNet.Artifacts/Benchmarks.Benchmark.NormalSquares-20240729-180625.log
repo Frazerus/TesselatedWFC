@@ -1,0 +1,3 @@
+// Validating benchmarks:
+//    * Unable to use NormalSquares.Heuristic with [Params] because its setter is not public. Please, make the setter public.
+

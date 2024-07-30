@@ -1,5 +1,10 @@
-﻿using System;
+﻿#if NETCOREAPP
+using Benchmarks;
+#else
+using System;
 using System.Collections.Generic;
+#endif
+using System.IO;
 using System.Numerics;
 using System.Xml.Linq;
 
@@ -15,10 +20,11 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
         int octagonHeight,
         bool periodic,
         Heuristic heuristic,
-        int shapeCount)
+        int shapeCount,
+        string pathToXmlFile)
         : base(octagonWidth, octagonHeight, periodic, heuristic, shapeCount)
     {
-        var xroot = XDocument.Load($"Assets/{name}.xml").Root;
+        var xroot = XDocument.Load(Path.Combine(pathToXmlFile, name + ".xml")).Root;
 
         var weightList = new List<double>[shapeCount];
 
@@ -71,7 +77,7 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
             for (int shape = 0; shape < ShapeCount; shape++)
             {
                 var tile = _tiles[shape][Observed[x + y * Width][shape]];
-                tile.Create(new Vector3(leftTopCorner.X + x * tileSize + shape * halfSize, 0, leftTopCorner.Z - y * tileSize + shape * halfSize));
+                tile.Create(leftTopCorner.X + x * tileSize + shape * halfSize, 0, leftTopCorner.Z - y * tileSize + shape * halfSize);
             }
         }
     }
@@ -225,7 +231,7 @@ public class SimpleOctagonTessellationModel : OctagonTessellationModel
                 action[shape].Add(map[t]);
             }
 
-            var currentTile = Resources.Load<GameObject>($"octagonSquares/{tilename}");
+            var currentTile = Loader.Load($"octagonSquares/{tilename}");
 
             for (var t = 0; t < cardinality; t++)
             {

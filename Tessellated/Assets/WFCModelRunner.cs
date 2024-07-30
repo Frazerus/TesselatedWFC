@@ -30,7 +30,8 @@ public class WFCModelRunner : MonoBehaviour
                 10,
                 false,
                 heuristic,
-                2);
+                2,
+                "Assets");
 
             var success = 0;
             for (int i = 0; i < testRuns; i++)
@@ -66,7 +67,8 @@ public class WFCModelRunner : MonoBehaviour
                 10,
                 false,
                 heuristic,
-                2);
+                2,
+                "Assets");
 
             var output = model.Run(seed, 10000);
 
