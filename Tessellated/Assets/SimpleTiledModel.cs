@@ -6,6 +6,7 @@ using Benchmarks;
 using System;
 using System.Collections.Generic;
 #endif
+using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Xml.Linq;

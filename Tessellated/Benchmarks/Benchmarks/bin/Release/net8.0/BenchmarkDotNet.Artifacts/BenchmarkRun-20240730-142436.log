@@ -1,0 +1,9 @@
+// Validating benchmarks:
+//    * Inconsistent benchmark return values in NormalSquares: BaseLine: True, OctagonTessellationModel_NormalSquares: False [Size=10, Heuristic=Entropy]
+
+//    * Inconsistent benchmark return values in NormalSquares: BaseLine: True, OctagonTessellationModel_NormalSquares: False [Size=20, Heuristic=Entropy]
+
+//    * Inconsistent benchmark return values in NormalSquares: BaseLine: True, OctagonTessellationModel_NormalSquares: False [Size=50, Heuristic=Entropy]
+
+//    * Inconsistent benchmark return values in NormalSquares: BaseLine: True, OctagonTessellationModel_NormalSquares: False [Size=50, Heuristic=MRV]
+

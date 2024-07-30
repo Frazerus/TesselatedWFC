@@ -6,17 +6,77 @@
 ------------------------------
 *** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-facetDensity.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-density.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-Heuristic=Entropy&Size=10-density.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-facetDensity.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-Heuristic=Entropy&Size=10-facetDensity.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-MediumRun-timeline.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-Heuristic=Entropy&Size=20-density.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-MediumRun-timelineSmooth.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-Heuristic=Entropy&Size=20-facetDensity.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-MediumRun-cummean.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-Heuristic=Entropy&Size=30-density.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-MediumRun-density.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-Heuristic=Entropy&Size=30-facetDensity.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-Heuristic=MRV&Size=10-density.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-Heuristic=MRV&Size=10-facetDensity.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-Heuristic=MRV&Size=20-density.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-Heuristic=MRV&Size=20-facetDensity.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-Heuristic=MRV&Size=30-density.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-Heuristic=MRV&Size=30-facetDensity.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-MediumRun Heuristic=Entropy&Size=10-timeline.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-MediumRun Heuristic=Entropy&Size=10-timelineSmooth.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-MediumRun Heuristic=Entropy&Size=10-cummean.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-MediumRun Heuristic=Entropy&Size=10-density.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-MediumRun Heuristic=Entropy&Size=20-timeline.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-MediumRun Heuristic=Entropy&Size=20-timelineSmooth.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-MediumRun Heuristic=Entropy&Size=20-cummean.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-MediumRun Heuristic=Entropy&Size=20-density.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-MediumRun Heuristic=Entropy&Size=30-timeline.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-MediumRun Heuristic=Entropy&Size=30-timelineSmooth.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-MediumRun Heuristic=Entropy&Size=30-cummean.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-MediumRun Heuristic=Entropy&Size=30-density.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-MediumRun Heuristic=MRV&Size=10-timeline.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-MediumRun Heuristic=MRV&Size=10-timelineSmooth.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-MediumRun Heuristic=MRV&Size=10-cummean.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-MediumRun Heuristic=MRV&Size=10-density.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-MediumRun Heuristic=MRV&Size=20-timeline.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-MediumRun Heuristic=MRV&Size=20-timelineSmooth.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-MediumRun Heuristic=MRV&Size=20-cummean.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-MediumRun Heuristic=MRV&Size=20-density.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-MediumRun Heuristic=MRV&Size=30-timeline.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-MediumRun Heuristic=MRV&Size=30-timelineSmooth.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-MediumRun Heuristic=MRV&Size=30-cummean.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-MediumRun Heuristic=MRV&Size=30-density.png ***
 ------------------------------
 *** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-facetTimeline.png ***
 ------------------------------
@@ -24,115 +84,169 @@
 ------------------------------
 *** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_MRV-cummean.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_Entropy-density.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-density.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_Entropy-facetDensity.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-facetDensity.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_Entropy-density.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-Heuristic=Entropy&Size=10-density.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_Entropy-facetDensity.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-Heuristic=Entropy&Size=10-facetDensity.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_Entropy-MediumRun-timeline.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-Heuristic=Entropy&Size=20-density.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_Entropy-MediumRun-timelineSmooth.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-Heuristic=Entropy&Size=20-facetDensity.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_Entropy-MediumRun-cummean.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-Heuristic=Entropy&Size=30-density.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_Entropy-MediumRun-density.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-Heuristic=Entropy&Size=30-facetDensity.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_Entropy-facetTimeline.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-Heuristic=MRV&Size=10-density.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_Entropy-facetTimelineSmooth.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-Heuristic=MRV&Size=10-facetDensity.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OriginalModel_Entropy-cummean.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-Heuristic=MRV&Size=20-density.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares_MRV-density.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-Heuristic=MRV&Size=20-facetDensity.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares_MRV-facetDensity.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-Heuristic=MRV&Size=30-density.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares_MRV-density.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-Heuristic=MRV&Size=30-facetDensity.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares_MRV-facetDensity.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-MediumRun Heuristic=Entropy&Size=10-timeline.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares_MRV-MediumRun-timeline.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-MediumRun Heuristic=Entropy&Size=10-timelineSmooth.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares_MRV-MediumRun-timelineSmooth.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-MediumRun Heuristic=Entropy&Size=10-cummean.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares_MRV-MediumRun-cummean.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-MediumRun Heuristic=Entropy&Size=10-density.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares_MRV-MediumRun-density.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-MediumRun Heuristic=Entropy&Size=20-timeline.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares_MRV-facetTimeline.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-MediumRun Heuristic=Entropy&Size=20-timelineSmooth.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares_MRV-facetTimelineSmooth.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-MediumRun Heuristic=Entropy&Size=20-cummean.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares_MRV-cummean.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-MediumRun Heuristic=Entropy&Size=20-density.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares_Entropy-density.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-MediumRun Heuristic=Entropy&Size=30-timeline.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares_Entropy-facetDensity.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-MediumRun Heuristic=Entropy&Size=30-timelineSmooth.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares_Entropy-density.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-MediumRun Heuristic=Entropy&Size=30-cummean.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares_Entropy-facetDensity.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-MediumRun Heuristic=Entropy&Size=30-density.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares_Entropy-MediumRun-timeline.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-MediumRun Heuristic=MRV&Size=10-timeline.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares_Entropy-MediumRun-timelineSmooth.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-MediumRun Heuristic=MRV&Size=10-timelineSmooth.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares_Entropy-MediumRun-cummean.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-MediumRun Heuristic=MRV&Size=10-cummean.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares_Entropy-MediumRun-density.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-MediumRun Heuristic=MRV&Size=10-density.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares_Entropy-facetTimeline.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-MediumRun Heuristic=MRV&Size=20-timeline.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares_Entropy-facetTimelineSmooth.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-MediumRun Heuristic=MRV&Size=20-timelineSmooth.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares_Entropy-cummean.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-MediumRun Heuristic=MRV&Size=20-cummean.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares_MRV-density.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-MediumRun Heuristic=MRV&Size=20-density.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares_MRV-facetDensity.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-MediumRun Heuristic=MRV&Size=30-timeline.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares_MRV-density.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-MediumRun Heuristic=MRV&Size=30-timelineSmooth.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares_MRV-facetDensity.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-MediumRun Heuristic=MRV&Size=30-cummean.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares_MRV-MediumRun-timeline.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-MediumRun Heuristic=MRV&Size=30-density.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares_MRV-MediumRun-timelineSmooth.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-facetTimeline.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares_MRV-MediumRun-cummean.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-facetTimelineSmooth.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares_MRV-MediumRun-density.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_NormalSquares-cummean.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares_MRV-facetTimeline.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-density.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares_MRV-facetTimelineSmooth.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-facetDensity.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares_MRV-cummean.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-Heuristic=Entropy&Size=10-density.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares_Entropy-density.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-Heuristic=Entropy&Size=10-facetDensity.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares_Entropy-facetDensity.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-Heuristic=Entropy&Size=20-density.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares_Entropy-density.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-Heuristic=Entropy&Size=20-facetDensity.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares_Entropy-facetDensity.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-Heuristic=Entropy&Size=30-density.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares_Entropy-MediumRun-timeline.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-Heuristic=Entropy&Size=30-facetDensity.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares_Entropy-MediumRun-timelineSmooth.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-Heuristic=MRV&Size=10-density.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares_Entropy-MediumRun-cummean.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-Heuristic=MRV&Size=10-facetDensity.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares_Entropy-MediumRun-density.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-Heuristic=MRV&Size=20-density.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares_Entropy-facetTimeline.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-Heuristic=MRV&Size=20-facetDensity.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares_Entropy-facetTimelineSmooth.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-Heuristic=MRV&Size=30-density.png ***
 ------------------------------
-*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares_Entropy-cummean.png ***
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-Heuristic=MRV&Size=30-facetDensity.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-MediumRun Heuristic=Entropy&Size=10-timeline.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-MediumRun Heuristic=Entropy&Size=10-timelineSmooth.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-MediumRun Heuristic=Entropy&Size=10-cummean.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-MediumRun Heuristic=Entropy&Size=10-density.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-MediumRun Heuristic=Entropy&Size=20-timeline.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-MediumRun Heuristic=Entropy&Size=20-timelineSmooth.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-MediumRun Heuristic=Entropy&Size=20-cummean.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-MediumRun Heuristic=Entropy&Size=20-density.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-MediumRun Heuristic=Entropy&Size=30-timeline.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-MediumRun Heuristic=Entropy&Size=30-timelineSmooth.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-MediumRun Heuristic=Entropy&Size=30-cummean.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-MediumRun Heuristic=Entropy&Size=30-density.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-MediumRun Heuristic=MRV&Size=10-timeline.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-MediumRun Heuristic=MRV&Size=10-timelineSmooth.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-MediumRun Heuristic=MRV&Size=10-cummean.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-MediumRun Heuristic=MRV&Size=10-density.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-MediumRun Heuristic=MRV&Size=20-timeline.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-MediumRun Heuristic=MRV&Size=20-timelineSmooth.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-MediumRun Heuristic=MRV&Size=20-cummean.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-MediumRun Heuristic=MRV&Size=20-density.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-MediumRun Heuristic=MRV&Size=30-timeline.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-MediumRun Heuristic=MRV&Size=30-timelineSmooth.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-MediumRun Heuristic=MRV&Size=30-cummean.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-MediumRun Heuristic=MRV&Size=30-density.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-facetTimeline.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-facetTimelineSmooth.png ***
+------------------------------
+*** Plot: C:\Development\FH\Masterarbeit\TesselatedWFC\Tessellated\Benchmarks\Benchmarks\bin\Release\net8.0\BenchmarkDotNet.Artifacts\results\Benchmarks.Benchmark-OctagonTessellationModel_GrassSquares-cummean.png ***
 ------------------------------
 Attaching package: 'dplyr'
 The following objects are masked from 'package:stats':
@@ -167,25 +281,9 @@ Saving 7 x 7 in image
 Saving 7 x 7 in image
 Saving 7 x 7 in image
 Saving 7 x 7 in image
-`geom_smooth()` using method = 'loess' and formula = 'y ~ x'
 Saving 7 x 7 in image
 Saving 7 x 7 in image
 Saving 7 x 7 in image
-Saving 7 x 7 in image
-`geom_smooth()` using method = 'loess' and formula = 'y ~ x'
-Saving 7 x 7 in image
-Saving 7 x 7 in image
-Saving 7 x 7 in image
-Saving 7 x 7 in image
-Saving 7 x 7 in image
-Saving 7 x 7 in image
-Saving 7 x 7 in image
-`geom_smooth()` using method = 'loess' and formula = 'y ~ x'
-Saving 7 x 7 in image
-Saving 7 x 7 in image
-Saving 7 x 7 in image
-Saving 7 x 7 in image
-`geom_smooth()` using method = 'loess' and formula = 'y ~ x'
 Saving 7 x 7 in image
 Saving 7 x 7 in image
 Saving 7 x 7 in image
@@ -203,18 +301,7 @@ Saving 7 x 7 in image
 Saving 7 x 7 in image
 Saving 7 x 7 in image
 Saving 7 x 7 in image
-Saving 7 x 7 in image
-Saving 7 x 7 in image
-Saving 7 x 7 in image
 `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
-Saving 7 x 7 in image
-Saving 7 x 7 in image
-Saving 7 x 7 in image
-Saving 7 x 7 in image
-`geom_smooth()` using method = 'loess' and formula = 'y ~ x'
-Saving 7 x 7 in image
-Saving 7 x 7 in image
-Saving 7 x 7 in image
 Saving 7 x 7 in image
 Saving 7 x 7 in image
 Saving 7 x 7 in image
@@ -229,6 +316,26 @@ Saving 7 x 7 in image
 Saving 7 x 7 in image
 Saving 7 x 7 in image
 Saving 7 x 7 in image
+`geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+`geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
 Saving 7 x 7 in image
 Saving 7 x 7 in image
 Saving 7 x 7 in image
@@ -239,4 +346,77 @@ Saving 7 x 7 in image
 Saving 7 x 7 in image
 `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
 Saving 7 x 7 in image
-There were 31 warnings (use warnings() to see them)
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+`geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+`geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+`geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+`geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+`geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+`geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+`geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+`geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+`geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+`geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+`geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+`geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+Saving 7 x 7 in image
+There were 50 or more warnings (use warnings() to see the first 50)

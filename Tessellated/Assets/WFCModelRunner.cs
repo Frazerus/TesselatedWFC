@@ -10,6 +10,7 @@ public class WFCModelRunner : MonoBehaviour
 
     }
 
+    public int size = 50;
     public TileSets tileSet = TileSets.octagon_standardImitation_NormalSquares;
     public int seed = 37;
     public bool originalModel = false;
@@ -24,31 +25,61 @@ public class WFCModelRunner : MonoBehaviour
     {
         if (test)
         {
-            var model = new SimpleOctagonTessellationModel(
-                tileSet.ToString(),
-                10,
-                10,
-                false,
-                heuristic,
-                2,
-                "Assets");
-
-            var success = 0;
-            for (int i = 0; i < testRuns; i++)
+            if (originalModel)
             {
-                success += model.Run((int)(Random.value * 1379), 10000) ? 1 : 0;
+                var model = new SimpleTiledModel(originalWithOctagons ? "standard_octagon" : "standard", null, size,
+                    size, false,
+                    heuristic, originalWithOctagons ? "OctagonSquares" : "standard", "./Assets/");
+
+                var successes = 0;
+                var workingSeed = -1;
+                for (int i = 0; i < testRuns; i++)
+                {
+                    var seed = (int)(Random.value * 1379);
+                    var successful = model.Run(seed, 10000);
+                    if (successful) workingSeed = seed;
+                    successes += successful ? 1 : 0;
+                }
+
+                print($"Worked {successes} out of {testRuns} runs.");
+                print($"Working seed: {workingSeed}");
+                return;
+            }
+            else
+            {
+                var model = new SimpleOctagonTessellationModel(
+                    tileSet.ToString(),
+                    size,
+                    size,
+                    false,
+                    heuristic,
+                    2,
+                    "Assets");
+
+                var successes = 0;
+                var workingSeed = -1;
+                for (int i = 0; i < testRuns; i++)
+                {
+                    var seed = (int)(Random.value * 1379);
+                    var successful = model.Run(seed, 10000);
+                    if (successful) workingSeed = seed;
+                    successes += successful ? 1 : 0;
+                }
+
+                print($"Worked {successes} out of {testRuns} runs.");
+                print($"Working seed: {workingSeed}");
+                return;
             }
 
-            print($"Worked {success} out of {testRuns} runs.");
-            return;
+
         }
 
 
 
         if (originalModel)
         {
-            var model = new SimpleTiledModel(originalWithOctagons ? "standard_octagon" : "standard", null, 10, 10, false,
-                Model.Heuristic.MRV, originalWithOctagons ? "OctagonSquares" : "standard");
+            var model = new SimpleTiledModel(originalWithOctagons ? "standard_octagon" : "standard", null, size, size, false,
+                heuristic, originalWithOctagons ? "OctagonSquares" : "standard", "./Assets/");
 
             var output = model.Run(seed, 10000);
 
@@ -63,8 +94,8 @@ public class WFCModelRunner : MonoBehaviour
         {
             var model = new SimpleOctagonTessellationModel(
                 tileSet.ToString(),
-                10,
-                10,
+                size,
+                size,
                 false,
                 heuristic,
                 2,
