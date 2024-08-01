@@ -4,6 +4,6 @@ public class Loader
 {
     public static object Load(string load)
     {
-        return 5;
+        return 5L;
     }
 }

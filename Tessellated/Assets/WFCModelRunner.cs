@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -32,18 +34,18 @@ public class WFCModelRunner : MonoBehaviour
                     heuristic, originalWithOctagons ? "OctagonSquares" : "standard", "./Assets/");
 
                 var successes = 0;
-                var workingSeed = -1;
-                for (int i = 0; i < testRuns; i++)
+                var workingSeed = new List<string>();
+                for (int i = 0; workingSeed.Count < 40; i++)
                 {
                     var seed = (int)(Random.value * 1379);
                     var successful = model.Run(seed, 10000);
-                    if (successful) workingSeed = seed;
+                    if (successful) workingSeed.Add(seed.ToString());
                     successes += successful ? 1 : 0;
                 }
 
                 print($"Worked {successes} out of {testRuns} runs.");
-                print($"Working seed: {workingSeed}");
-                return;
+
+                print(string.Join(", ", workingSeed.Take(40)));
             }
             else
             {
@@ -57,17 +59,26 @@ public class WFCModelRunner : MonoBehaviour
                     "Assets");
 
                 var successes = 0;
-                var workingSeed = -1;
-                for (int i = 0; i < testRuns; i++)
+                var workingSeed = new List<string>();
+                for (int i = 0; workingSeed.Count < 40; i++)
                 {
                     var seed = (int)(Random.value * 1379);
                     var successful = model.Run(seed, 10000);
-                    if (successful) workingSeed = seed;
+                    if (successful) workingSeed.Add(seed.ToString());
                     successes += successful ? 1 : 0;
                 }
 
                 print($"Worked {successes} out of {testRuns} runs.");
-                print($"Working seed: {workingSeed}");
+
+                print(string.Join(", ", workingSeed.Take(40)));
+
+                var a = new int[40];
+                for (int i = 0; i < a.Length; i++)
+                {
+                    a[i] = i;
+                }
+                print(string.Join(", ", a));
+
                 return;
             }
 

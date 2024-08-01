@@ -322,10 +322,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 317f3ddee68dcd741bf7499728d59650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 30
+  size: 10
   tileSet: 0
   seed: 412
-  originalModel: 1
+  originalModel: 0
   originalWithOctagons: 0
   test: 1
   testRuns: 100
