@@ -100,6 +100,8 @@ public class WFCModelRunner : MonoBehaviour
                 print("Worked!");
 
             model.Save();
+            ScreenCapture.CaptureScreenshot("outputFile.png");
+
         }
         else
         {
@@ -120,6 +122,8 @@ public class WFCModelRunner : MonoBehaviour
                 print("Worked!");
 
             model.CreateOutput();
+
+            ScreenCapture.CaptureScreenshot("outputFile.png");
         }
     }
 }
