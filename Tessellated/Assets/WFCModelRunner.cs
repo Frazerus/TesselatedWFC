@@ -9,6 +9,8 @@ public class WFCModelRunner : MonoBehaviour
     {
         octagon_standardImitation_GrassOnlySquares,
         octagon_standardImitation_NormalSquares,
+        octagon_Y_test,
+        octagon_allTiles
 
     }
 
